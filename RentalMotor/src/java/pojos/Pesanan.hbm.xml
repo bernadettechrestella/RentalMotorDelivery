@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Nov 1, 2018 11:39:09 AM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="pojos.Pesanan" table="pesanan" catalog="db165314014" optimistic-lock="version">
+        <id name="platNomor" type="string">
+            <column name="PlatNomor" length="10" />
+            <generator class="assigned" />
+        </id>
+        <property name="nama" type="string">
+            <column name="Nama" length="25" />
+        </property>
+        <property name="noIdentitas" type="java.lang.Integer">
+            <column name="NoIdentitas" />
+        </property>
+        <property name="noHp" type="java.lang.Integer">
+            <column name="NoHP" />
+        </property>
+        <property name="lamaSewa" type="string">
+            <column name="LamaSewa" length="10" />
+        </property>
+        <property name="tanggalMulai" type="date">
+            <column name="TanggalMulai" length="10" />
+        </property>
+        <property name="tanggalSelesai" type="date">
+            <column name="TanggalSelesai" length="10" />
+        </property>
+        <property name="jamPengantaran" type="time">
+            <column name="JamPengantaran" length="8" />
+        </property>
+        <property name="jamPenjemputan" type="time">
+            <column name="JamPenjemputan" length="8" />
+        </property>
+        <property name="jenisMotor" type="string">
+            <column name="JenisMotor" length="25" />
+        </property>
+        <property name="warna" type="string">
+            <column name="Warna" length="25" />
+        </property>
+        <property name="status" type="string">
+            <column name="Status" length="25" />
+        </property>
+    </class>
+</hibernate-mapping>
