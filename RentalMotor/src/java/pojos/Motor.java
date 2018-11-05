@@ -1,5 +1,5 @@
 package pojos;
-// Generated Nov 1, 2018 11:39:08 AM by Hibernate Tools 4.3.1
+// Generated Nov 5, 2018 5:26:13 PM by Hibernate Tools 4.3.1
 
 
 
@@ -17,7 +17,7 @@ public class Motor  implements java.io.Serializable {
     public Motor() {
     }
 
-    public Motor(String platNomor, String jenis, String warna, String status) {
+    public Motor(String jenis, String warna, String platNomor, String status) {
        this.platNomor = platNomor;
        this.jenis = jenis;
        this.warna = warna;

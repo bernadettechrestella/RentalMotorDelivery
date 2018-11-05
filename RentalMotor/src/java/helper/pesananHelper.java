@@ -5,8 +5,8 @@
  */
 package helper;
 
-import java.sql.Time;
 import java.util.Date;
+import java.sql.Time;
 import java.util.List;
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -33,22 +33,21 @@ public class pesananHelper {
 
     public void addNewPesanan(
             String nama,
-            int noIdentitas,
-            int noHp,
+            String noIdentitas,
+            String noHp,
+            String alamat,
             String lamaSewa,
             Date tanggalMulai,
             Date tanggalSelesai,
-            Date jamPengantaran,
-            Date jamPenjemputan,
+            Time jamPengantaran,
+            Time jamPenjemputan,
             String jenisMotor,
             String warna,
             String platNomor,
             String status) {
         Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction transaction = session.beginTransaction();
-        Pesanan pesanan = new Pesanan(nama, noIdentitas, noHp, lamaSewa, tanggalMulai, tanggalSelesai, jamPengantaran, jamPenjemputan,
-        jenisMotor, warna, platNomor, status);
-        session.saveOrUpdate(pesanan);
+        Pesanan pesanan = new Pesanan(nama, noIdentitas, noHp, alamat, lamaSewa, tanggalMulai, tanggalSelesai, jamPengantaran, jamPenjemputan, jenisMotor, warna, platNomor, status);
         transaction.commit();
         session.close();
     }
