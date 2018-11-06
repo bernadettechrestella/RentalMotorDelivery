@@ -11,6 +11,7 @@ import java.util.List;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import pojos.Motor;
 import pojos.Pesanan;
 import util.HibernateUtil;
 
@@ -32,6 +33,7 @@ public class pesananHelper {
     }
 
     public void addNewPesanan(
+            Motor motor,
             String nama,
             String noIdentitas,
             String noHp,
@@ -47,8 +49,8 @@ public class pesananHelper {
             String status) {
         Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction transaction = session.beginTransaction();
-        Pesanan pesanan = new Pesanan(nama, noIdentitas, noHp, alamat, lamaSewa, tanggalMulai, tanggalSelesai, jamPengantaran, jamPenjemputan, jenisMotor, warna, platNomor, status);
-        transaction.commit();
+        Pesanan pesanan = new Pesanan(motor, nama, noHp, alamat, lamaSewa, tanggalMulai, tanggalSelesai, 
+                jamPengantaran, jamPenjemputan, jenisMotor, warna, platNomor, status);
         session.close();
     }
 }

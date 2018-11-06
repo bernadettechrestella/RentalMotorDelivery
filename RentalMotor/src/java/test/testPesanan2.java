@@ -31,7 +31,7 @@ public class testPesanan2 {
 //            Date jam2 = format.parse("13:00:00");
 //           String noRm = "123457";
             pesananHelper test = new pesananHelper();
-            test.addNewPesanan("Stella", "987654321", "081248002829", "Paingan", "7 Hari", date, date2, Time.valueOf("13:00:00"), Time.valueOf("13:00:00"), "Honda Beat", "Hitam", "B 1234 KMU", "Disewa");
+//            test.addNewPesanan("Stella", "987654321", "081248002829", "Paingan", "7 Hari", date, date2, Time.valueOf("13:00:00"), Time.valueOf("13:00:00"), "Honda Beat", "Hitam", "B 1234 KMU", "Disewa");
         } catch (Exception ex) {
             Logger.getLogger(testPesanan2.class.getName()).log(Level.SEVERE, null, ex);
         }

@@ -1,5 +1,5 @@
 package pojos;
-// Generated Nov 5, 2018 5:26:13 PM by Hibernate Tools 4.3.1
+// Generated Nov 6, 2018 12:40:46 PM by Hibernate Tools 4.3.1
 
 
 
@@ -13,15 +13,24 @@ public class Motor  implements java.io.Serializable {
      private String jenis;
      private String warna;
      private String status;
+     private Pesanan pesanan;
 
     public Motor() {
     }
 
-    public Motor(String jenis, String warna, String platNomor, String status) {
+	
+    public Motor(String platNomor, String jenis, String warna, String status) {
+        this.platNomor = platNomor;
+        this.jenis = jenis;
+        this.warna = warna;
+        this.status = status;
+    }
+    public Motor(String platNomor, String jenis, String warna, String status, Pesanan pesanan) {
        this.platNomor = platNomor;
        this.jenis = jenis;
        this.warna = warna;
        this.status = status;
+       this.pesanan = pesanan;
     }
    
     public String getPlatNomor() {
@@ -51,6 +60,13 @@ public class Motor  implements java.io.Serializable {
     
     public void setStatus(String status) {
         this.status = status;
+    }
+    public Pesanan getPesanan() {
+        return this.pesanan;
+    }
+    
+    public void setPesanan(Pesanan pesanan) {
+        this.pesanan = pesanan;
     }
 
 

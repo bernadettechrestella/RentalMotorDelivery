@@ -87,7 +87,7 @@ public class PesananResource {
         Gson gson = new Gson();
         Pesanan pesanan = gson.fromJson(data, Pesanan.class);
         pesananHelper helper = new pesananHelper();
-        helper.addNewPesanan(pesanan.getNama(), pesanan.getNoIdentitas(), pesanan.getNoHp(), pesanan.getAlamat(), pesanan.getLamaSewa(), pesanan.getTanggalMulai(),
+        helper.addNewPesanan(pesanan.getMotor(), pesanan.getNama(), pesanan.getNoIdentitas(), pesanan.getNoHp(), pesanan.getAlamat(), pesanan.getLamaSewa(), pesanan.getTanggalMulai(),
                 pesanan.getTanggalSelesai(), pesanan.getJamPengantaran(), pesanan.getJamPenjemputan(), pesanan.getJenisMotor(), pesanan.getWarna(),
                 pesanan.getPlatNomor(), pesanan.getStatus());
         return Response
