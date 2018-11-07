@@ -5,39 +5,36 @@
  */
 package helper;
 
-import java.util.Date;
 import java.sql.Time;
+import java.util.Date;
 import java.util.List;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import pojos.Motor;
-import pojos.Pesanan;
+import pojos.Penyewa;
+import pojos.Transaksi;
 import util.HibernateUtil;
 
 /**
  *
  * @author Bernadette Chrestella - bernadettechrestella@gmail.com
  */
-public class pesananHelper {
-
-    public pesananHelper() {
+public class transaksiHelper {
+    public transaksiHelper() {
     }
 
-    public List<Pesanan> getPesanan() {
+    public List<Transaksi> getTransaksi() {
         Session session = HibernateUtil.getSessionFactory().openSession();
-        String query = "from Pesanan";
+        String query = "from Transaksi";
         Query q = session.createQuery(query);
-        List<Pesanan> list = q.list();
+        List<Transaksi> list = q.list();
         return list;
     }
 
-    public void addNewPesanan(
-            Motor motor,
-            String nama,
-            String noIdentitas,
-            String noHp,
-            String alamat,
+    public void addNewTransaksi(
+            int idTransaksi,
+            Penyewa penyewa,
             String lamaSewa,
             Date tanggalMulai,
             Date tanggalSelesai,
@@ -45,12 +42,11 @@ public class pesananHelper {
             Time jamPenjemputan,
             String jenisMotor,
             String warna,
-            String platNomor,
+            Motor motor,
             String status) {
         Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction transaction = session.beginTransaction();
-        Pesanan pesanan = new Pesanan(motor, nama, noHp, alamat, lamaSewa, tanggalMulai, tanggalSelesai, 
-                jamPengantaran, jamPenjemputan, jenisMotor, warna, platNomor, status);
+        Transaksi transaksi = new Transaksi(penyewa, lamaSewa, tanggalMulai, tanggalSelesai, jamPengantaran, jamPenjemputan, jenisMotor, motor, warna, status);
         session.close();
     }
 }

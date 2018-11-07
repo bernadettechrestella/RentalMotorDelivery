@@ -5,9 +5,8 @@
  */
 package test;
 
-import helper.pesananHelper;
+import helper.penyewaHelper;
 import java.sql.Time;
-import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -18,7 +17,7 @@ import java.util.logging.Logger;
  *
  * @author Bernadette Chrestella - bernadettechrestella@gmail.com
  */
-public class testPesanan2 {
+public class testTransaksi2 {
 
     public static void main(String[] args) throws ParseException {
 
@@ -30,10 +29,10 @@ public class testPesanan2 {
 //            Date jam1 = format.parse("13:00:00");
 //            Date jam2 = format.parse("13:00:00");
 //           String noRm = "123457";
-            pesananHelper test = new pesananHelper();
+            penyewaHelper test = new penyewaHelper();
 //            test.addNewPesanan("Stella", "987654321", "081248002829", "Paingan", "7 Hari", date, date2, Time.valueOf("13:00:00"), Time.valueOf("13:00:00"), "Honda Beat", "Hitam", "B 1234 KMU", "Disewa");
         } catch (Exception ex) {
-            Logger.getLogger(testPesanan2.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(testTransaksi2.class.getName()).log(Level.SEVERE, null, ex);
         }
 
     }

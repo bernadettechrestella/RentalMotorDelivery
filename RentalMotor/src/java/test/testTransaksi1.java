@@ -5,26 +5,25 @@
  */
 package test;
 
-import helper.pesananHelper;
+import helper.penyewaHelper;
+import helper.transaksiHelper;
 import java.util.List;
-import pojos.Pesanan;
+import pojos.Transaksi;
 
 /**
  *
  * @author Bernadette Chrestella - bernadettechrestella@gmail.com
  */
-public class testPesanan1 {
+public class testTransaksi1 {
     public static void main(String[] args) {
-        pesananHelper helper = new pesananHelper();
-        List<Pesanan> list = helper.getPesanan();
+        transaksiHelper helper = new transaksiHelper();
+        List<Transaksi> list = helper.getTransaksi();
 //        Gson gson = new Gson();
 //        String json = gson.toJson(list);
 //        System.out.println(list);
         for (int i = 0; i < list.size(); i++) {
-            System.out.println(list.get(i).getNama());
-            System.out.println(list.get(i).getNoIdentitas());
-            System.out.println(list.get(i).getNoHp());
-            System.out.println(list.get(i).getAlamat());
+            System.out.println(list.get(i).getIdTransaksi());
+            System.out.println(list.get(i).getPenyewa());
             System.out.println(list.get(i).getLamaSewa());
             System.out.println(list.get(i).getTanggalMulai());
             System.out.println(list.get(i).getTanggalSelesai());
@@ -32,7 +31,8 @@ public class testPesanan1 {
             System.out.println(list.get(i).getJamPenjemputan());
             System.out.println(list.get(i).getJenisMotor());
             System.out.println(list.get(i).getWarna());
-            System.out.println(list.get(i).getPlatNomor());
+            System.out.println(list.get(i).getMotor());
+            System.out.println(list.get(i).getStatus());
             System.out.println(list.get(i).getStatus());
         }
     }

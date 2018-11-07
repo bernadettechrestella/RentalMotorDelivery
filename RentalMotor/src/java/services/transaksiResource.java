@@ -6,39 +6,39 @@
 package services;
 
 import com.google.gson.Gson;
-import helper.pesananHelper;
+import helper.transaksiHelper;
 import java.util.List;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.UriInfo;
-import javax.ws.rs.Consumes;
 import javax.ws.rs.Produces;
+import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PUT;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
-import pojos.Pesanan;
+import pojos.Transaksi;
 
 /**
  * REST Web Service
  *
  * @author Bernadette Chrestella - bernadettechrestella@gmail.com
  */
-@Path("pesanan")
-public class PesananResource {
+@Path("transaksi")
+public class transaksiResource {
 
     @Context
     private UriInfo context;
 
     /**
-     * Creates a new instance of PesananResource
+     * Creates a new instance of transaksiResource
      */
-    public PesananResource() {
+    public transaksiResource() {
     }
 
     /**
-     * Retrieves representation of an instance of services.PesananResource
+     * Retrieves representation of an instance of services.transaksiResource
      * @return an instance of java.lang.String
      */
     @GET
@@ -49,7 +49,7 @@ public class PesananResource {
     }
 
     /**
-     * PUT method for updating or creating an instance of PesananResource
+     * PUT method for updating or creating an instance of transaksiResource
      * @param content representation for the resource
      */
     @PUT
@@ -59,9 +59,9 @@ public class PesananResource {
     
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public Response getPesanan(){
-        pesananHelper helper = new pesananHelper();
-        List<Pesanan> list = helper.getPesanan();
+    public Response getTransaksi(){
+        transaksiHelper helper = new transaksiHelper();
+        List<Transaksi> list = helper.getTransaksi();
         Gson gson = new Gson();
         
         return Response.status(200)
@@ -81,18 +81,17 @@ public class PesananResource {
     }
     
     @POST
-    @Path("addPesanan")
+    @Path("addPenyewa")
     @Consumes(MediaType.APPLICATION_JSON)
-    public Response addNewPesanan(String data){
+    public Response addNewPenyewa(String data){
         Gson gson = new Gson();
-        Pesanan pesanan = gson.fromJson(data, Pesanan.class);
-        pesananHelper helper = new pesananHelper();
-        helper.addNewPesanan(pesanan.getMotor(), pesanan.getNama(), pesanan.getNoIdentitas(), pesanan.getNoHp(), pesanan.getAlamat(), pesanan.getLamaSewa(), pesanan.getTanggalMulai(),
-                pesanan.getTanggalSelesai(), pesanan.getJamPengantaran(), pesanan.getJamPenjemputan(), pesanan.getJenisMotor(), pesanan.getWarna(),
-                pesanan.getPlatNomor(), pesanan.getStatus());
+        Transaksi transaksi = gson.fromJson(data, Transaksi.class);
+        transaksiHelper helper = new transaksiHelper();
+        helper.addNewTransaksi(0, transaksi.getPenyewa(), transaksi.getLamaSewa(), transaksi.getTanggalMulai(), transaksi.getTanggalSelesai(), 
+                transaksi.getJamPengantaran(), transaksi.getJamPenjemputan(), transaksi.getJenisMotor(), transaksi.getWarna(), transaksi.getMotor(), transaksi.getStatus());
         return Response
                 .status(200)
-                .entity(pesanan)
+                .entity(transaksi)
                 .build();
     }
 }

@@ -9,36 +9,35 @@ import java.util.List;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
-import pojos.Motor;
+import pojos.Penyewa;
+import pojos.Transaksi;
 import util.HibernateUtil;
 
 /**
  *
  * @author Bernadette Chrestella - bernadettechrestella@gmail.com
  */
-public class motorHelper {
+public class penyewaHelper {
 
-    public motorHelper() {
+    public penyewaHelper() {
     }
-    
-    public List<Motor> getMotor() {
+
+    public List<Penyewa> getPenyewa() {
         Session session = HibernateUtil.getSessionFactory().openSession();
-        String query = "from Motor";
+        String query = "from Penyewa";
         Query q = session.createQuery(query);
-        List<Motor> list = q.list();
+        List<Penyewa> list = q.list();
         return list;
     }
-    
-    public void addNewMotor(
-            String jenis,
-            String warna,
-            String platNo,
-            String status) {
+
+    public void addNewPenyewa(
+            String nama,
+            String noIdentitas,
+            String noHp,
+            String alamat) {
         Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction transaction = session.beginTransaction();
-        Motor motor = new Motor(jenis, warna, platNo, status);
-        session.saveOrUpdate(motor);
-        transaction.commit();
+        Penyewa penyewa = new Penyewa(nama, noIdentitas, noHp, alamat);
         session.close();
     }
 }
