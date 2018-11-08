@@ -6,7 +6,7 @@
 package services;
 
 import com.google.gson.Gson;
-import helper.transaksiHelper;
+import helper.pesananHelper;
 import java.util.List;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.UriInfo;
@@ -18,7 +18,7 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PUT;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
-import pojos.Transaksi;
+import pojos.Pesanan;
 
 /**
  * REST Web Service
@@ -26,7 +26,7 @@ import pojos.Transaksi;
  * @author Bernadette Chrestella - bernadettechrestella@gmail.com
  */
 @Path("transaksi")
-public class transaksiResource {
+public class pesananResource {
 
     @Context
     private UriInfo context;
@@ -34,7 +34,7 @@ public class transaksiResource {
     /**
      * Creates a new instance of transaksiResource
      */
-    public transaksiResource() {
+    public pesananResource() {
     }
 
     /**
@@ -59,9 +59,9 @@ public class transaksiResource {
     
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public Response getTransaksi(){
-        transaksiHelper helper = new transaksiHelper();
-        List<Transaksi> list = helper.getTransaksi();
+    public Response getPesanan(){
+        pesananHelper helper = new pesananHelper();
+        List<Pesanan> list = helper.getPesanan();
         Gson gson = new Gson();
         
         return Response.status(200)
@@ -81,17 +81,17 @@ public class transaksiResource {
     }
     
     @POST
-    @Path("addPenyewa")
+//    @Path("addPenyewa")
     @Consumes(MediaType.APPLICATION_JSON)
-    public Response addNewPenyewa(String data){
+    public Response addNewPesanan(String data){
         Gson gson = new Gson();
-        Transaksi transaksi = gson.fromJson(data, Transaksi.class);
-        transaksiHelper helper = new transaksiHelper();
-        helper.addNewTransaksi(0, transaksi.getPenyewa(), transaksi.getLamaSewa(), transaksi.getTanggalMulai(), transaksi.getTanggalSelesai(), 
-                transaksi.getJamPengantaran(), transaksi.getJamPenjemputan(), transaksi.getJenisMotor(), transaksi.getWarna(), transaksi.getMotor(), transaksi.getStatus());
+        Pesanan pesanan = gson.fromJson(data, Pesanan.class);
+        pesananHelper helper = new pesananHelper();
+        helper.addNewPesanan(0, pesanan.getNoIdentitas(), pesanan.getLamaSewa(), pesanan.getTanggalMulai(), 
+                pesanan.getTanggalSelesai(), pesanan.getJamPengantaran(), pesanan.getJamPenjemputan(), pesanan.getPlatNomor(), pesanan.getStatus());
         return Response
                 .status(200)
-                .entity(transaksi)
+                .entity(pesanan)
                 .build();
     }
 }

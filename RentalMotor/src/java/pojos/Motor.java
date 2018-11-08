@@ -1,5 +1,5 @@
 package pojos;
-// Generated Nov 7, 2018 3:01:35 PM by Hibernate Tools 4.3.1
+// Generated Nov 8, 2018 12:24:57 PM by Hibernate Tools 4.3.1
 
 
 import java.util.HashSet;
@@ -15,24 +15,24 @@ public class Motor  implements java.io.Serializable {
      private String jenis;
      private String warna;
      private String status;
-     private Set<Transaksi> transaksis = new HashSet<Transaksi>(0);
+     private Set<Pesanan> pesanans = new HashSet<Pesanan>(0);
 
     public Motor() {
     }
 
 	
-    public Motor(String jenis, String warna, String platNomor, String status) {
+    public Motor(String platNomor, String jenis, String warna, String status) {
         this.platNomor = platNomor;
         this.jenis = jenis;
         this.warna = warna;
         this.status = status;
     }
-    public Motor(String jenis, String warna, String platNomor, String status, Set<Transaksi> transaksis) {
+    public Motor(String platNomor, String jenis, String warna, String status, Set<Pesanan> pesanans) {
        this.platNomor = platNomor;
        this.jenis = jenis;
        this.warna = warna;
        this.status = status;
-       this.transaksis = transaksis;
+       this.pesanans = pesanans;
     }
    
     public String getPlatNomor() {
@@ -63,12 +63,12 @@ public class Motor  implements java.io.Serializable {
     public void setStatus(String status) {
         this.status = status;
     }
-    public Set<Transaksi> getTransaksis() {
-        return this.transaksis;
+    public Set<Pesanan> getPesanans() {
+        return this.pesanans;
     }
     
-    public void setTransaksis(Set<Transaksi> transaksis) {
-        this.transaksis = transaksis;
+    public void setPesanans(Set<Pesanan> pesanans) {
+        this.pesanans = pesanans;
     }
 
 

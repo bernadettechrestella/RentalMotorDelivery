@@ -1,5 +1,5 @@
 package pojos;
-// Generated Nov 7, 2018 3:01:35 PM by Hibernate Tools 4.3.1
+// Generated Nov 8, 2018 12:24:57 PM by Hibernate Tools 4.3.1
 
 
 import java.util.HashSet;
@@ -11,35 +11,35 @@ import java.util.Set;
 public class Penyewa  implements java.io.Serializable {
 
 
-     private String noIdentitas;
+     private int noIdentitas;
      private String nama;
-     private String noHp;
+     private int noHp;
      private String alamat;
-     private Set<Transaksi> transaksis = new HashSet<Transaksi>(0);
+     private Set<Pesanan> pesanans = new HashSet<Pesanan>(0);
 
     public Penyewa() {
     }
 
 	
-    public Penyewa(String nama, String noIdentitas, String noHp, String alamat) {
+    public Penyewa(int noIdentitas, String nama, int noHp, String alamat) {
         this.noIdentitas = noIdentitas;
         this.nama = nama;
         this.noHp = noHp;
         this.alamat = alamat;
     }
-    public Penyewa(String nama, String noIdentitas, String noHp, String alamat, Set<Transaksi> transaksis) {
+    public Penyewa(int noIdentitas, String nama, int noHp, String alamat, Set<Pesanan> pesanans) {
        this.noIdentitas = noIdentitas;
        this.nama = nama;
        this.noHp = noHp;
        this.alamat = alamat;
-       this.transaksis = transaksis;
+       this.pesanans = pesanans;
     }
    
-    public String getNoIdentitas() {
+    public int getNoIdentitas() {
         return this.noIdentitas;
     }
     
-    public void setNoIdentitas(String noIdentitas) {
+    public void setNoIdentitas(int noIdentitas) {
         this.noIdentitas = noIdentitas;
     }
     public String getNama() {
@@ -49,11 +49,11 @@ public class Penyewa  implements java.io.Serializable {
     public void setNama(String nama) {
         this.nama = nama;
     }
-    public String getNoHp() {
+    public int getNoHp() {
         return this.noHp;
     }
     
-    public void setNoHp(String noHp) {
+    public void setNoHp(int noHp) {
         this.noHp = noHp;
     }
     public String getAlamat() {
@@ -63,12 +63,12 @@ public class Penyewa  implements java.io.Serializable {
     public void setAlamat(String alamat) {
         this.alamat = alamat;
     }
-    public Set<Transaksi> getTransaksis() {
-        return this.transaksis;
+    public Set<Pesanan> getPesanans() {
+        return this.pesanans;
     }
     
-    public void setTransaksis(Set<Transaksi> transaksis) {
-        this.transaksis = transaksis;
+    public void setPesanans(Set<Pesanan> pesanans) {
+        this.pesanans = pesanans;
     }
 
 

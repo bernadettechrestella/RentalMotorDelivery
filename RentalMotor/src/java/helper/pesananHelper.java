@@ -13,40 +13,38 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 import pojos.Motor;
 import pojos.Penyewa;
-import pojos.Transaksi;
+import pojos.Pesanan;
 import util.HibernateUtil;
 
 /**
  *
  * @author Bernadette Chrestella - bernadettechrestella@gmail.com
  */
-public class transaksiHelper {
-    public transaksiHelper() {
+public class pesananHelper {
+    public pesananHelper() {
     }
 
-    public List<Transaksi> getTransaksi() {
+    public List<Pesanan> getPesanan() {
         Session session = HibernateUtil.getSessionFactory().openSession();
-        String query = "from Transaksi";
+        String query = "from Pesanan";
         Query q = session.createQuery(query);
-        List<Transaksi> list = q.list();
+        List<Pesanan> list = q.list();
         return list;
     }
 
-    public void addNewTransaksi(
-            int idTransaksi,
+    public void addNewPesanan(
+            int idPesanan,
             Penyewa penyewa,
             String lamaSewa,
             Date tanggalMulai,
             Date tanggalSelesai,
             Time jamPengantaran,
             Time jamPenjemputan,
-            String jenisMotor,
-            String warna,
             Motor motor,
             String status) {
         Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction transaction = session.beginTransaction();
-        Transaksi transaksi = new Transaksi(penyewa, lamaSewa, tanggalMulai, tanggalSelesai, jamPengantaran, jamPenjemputan, jenisMotor, motor, warna, status);
+        Pesanan pesanan = new Pesanan(penyewa, motor, lamaSewa, tanggalMulai, tanggalSelesai, jamPengantaran, jamPenjemputan, status);
         session.close();
     }
 }

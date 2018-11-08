@@ -31,7 +31,7 @@ public class ApplicationConfig extends Application {
     private void addRestResourceClasses(Set<Class<?>> resources) {
         resources.add(services.motorResource.class);
         resources.add(services.penyewaResource.class);
-        resources.add(services.transaksiResource.class);
+        resources.add(services.pesananResource.class);
     }
     
 }

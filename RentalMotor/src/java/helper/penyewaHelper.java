@@ -10,7 +10,6 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import pojos.Penyewa;
-import pojos.Transaksi;
 import util.HibernateUtil;
 
 /**
@@ -37,7 +36,7 @@ public class penyewaHelper {
             String alamat) {
         Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction transaction = session.beginTransaction();
-        Penyewa penyewa = new Penyewa(nama, noIdentitas, noHp, alamat);
+        Penyewa penyewa = new Penyewa(0, nama, 0, alamat);
         session.close();
     }
 }
