@@ -41,7 +41,7 @@ Contributor(s):
 -->
 <hibernate-reverse-engineering>
   <schema-selection match-catalog="db165314014"/>
-  <table-filter match-name="penyewa"/>
   <table-filter match-name="motor"/>
   <table-filter match-name="pesanan"/>
+  <table-filter match-name="penyewa"/>
 </hibernate-reverse-engineering>

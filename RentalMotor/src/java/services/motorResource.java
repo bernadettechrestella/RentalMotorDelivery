@@ -83,7 +83,7 @@ public class motorResource {
     }
 
     @POST
-    @Path("addMotor")
+//    @Path("addMotor")
     @Consumes(MediaType.APPLICATION_JSON)
     public Response addNewMotor(String data) {
         Gson gson = new Gson();

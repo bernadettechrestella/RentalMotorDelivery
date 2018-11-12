@@ -81,7 +81,7 @@ public class penyewaResource {
     }
     
     @POST
-    @Path("addPenyewa")
+//    @Path("addPenyewa")
     @Consumes(MediaType.APPLICATION_JSON)
     public Response addNewPenyewa(String data){
         Gson gson = new Gson();

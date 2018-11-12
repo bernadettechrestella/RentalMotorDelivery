@@ -34,17 +34,18 @@ public class pesananHelper {
 
     public void addNewPesanan(
             int idPesanan,
-            Penyewa penyewa,
+            Penyewa noIdentitas,
             String lamaSewa,
             Date tanggalMulai,
             Date tanggalSelesai,
             Time jamPengantaran,
             Time jamPenjemputan,
-            Motor motor,
-            String status) {
+            Motor platNomor,
+            String status,
+            String biaya) {
         Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction transaction = session.beginTransaction();
-        Pesanan pesanan = new Pesanan(penyewa, motor, lamaSewa, tanggalMulai, tanggalSelesai, jamPengantaran, jamPenjemputan, status);
+        Pesanan pesanan = new Pesanan(platNomor, noIdentitas, lamaSewa, tanggalMulai, tanggalSelesai, jamPengantaran, jamPenjemputan, status, biaya);
         session.close();
     }
 }

@@ -1,5 +1,5 @@
 package pojos;
-// Generated Nov 8, 2018 12:24:57 PM by Hibernate Tools 4.3.1
+// Generated Nov 12, 2018 4:23:25 PM by Hibernate Tools 4.3.1
 
 
 import java.sql.Time;
@@ -20,19 +20,22 @@ public class Pesanan  implements java.io.Serializable {
      private Time jamPengantaran;
      private Time jamPenjemputan;
      private String status;
+     private String biaya;
 
     public Pesanan() {
     }
 
 	
-    public Pesanan(Penyewa noIdentitas, String lamaSewa, Date tanggalMulai, Time jamPengantaran, String status) {
+    public Pesanan(Motor platNomor, Penyewa noIdentitas, String lamaSewa, Date tanggalMulai, Time jamPengantaran, String status, String biaya) {
+        this.platNomor = platNomor;
         this.noIdentitas = noIdentitas;
         this.lamaSewa = lamaSewa;
         this.tanggalMulai = tanggalMulai;
         this.jamPengantaran = jamPengantaran;
         this.status = status;
+        this.biaya = biaya;
     }
-    public Pesanan(Penyewa noIdentitas, Motor platNomor, String lamaSewa, Date tanggalMulai, Date tanggalSelesai, Time jamPengantaran, Time jamPenjemputan, String status) {
+    public Pesanan(Motor platNomor, Penyewa noIdentitas, String lamaSewa, Date tanggalMulai, Date tanggalSelesai, Time jamPengantaran, Time jamPenjemputan, String status, String biaya) {
        this.platNomor = platNomor;
        this.noIdentitas = noIdentitas;
        this.lamaSewa = lamaSewa;
@@ -41,6 +44,7 @@ public class Pesanan  implements java.io.Serializable {
        this.jamPengantaran = jamPengantaran;
        this.jamPenjemputan = jamPenjemputan;
        this.status = status;
+       this.biaya = biaya;
     }
    
     public Integer getIdPesanan() {
@@ -105,6 +109,13 @@ public class Pesanan  implements java.io.Serializable {
     
     public void setStatus(String status) {
         this.status = status;
+    }
+    public String getBiaya() {
+        return this.biaya;
+    }
+    
+    public void setBiaya(String biaya) {
+        this.biaya = biaya;
     }
 
 
