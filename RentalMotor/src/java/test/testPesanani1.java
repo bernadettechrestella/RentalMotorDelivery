@@ -13,7 +13,7 @@ import pojos.Pesanan;
  *
  * @author Bernadette Chrestella - bernadettechrestella@gmail.com
  */
-public class testTransaksi1 {
+public class testPesanani1 {
     public static void main(String[] args) {
         pesananHelper helper = new pesananHelper();
         List<Pesanan> list = helper.getPesanan();

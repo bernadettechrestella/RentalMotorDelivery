@@ -5,9 +5,7 @@
  */
 package test;
 
-import helper.penyewaHelper;
 import helper.pesananHelper;
-import java.sql.Time;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -18,7 +16,7 @@ import java.util.logging.Logger;
  *
  * @author Bernadette Chrestella - bernadettechrestella@gmail.com
  */
-public class testTransaksi2 {
+public class testPesanani2 {
 
     public static void main(String[] args) throws ParseException {
 
@@ -34,7 +32,7 @@ public class testTransaksi2 {
 //            test.("Stella", "987654321", "081248002829", "Paingan", "7 Hari", date, date2, Time.valueOf("13:00:00"), Time.valueOf("13:00:00"), "Honda Beat", "Hitam", "B 1234 KMU", "Disewa");
 //        test.addNewPesanan(0, noIdentitas, lamaSewa, date2, date2, jamPengantaran, jamPenjemputan, platNomor, status, biaya);
         } catch (Exception ex) {
-            Logger.getLogger(testTransaksi2.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(testPesanani2.class.getName()).log(Level.SEVERE, null, ex);
         }
 
     }

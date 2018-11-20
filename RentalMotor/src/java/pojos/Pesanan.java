@@ -1,8 +1,7 @@
 package pojos;
-// Generated Nov 12, 2018 4:23:25 PM by Hibernate Tools 4.3.1
+// Generated Nov 20, 2018 3:56:38 PM by Hibernate Tools 4.3.1
 
 
-import java.sql.Time;
 import java.util.Date;
 
 /**
@@ -12,13 +11,13 @@ public class Pesanan  implements java.io.Serializable {
 
 
      private Integer idPesanan;
-     private Motor platNomor;
-     private Penyewa noIdentitas;
+     private String noIdentitas;
+     private String platNomor;
      private String lamaSewa;
      private Date tanggalMulai;
      private Date tanggalSelesai;
-     private Time jamPengantaran;
-     private Time jamPenjemputan;
+     private String jamPengantaran;
+     private String jamPenjemputan;
      private String status;
      private String biaya;
 
@@ -26,18 +25,18 @@ public class Pesanan  implements java.io.Serializable {
     }
 
 	
-    public Pesanan(Motor platNomor, Penyewa noIdentitas, String lamaSewa, Date tanggalMulai, Time jamPengantaran, String status, String biaya) {
-        this.platNomor = platNomor;
+    public Pesanan(String noIdentitas, String platNomor, String lamaSewa, Date tanggalMulai, String jamPengantaran, String status, String biaya) {
         this.noIdentitas = noIdentitas;
+        this.platNomor = platNomor;
         this.lamaSewa = lamaSewa;
         this.tanggalMulai = tanggalMulai;
         this.jamPengantaran = jamPengantaran;
         this.status = status;
         this.biaya = biaya;
     }
-    public Pesanan(Motor platNomor, Penyewa noIdentitas, String lamaSewa, Date tanggalMulai, Date tanggalSelesai, Time jamPengantaran, Time jamPenjemputan, String status, String biaya) {
-       this.platNomor = platNomor;
+    public Pesanan(String noIdentitas, String platNomor, String lamaSewa, Date tanggalMulai, Date tanggalSelesai, String jamPengantaran, String jamPenjemputan, String status, String biaya) {
        this.noIdentitas = noIdentitas;
+       this.platNomor = platNomor;
        this.lamaSewa = lamaSewa;
        this.tanggalMulai = tanggalMulai;
        this.tanggalSelesai = tanggalSelesai;
@@ -54,19 +53,19 @@ public class Pesanan  implements java.io.Serializable {
     public void setIdPesanan(Integer idPesanan) {
         this.idPesanan = idPesanan;
     }
-    public Motor getPlatNomor() {
-        return this.platNomor;
-    }
-    
-    public void setPlatNomor(Motor platNomor) {
-        this.platNomor = platNomor;
-    }
-    public Penyewa getNoIdentitas() {
+    public String getNoIdentitas() {
         return this.noIdentitas;
     }
     
-    public void setNoIdentitas(Penyewa noIdentitas) {
+    public void setNoIdentitas(String noIdentitas) {
         this.noIdentitas = noIdentitas;
+    }
+    public String getPlatNomor() {
+        return this.platNomor;
+    }
+    
+    public void setPlatNomor(String platNomor) {
+        this.platNomor = platNomor;
     }
     public String getLamaSewa() {
         return this.lamaSewa;
@@ -89,18 +88,18 @@ public class Pesanan  implements java.io.Serializable {
     public void setTanggalSelesai(Date tanggalSelesai) {
         this.tanggalSelesai = tanggalSelesai;
     }
-    public Time getJamPengantaran() {
+    public String getJamPengantaran() {
         return this.jamPengantaran;
     }
     
-    public void setJamPengantaran(Time jamPengantaran) {
+    public void setJamPengantaran(String jamPengantaran) {
         this.jamPengantaran = jamPengantaran;
     }
-    public Time getJamPenjemputan() {
+    public String getJamPenjemputan() {
         return this.jamPenjemputan;
     }
     
-    public void setJamPenjemputan(Time jamPenjemputan) {
+    public void setJamPenjemputan(String jamPenjemputan) {
         this.jamPenjemputan = jamPenjemputan;
     }
     public String getStatus() {

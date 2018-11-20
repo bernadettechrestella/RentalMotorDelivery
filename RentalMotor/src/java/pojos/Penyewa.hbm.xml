@@ -1,27 +1,21 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated Nov 12, 2018 4:23:27 PM by Hibernate Tools 4.3.1 -->
+<!-- Generated Nov 20, 2018 3:56:38 PM by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="pojos.Penyewa" table="penyewa" catalog="db165314014" optimistic-lock="version">
-        <id name="noIdentitas" type="int">
-            <column name="NoIdentitas" />
+        <id name="noIdentitas" type="string">
+            <column name="NoIdentitas" length="20" />
             <generator class="assigned" />
         </id>
         <property name="nama" type="string">
             <column name="Nama" length="25" not-null="true" />
         </property>
-        <property name="noHp" type="int">
-            <column name="NoHP" not-null="true" />
+        <property name="noHp" type="string">
+            <column name="NoHP" length="14" not-null="true" />
         </property>
         <property name="alamat" type="string">
             <column name="Alamat" length="50" not-null="true" />
         </property>
-        <set name="pesanans" table="pesanan" inverse="true" lazy="true" fetch="select">
-            <key>
-                <column name="NoIdentitas" not-null="true" />
-            </key>
-            <one-to-many class="pojos.Pesanan" />
-        </set>
     </class>
 </hibernate-mapping>

@@ -36,7 +36,7 @@ public class penyewaHelper {
             String alamat) {
         Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction transaction = session.beginTransaction();
-        Penyewa penyewa = new Penyewa(0, nama, 0, alamat);
+        Penyewa penyewa = new Penyewa(nama, noIdentitas, noHp, alamat);
         session.close();
     }
 }
