@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Nov 26, 2018 5:25:43 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="pojos.Motor" table="motor" catalog="db165314014" optimistic-lock="version">
+        <id name="platNomor" type="string">
+            <column name="PlatNomor" length="25" />
+            <generator class="assigned" />
+        </id>
+        <property name="jenis" type="string">
+            <column name="Jenis" length="25" not-null="true" />
+        </property>
+        <property name="warna" type="string">
+            <column name="Warna" length="25" not-null="true" />
+        </property>
+        <property name="status" type="string">
+            <column name="Status" length="25" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>
