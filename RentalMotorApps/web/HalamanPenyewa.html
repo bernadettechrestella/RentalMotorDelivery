@@ -1,0 +1,132 @@
+<html lang="en">
+    <head>
+        <title>Rental Motor </title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <style>
+
+            /*untuk mengatur menu yang diatas*/ 
+            .navbar {
+                margin-bottom: 0;
+                border-radius: 0;
+                text-align: right;
+            }
+
+            /*setting footer bagian bawah laman*/
+            footer {
+                position: fixed;
+                background-color: black;
+                color: white;
+                left: 0;
+                bottom: 0;
+                width: 100%;
+                padding: 15px;
+                text-align: center;
+            }
+
+            /*yang ditengah*/
+            .jumbotron {
+                background-color: whitesmoke;
+                /*background-image: url('https://www.google.com/search?q=background+motor&safe=strict&client=firefox-b-ab&source=lnms&tbm=isch&sa=X&ved=0ahUKEwjexZv3vfPeAhUHQo8KHebwBEoQ_AUIDigB&biw=1525&bih=730#imgrc=07loDNtwOfBYNM:');*/
+                margin-bottom: 0;
+                min-height: 50%;
+                padding : 150px;
+                background-repeat: no-repeat;
+                background-position: center;
+                -webkit-background-size: cover;
+                background-size: cover;
+            }
+
+            a {
+                font-family: 'Times New Roman', sans-serif;
+                font-size: 15px;
+            }
+
+            .fixed_header{
+                width: 800px;
+                table-layout: fixed;
+                border-collapse: collapse;
+            }
+
+            .fixed_header tbody{
+                display:block;
+                width: 100%;
+                overflow: auto;
+                height: 400px;
+            }
+
+            .fixed_header thead tr {
+                display: block;
+            }
+
+            .fixed_header thead {
+                background: black;
+                color:#fff;
+            }
+
+            .fixed_header th, .fixed_header td {
+                padding: 5px;
+                text-align: left;
+                width: 400px;
+            }
+
+            @media (max-width: 600px) {
+                nav, article {
+                    width: 100%;
+                    height: auto;
+                }
+            }
+
+        </style>
+    </head>
+
+    <body>
+        <nav class="navbar navbar-inverse">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                </div>
+                <div class="collapse navbar-collapse" id="myNavbar">
+                    <ul class="nav navbar-nav">
+                        <li><a href="HalamanMotor.html">Halaman Motor</a></li>
+                        <li class="active"><a href="HalamanPenyewa.html">Halaman Penyewa<font color="white"></font></a></li>
+                    </ul>
+                    <font color="white" face="Times New Roman"><h5 align="right">0812-3456-7890</h5></font>
+                </div>
+            </div>
+        </nav>
+
+        <h2>Halaman Penyewa</h2>
+        <p id="demo"></p>
+
+        <script>
+            var url = "http://202.94.83.190:8080/RPL_RentalMotor/webresources/penyewa";
+            var xhttp = new XMLHttpRequest();
+            var x;
+            var txt = "";
+            xhttp.open("GET", url, true);
+            xhttp.send();
+            xhttp.onreadystatechange = function () {
+                if (this.readyState == 4 && this.status == 200) {
+                    var myObj = JSON.parse(this.responseText);
+                    txt += "<table border='1' bgColor='white' class='fixed_header'>"
+                    txt += "<tr><td>" + "Nama" + "</td><td>" + "No Indentitas" + "</td><td>" + "No Hp"
+                            + "</td><td>" + "Alamat" + "</td></tr>"
+                    for (x in myObj) {
+                        txt += "<tr><td>" + myObj[x].Nama + "</td><td>" + myObj[x].noIdentitas + "</td><td>"
+                                + myObj[x].noHp + "</td><td>" + myObj[x].alamat + "</td></tr>";
+                    }
+                    txt += "</table>"
+                    document.getElementById("demo").innerHTML = txt;
+                }
+            }
+
+        </script>
+    </body>
+</html>
