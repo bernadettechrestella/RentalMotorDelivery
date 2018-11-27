@@ -44,6 +44,20 @@
                 font-size: 15px;
             }
 
+            #button {
+                background-color: #34495e;
+                width: 100%;
+                padding: 5px 0 10px 0;
+            }
+            #button a{
+                text-decoration: none;
+                color: #ecf0f1;
+                background-color: #16a085;
+                width: 100px;
+                padding: 5px 10px;
+                margin:5px;
+            }
+
             @media (max-width: 600px) {
                 nav, article {
                     width: 100%;
@@ -85,7 +99,9 @@
             Honda Vario &ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp; 
             Yamaha X Ride</h3></font><br>
 
-        <button onclick="loadDoc()" face="Times New Roman" type="button">Sewa Motor</button>
+
+        <button onclick="loadDoc()" face="Times New Roman" type="button" float="right">Sewa Motor</button>
+
         <script>
             function loadDoc() {
                 window.open("sewaMotor.html");
