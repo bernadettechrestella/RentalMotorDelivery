@@ -91,10 +91,12 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
                     </button>
                 </div>
                 <div class="collapse navbar-collapse" id="myNavbar">
                     <ul class="nav navbar-nav">
+                        <li><a href="index.html"><font color="white">Keluar</font></a></li>
                         <li class="active"><a href="HalamanMotor.html"><font color="white">Motor</font></a></li>
                         <li><a href="HalamanTambahMotor.html"><font color="white">Tambah Motor</font></a></li>
                         <li><a href="HalamanPenyewa.html"><font color="white">Penyewa</font></a></li>
@@ -104,7 +106,11 @@
                 </div>
             </div>
         </nav>
-        <h1><font face="Times New Roman" color="black" size="6">Daftar Motor yang tersedia</font></h1>
+        <h1><font  style="margin-left: 5%" face="Times New Roman" color="black" size="6">Daftar Motor yang tersedia</font></h1>
+        
+        <input style="margin-left: 10%" type="text" placeholder="Cari Plat Nomor" id="cariPlatNo" required/> 
+        <button id="cari" type="submit" onclick="Cari()">Cari</button>
+
         <!--<button type="button" face="Times New Roman" color="black" size="3" onclick="loadDoc()" id="btn">Klik Disini</button>-->
         <p id="demo" style="margin-left: 5%"></p>
 
@@ -138,27 +144,39 @@
             };
             xmlhttp.open("GET", url, true);
             xmlhttp.send();
+        </script>
 
-//                function myFunction(response) {
-//                    var arr = JSON.parse(response);
-//                    var i;
-//                    var out = "<table align='center' style='width:50%;' border='2'><tr><td>Jenis</td><td>Warna</td>\n\
-//            <td>Plat Nomor</td><td>Status</td></tr>";
-//                    for (i = 0; i < arr.length; i++) {
-//                        out += "<tr><td>" +
-//                                arr[i].jenis +
-//                                "</td><td>" +
-//                                arr[i].warna +
-//                                "</td><td>" +
-//                                arr[i].platNomor +
-//                                "</td><td>" +
-//                                arr[i].status +
-//                                "</td><td>"
-//                    }
-//                    out += "</table>";
-//                    document.getElementById("demo").innerHTML = out;
-//                }
-
+        <script>
+            function Cari() {
+                var url = "http://202.94.83.190:8080/RPL_RentalMotor/webresources/motor/searchMotor?platNomor=" + cariPlatNo.value;
+                var xhttp = new XMLHttpRequest();
+                var x;
+                var txt = "";
+                xhttp.open("GET", url, true);
+                xhttp.send();
+                xhttp.onreadystatechange = function () {
+                    if (this.readyState == 4 && this.status == 200) {
+//                        myFunction(this.responseText);
+                        var myObj = JSON.parse(this.responseText);
+                        txt += "<table border='1' bgColor='white' class='fixed_header'>";
+                        txt += "<tr><td>" + "Jenis" + "</td><td>" + "Warna"
+                                + "</td><td>" + "Plat Nomor" + "</td><td>" + "Status" + "</td></tr>";
+                        for (x in myObj) {
+                            txt += "<tr><td>" +
+                                    myObj[x].jenis +
+                                    "</td><td>" +
+                                    myObj[x].warna +
+                                    "</td><td>" +
+                                    myObj[x].platNomor +
+                                    "</td><td>" +
+                                    myObj[x].status +
+                                    "</td></tr>";
+                        }
+                        txt += "</table>"
+                        document.getElementById("demo").innerHTML = txt;
+                    }
+                };
+            }
         </script>
     </body>
 </html>
