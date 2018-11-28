@@ -106,14 +106,12 @@
             </div>
         </nav>
 
-        <h1><font face="Times New Roman" color="black" size="6">Daftar Penyewa</font></h1>
-
-        <input style="margin-left: 10%" type="text" placeholder="Cari Plat Nomor" id="cariNoIndentitas" required/> 
-        <button id="cari" type="submit" onclick="Cari()">Cari</button>
-
-        <div id="demo" style="margin-left: 5%"></div>
-        <!--<button type="button" face="Times New Roman" color="black" size="3" onclick="loadDoc()" id="btn">Klik Disini</button>-->
-
+        <h1><font  style="margin-left: 5%" face="Times New Roman" color="black" size="6">Daftar Penyewa</font></h1>
+        
+        <input style="margin-left: 48.5%" type="text" placeholder="Cari Plat Nomor" id="cariNoIdentitas" required/> 
+        <button id="cari" type="submit" onclick="Cari()" class="btn btn-info btn-md">Cari</button><br><br><br>
+        <p id="demo" style="margin-left: 5%"></p>
+        
         <script>
             var xmlhttp = new XMLHttpRequest();
             var url = "http://202.94.83.190:8080/RPL_RentalMotor/webresources/penyewa";
@@ -121,7 +119,6 @@
             var txt = "";
             xmlhttp.onreadystatechange = function () {
                 if (this.readyState == 4 && this.status == 200) {
-//                        myFunction(this.responseText);
                     var myObj = JSON.parse(this.responseText);
                     txt += "<table border='1' bgColor='white' class='fixed_header'>";
                     txt += "<tr><td>" + "Nama" + "</td><td>" + "No Identitas"
