@@ -35,7 +35,7 @@ public class motorHelper {
             String status) {
         Session session = NewHibernateUtil.getSessionFactory().openSession();
         Transaction transaction = session.beginTransaction();
-        Motor motor = new Motor(jenis, warna, platNomor, status);
+        Motor motor = new Motor(platNomor, jenis, warna, status);
         session.saveOrUpdate(motor);
         transaction.commit();
         session.close();
