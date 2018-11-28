@@ -20,7 +20,7 @@ public class motorHelper {
 
     public motorHelper() {
     }
-    
+
     public List<Motor> getMotor() {
         Session session = HibernateUtil.getSessionFactory().openSession();
         String query = "from Motor";
@@ -28,7 +28,7 @@ public class motorHelper {
         List<Motor> list = q.list();
         return list;
     }
-    
+
     public void addNewMotor(
             String jenis,
             String warna,
@@ -36,7 +36,7 @@ public class motorHelper {
             String status) {
         Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction transaction = session.beginTransaction();
-        Motor motor = new Motor(jenis, warna, platNo, status);
+        Motor motor = new Motor(platNo, jenis, warna, status);
         session.saveOrUpdate(motor);
         transaction.commit();
         session.close();

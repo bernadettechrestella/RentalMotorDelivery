@@ -15,17 +15,18 @@ import java.util.logging.Logger;
  * @author Bernadette Chrestella - bernadettechrestella@gmail.com
  */
 public class testMotor2 {
+
     public static void main(String[] args) throws ParseException {
 
-       try {
+        try {
 //           SimpleDateFormat format = new SimpleDateFormat("yyyyMMdd");
 //           Date date = format.parse("19740124");
 //           String noRm = "123457";
-           motorHelper test = new motorHelper();
-           test.addNewMotor("Yamaha Mio", "Hitam", "B 4567 A", "Disewa");
-       } catch (Exception ex) {
-           Logger.getLogger(testMotor2.class.getName()).log(Level.SEVERE,null,ex);
-       }
-      
-   }
+            motorHelper test = new motorHelper();
+            test.addNewMotor("Honda Beat", "Putih", "AB 5264 NG", "Tersedia");
+        } catch (Exception ex) {
+            Logger.getLogger(testMotor2.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }
 }
