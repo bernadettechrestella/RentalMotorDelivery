@@ -1,0 +1,130 @@
+<html lang="en">
+    <head>
+        <title>Rental Motor </title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <style>
+
+            /*untuk mengatur menu yang diatas*/ 
+            .navbar {
+                margin-bottom: 0;
+                border-radius: 0;
+                text-align: right;
+            }
+
+            /*setting footer bagian bawah laman*/
+            footer {
+                position: fixed;
+                background-color: black;
+                color: white;
+                left: 0;
+                bottom: 0;
+                width: 100%;
+                padding: 15px;
+                text-align: center;
+            }
+
+            /*yang ditengah*/
+            .jumbotron {
+                background-color: whitesmoke;
+                margin-bottom: 0;
+                min-height: 50%;
+                padding : 150px;
+                background-repeat: no-repeat;
+                background-position: center;
+                -webkit-background-size: cover;
+                background-size: cover;
+            }
+
+            a {
+                font-family: 'Times New Roman', sans-serif;
+                font-size: 15px;
+            }
+
+            @media (max-width: 600px) {
+                nav, article {
+                    width: 100%;
+                    height: auto;
+                }
+            }
+
+        </style>
+    </head>
+
+    <body>
+        <nav class="navbar navbar-inverse">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                </div>
+                <div class="collapse navbar-collapse" id="myNavbar">
+                    <ul class="nav navbar-nav">
+                        <li><a href="HalamanMotor.html">Motor<font color="white"></font></a></li>
+                        <li class="active"><a href="HalamanTambahMotor.html">Tambah Motor</a></li>
+                        <li><a href="HalamanPenyewa.html">Penyewa<font color="white"></font></a></li>
+                    </ul>
+                    <font color="white" face="Times New Roman"><h5 align="right">0812-3456-7890</h5></font>
+                </div>
+            </div>
+        </nav>
+
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-4">
+                    <h1><font face="Times New Roman" color="black" size="6">Isi Data Motor Baru</font></h1>
+                    <form action="" id="registerForm" onsubmit="return make_json(this);" method="POST">
+
+                        <var id="status" type="text" value="Tersedia" required></var>
+                        <div class="container">
+                            <br><div class ="form-group">
+                                <font face="Times New Roman" color="black" size="4">Jenis</font>
+                                <input style="margin-left: 10%" type="text" placeholder="Enter Nama" id="jenis" required/>
+                            </div>
+                            <div class ="form-group">
+                                <font face="Times New Roman" color="black" size="4">Warna</font>
+                                <input style="margin-left: 10%" type="text" placeholder="Enter Spesialis" id="warna" required/>
+                            </div>
+                            <div class ="form-group">
+                                <font face="Times New Roman" color="black" size="4">Plat No</font>
+                                <input style="margin-left: 8%" type="text" placeholder="Enter Spesialis" id="platNomor" required/>
+                            </div>
+                            <div class="clearfix">
+                                <button id="save" type="submit" class="signup">Tambah</button>
+                            </div>
+                            <br><br>
+                        </div>
+                        <p id="output"></p>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <p id="output"></p> 
+
+        <script>
+            function make_json(form) {
+                var json = {
+                    "jenis": form.jenis.value,
+                    "warna": form.warna.value,
+                    "platNomor": form.platNomor.value,
+                    "status": form.status.value
+                };
+                var html = JSON.stringify(json, 0, 100);
+                var Url = "http://202.94.83.190:8080/RPL_RentalMotor/webresources/motor/addMotor";
+                var xhr = new XMLHttpRequest();
+                xhr.open('POST', Url, false);
+                xhr.setRequestHeader("Content-type", "application/json");
+                xhr.send(html);
+                alert(html);
+                document.getElementById("output").innerHTML = html;
+                return false;
+            }
+        </script>
+        <script></script>
+    </body>
+</html>

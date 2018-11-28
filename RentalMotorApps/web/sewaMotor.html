@@ -77,104 +77,112 @@
         <div class="container">
             <div class="row">
                 <div class="col-sm-4">
-                    <h1><font face="Times New Roman" color="black" size="6">Data Sewa Motor</font></h1>
-                    <form action="" id="sewaMotor" onsubmit="return make_json(this);" method="POST">
-                        <div class="container">
-                            <br><div class ="form-group">
-                                <tr><td><font face="Times New Roman" color="black" size="4">Nama</font>
-                                    </td> <td>: </td> <td><input type="text" placeholder="Enter Nama" id="nama" required/></td>
+                    <h1><font face="Times New Roman" color="black" size="6" text-align="center">Data Sewa Motor</font></h1>
+                    <form  style="margin-left: 10%" action="" id="registerForm" onsubmit="return make_json(this);" method="POST">
+                        <div class="container"><br>
+                            <div class ="form-group">
+                                <font face="Times New Roman" color="black" size="4">Nama</font>
+                                <font style="margin-left: 25%"face="Times New Roman" color="black" size="4"> : </font>
+                                <input type="text" placeholder="Enter Nama" id="nama" required/></td>
                             </div>
                             <div class ="form-group">
-                                <tr><td><font face="Times New Roman" color="black" size="4">No. Identitas</font>
-                                    </td> <td>: </td> <td><input type="text" placeholder="Enter No Identitas" id="noID" required/></td>
+                                <font face="Times New Roman" color="black" size="4">No. Identitas</font>
+                                <font style="margin-left: 15%"face="Times New Roman" color="black" size="4"> : </font>
+                                <input type="text" placeholder="Enter No Identitas" id="noID" required/>
                             </div>
                             <div class ="form-group">
-                                <tr><td><font face="Times New Roman" color="black" size="4">Alamat</font>
-                                    </td> <td>: </td> <td><input type="text" placeholder="Enter Alamat" id="alamat" required/></td>
+                                <font face="Times New Roman" color="black" size="4">Alamat</font>
+                                <font style="margin-left: 23%"face="Times New Roman" color="black" size="4"> : </font>
+                                <input type="text" placeholder="Enter Alamat" id="alamat" required/>
                             </div>
                             <div class ="form-group">
-                                <h2><font face="Times New Roman" color="black" size="4">Lama Sewa</font></h2>
-                                <h3><font face="Times New Roman" color="black" size="4">Hari</h3>
-                                <select name="hari">
+                                <font face="Times New Roman" color="black" size="4">Lama Sewa</font>
+                                <font style="margin-left: 20%"face="Times New Roman" color="black" size="4"> : </font>
+                                <font style="margin-left: 5%"face="Times New Roman" color="black" size="4">Hari</font>
+                                <select style="margin-left: 5%" name="hari">
                                     <option value="1">1</option>
                                     <option value="2">2</option>
                                     <option value="3">3</option>
                                     <option value="4">4</option>
                                     <option value="5">5</option>
+                                </select> <br> 
+                                <font style="margin-left: 29%" face="Times New Roman" color="black" size="4">Jam</font><td></td>
+                                <select style="margin-left: 5%" name="jam">
+                                    <option value="12">12</option>
+                                    <option value="24">24</option>
                                 </select>
-                                <h3><font face="Times New Roman" color="black" size="4">Jam</h3>
-                                <select name="jam">
-                                    <option value="1">12</option>
-                                    <option value="2">24</option>
-                                </select>
-                            </div>          
-                            <div class ="form-group">
-                                <h2><font face="Times New Roman" color="black" size="4">Tanggal Mulai</font></h2>
-                                <input type="date" placeholder="tanggal mulai" id="tglmulai" required/>
                             </div>
                             <div class ="form-group">
-                                <h2><font face="Times New Roman" color="black" size="4">Tanggal Selesai</font></h2>
-                                <input type="date" placeholder="tanggal selesai" id="tglselesai" required/>
+                                <font face="Times New Roman" color="black" size="4">Tanggal Penjemputan</font>
+                                <font style="margin-left: 10%"face="Times New Roman" color="black" size="4"> : </font>
+                                <input type="text" placeholder="Enter Tanggal Pejemputan" id="tglPenjemputan" required/>
                             </div>
                             <div class ="form-group">
-                                <h2><font face="Times New Roman" color="black" size="4">Jumlah Motor</font></h2>
-                                <select name="jumlahMotor">
+                                <font face="Times New Roman" color="black" size="4">Tanggal Selesai</font>
+                                <font style="margin-left: 8%"face="Times New Roman" color="black" size="4"> : </font>
+                                <input type="text" placeholder="Enter Tanggal Selesai" id="tglSelesai" required/>
+                            </div>
+                            <div class ="form-group">
+                                <font face="Times New Roman" color="black" size="4">Jumlah Motor</font>
+                                <font style="margin-left: 15%"face="Times New Roman" color="black" size="4"> : </font>
+                                <select style="margin-left: 5%" name="jumlahMotor">
                                     <option value="1">1</option>
                                     <option value="2">2</option>
                                     <option value="3">3</option>
                                 </select>
                             </div>
                             <div class ="form-group">
-                                <h2><font face="Times New Roman" color="black" size="4">Jenis Motor</font></h2>
-                                <h3><font face="Times New Roman" color="black" size="4">1</h3>
-                                <select name="jenisMotor">
-                                    <option value="1">Honda Beat</option>
-                                    <option value="2">Honda Vario</option>
-                                    <option value="3">Honda Scoopy</option>
-                                    <option value="4">Yamaha Mio</option>
-                                    <option value="5">Yamaha Mio X</option>
-                                    <option value="6">Honda Supra</option>
-                                </select>
-                                <h3><font face="Times New Roman" color="black" size="4">2</h3>
-                                <select name="jenisMotor">
-                                    <option value="1">Honda Beat</option>
-                                    <option value="2">Honda Vario</option>
-                                    <option value="3">Honda Scoopy</option>
-                                    <option value="4">Yamaha Mio</option>
-                                    <option value="5">Yamaha Mio X</option>
-                                    <option value="6">Honda Supra</option>
-                                </select>
-                                <h3><font face="Times New Roman" color="black" size="4">3</h3>
-                                <select name="jenisMotor">
-                                    <option value="1">Honda Beat</option>
-                                    <option value="2">Honda Vario</option>
-                                    <option value="3">Honda Scoopy</option>
-                                    <option value="4">Yamaha Mio</option>
-                                    <option value="5">Yamaha Mio X</option>
-                                    <option value="6">Honda Supra</option>
+                                <font face="Times New Roman" color="black" size="4">Jenis Motor</font>
+                                <font style="margin-left: 18%"face="Times New Roman" color="black" size="4"> : </font>
+                                <font style="margin-left: 5%" face="Times New Roman" color="black" size="4">1.</font>
+                                <select name="pil1">
+                                    <option value="beat">Honda Beat</option>
+                                    <option value="vario">Honda Vario</option>
+                                    <option value="scoopy">Honda Scoopy</option>
+                                    <option value="mio">Yamaha Mio</option>
+                                    <option value="mioX">Yamaha Mio X</option>
+                                    <option value="supra">Honda Supra</option>
+                                </select><br>
+                                <font style="margin-left: 30%" face="Times New Roman" color="black" size="4">2.</font><td></td>
+                                <select name="pil2">
+                                    <option value="beat">Honda Beat</option>
+                                    <option value="vario">Honda Vario</option>
+                                    <option value="scoopy">Honda Scoopy</option>
+                                    <option value="mio">Yamaha Mio</option>
+                                    <option value="mioX">Yamaha Mio X</option>
+                                    <option value="supra">Honda Supra</option>
+                                </select><br>
+                                <font style="margin-left: 30%" face="Times New Roman" color="black" size="4">3.</font>
+                                <select name="pil3">
+                                    <option value="beat">Honda Beat</option>
+                                    <option value="vario">Honda Vario</option>
+                                    <option value="scoopy">Honda Scoopy</option>
+                                    <option value="mio">Yamaha Mio</option>
+                                    <option value="mioX">Yamaha Mio X</option>
+                                    <option value="supra">Honda Supra</option>
                                 </select>
                             </div>
                             <div class ="form-group">
-                                <h2><font face="Times New Roman" color="black" size="4">Jam Pengantaran</font></h2>
-                                <input type="text" placeholder="Enter Jam Pengantaran" id="jamAntar" required/>
+                                <font face="Times New Roman" color="black" size="4">Jam Pengantaran</font>
+                                <font style="margin-left: 15%"face="Times New Roman" color="black" size="4"> : </font>
+                                <input type="text" placeholder="Enter Nama" id="jamPengantaran" required/>
                             </div>
                             <div class ="form-group">
-                                <h2><font face="Times New Roman" color="black" size="4">Jam Penjemputan</font></h2>
-                                <input type="text" placeholder="Enter Jam Penjemputan" id="jamJemput" required/>
+                                <font face="Times New Roman" color="black" size="4">Jam Penjemputan</font>
+                                <font style="margin-left: 13%"face="Times New Roman" color="black" size="4"> : </font>    
+                                <input type="text" placeholder="Enter Nama" id="jamPenjemputan" required/>
                             </div>
-
-                            <div class="clearfix">
-                                <button id="save" type="submit" class="signup">Sewa</button>
-                            </div><br>
-                            <div class="clearfix">
-                                <button id="cancel" type="submit" class="cancel">Batal</button>
-                            </div><br>
+                            <div class ="form-group">
+                                <tr><td><td><button id="save" type="submit"><font face="Times New Roman" align="right" color="black" size="4">Sewa</font></button></td></td>
+                                    <td><td><button id="cancel" type="submit"><font face="Times New Roman" align="right" color="black" size="4">Batal</font></button></td></td>
+                            </div>
                         </div>
-                        <p id="output"></p>
                     </form>
                 </div>
             </div>
         </div>
-        <p id="output" align="right"></p> 
+
+        <script></script>
+
     </body>
 </html>

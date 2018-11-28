@@ -94,37 +94,51 @@
                 </div>
                 <div class="collapse navbar-collapse" id="myNavbar">
                     <ul class="nav navbar-nav">
-                        <li class="active"><a href="HalamanMotor.html">Halaman Motor</a></li>
-                        <li><a href="HalamanPenyewa.html">Halaman Penyewa<font color="white"></font></a></li>
+                        <li class="active"><a href="HalamanMotor.html">Motor</a></li>
+                        <li><a href="HalamanTambahMotor.html">Tambah Motor<font color="white"></font></a></li>
+                        <li><a href="HalamanPenyewa.html">Penyewa<font color="white"></font></a></li>
                     </ul>
                     <font color="white" face="Times New Roman"><h5 align="right">0812-3456-7890</h5></font>
                 </div>
             </div>
         </nav>
 
-        <h2>Halaman Motor</h2>
-        <p id="demo"></p>
+        <h1><font face="Times New Roman" color="black" size="6">Daftar Motor yang tersedia</font></h1>
+        <div id="demo" style="margin-left: 5%"></div>
+        <button type="button" face="Times New Roman" color="black" size="3" onclick="loadDoc()" id="btn">Klik Disini</button>
 
         <script>
-            var url = "http://202.94.83.190:8080/RPL_RentalMotor/webresources/motor";
-            var xhttp = new XMLHttpRequest();
-            var x;
-            var txt = "";
-            xhttp.open("GET", url, true);
-            xhttp.send();
-            xhttp.onreadystatechange = function () {
-                if (this.readyState == 4 && this.status == 200) {
-                    var myObj = JSON.parse(this.responseText);
-                    txt += "<table border='1' bgColor='white' class='fixed_header'>"
-                    txt += "<tr><td>" + "Jenis" + "</td><td>" + "Warna" + "</td><td>" + "Plat Nomor"++ "</td><td>" + "Status" "</td></tr>"
-                            for (x in myObj) {
-                        txt += "<tr><td>" + myObj[x].jenis + "</td><td>" + myObj[x].warna + "</td><td>"
-                                + myObj[x].platNomor + "</td><td>" + myObj[x].status + "</td></tr>";
+            function loadDoc() {
+                var xmlhttp = new XMLHttpRequest();
+                var url = "http://202.94.83.190:8080/RPL_RentalMotor/webresources/motor";
+
+                xmlhttp.onreadystatechange = function () {
+                    if (this.readyState == 4 && this.status == 200) {
+                        myFunction(this.responseText);
                     }
-                    txt += "</table>"
-                    document.getElementById("demo").innerHTML = txt;
                 }
-            };
+                xmlhttp.open("GET", url, true);
+                xmlhttp.send();
+                function myFunction(response) {
+                    var arr = JSON.parse(response);
+                    var i;
+                    var out = "<table align='center' style='width:50%;' border='2'><tr><td>Jenis</td><td>Warna</td>\n\
+            <td>Plat Nomor</td><td>Status</td></tr>";
+                    for (i = 0; i < arr.length; i++) {
+                        out += "<tr><td>" +
+                                arr[i].jenis +
+                                "</td><td>" +
+                                arr[i].warna +
+                                "</td><td>" +
+                                arr[i].platNomor +
+                                "</td><td>" +
+                                arr[i].status +
+                                "</td><td>"
+                    }
+                    out += "</table>";
+                    document.getElementById("demo").innerHTML = out;
+                }
+            }
         </script>
     </body>
 </html>

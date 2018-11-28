@@ -94,7 +94,8 @@
                 </div>
                 <div class="collapse navbar-collapse" id="myNavbar">
                     <ul class="nav navbar-nav">
-                        <li><a href="HalamanMotor.html">Halaman Motor</a></li>
+                        <li><a href="HalamanMotor.html">Motor</a></li>
+                        <li><a href="HalamanTambahMotor.html">Tambah Motor</a></li>
                         <li class="active"><a href="HalamanPenyewa.html">Halaman Penyewa</a></li>
                     </ul>
                     <font color="white" face="Times New Roman"><h5 align="right">0812-3456-7890</h5></font>
@@ -102,29 +103,42 @@
             </div>
         </nav>
 
-        <h2>Halaman Penyewa</h2>
-        <p id="demo"></p>
+        <h1><font face="Times New Roman" color="black" size="6">Daftar Penyewa</font></h1>
+        <div id="demo" style="margin-left: 5%"></div>
+        <button type="button" face="Times New Roman" color="black" size="3" onclick="loadDoc()" id="btn">Klik Disini</button>
 
         <script>
-            var url = "http://202.94.83.190:8080/RPL_RentalMotor/webresources/penyewa";
-            var xhttp = new XMLHttpRequest();
-            var x;
-            var txt = "";
-            xhttp.open("GET", url, true);
-            xhttp.send();
-            xhttp.onreadystatechange = function () {
-                if (this.readyState == 4 && this.status == 200) {
-                    var myObj = JSON.parse(this.responseText);
-                    txt += "<table border='1' bgColor='white' class='fixed_header'>"
-                    txt += "<tr><td>" + "Nama" + "</td><td>" + "No Indentitas" + "</td><td>" + "No Hp"
-                            + "</td><td>" + "Alamat" + "</td></tr>"
-                    for (x in myObj) {
-                        txt += "<tr><td>" + myObj[x].Nama + "</td><td>" + myObj[x].noIdentitas + "</td><td>"
-                                + myObj[x].noHp + "</td><td>" + myObj[x].alamat + "</td></tr>";
+            function loadDoc() {
+                var xmlhttp = new XMLHttpRequest();
+                var url = "http://202.94.83.190:8080/RPL_RentalMotor/webresources/penyewa";
+
+                xmlhttp.onreadystatechange = function () {
+                    if (this.readyState == 4 && this.status == 200) {
+                        myFunction(this.responseText);
                     }
-                    txt += "</table>"
                 }
-            };
+                xmlhttp.open("GET", url, true);
+                xmlhttp.send();
+                function myFunction(response) {
+                    var arr = JSON.parse(response);
+                    var i;
+                    var out = "<table align='center' style='width:50%;' border='2'><tr><td>Nama</td><td>No Identitas</td>\n\
+            <td>No HP</td><td>Alamat</td></tr>";
+                    for (i = 0; i < arr.length; i++) {
+                        out += "<tr><td>" +
+                                arr[i].nama +
+                                "</td><td>" +
+                                arr[i].noIdentitas +
+                                "</td><td>" +
+                                arr[i].noHp +
+                                "</td><td>" +
+                                arr[i].alamat +
+                                "</td><td>"
+                    }
+                    out += "</table>";
+                    document.getElementById("demo").innerHTML = out;
+                }
+            }
         </script>
     </body>
 </html>
