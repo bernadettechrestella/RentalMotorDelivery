@@ -61,13 +61,15 @@
                     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
                     </button>
                 </div>
                 <div class="collapse navbar-collapse" id="myNavbar">
                     <ul class="nav navbar-nav">
-                        <li><a href="HalamanMotor.html">Motor<font color="white"></font></a></li>
-                        <li class="active"><a href="HalamanTambahMotor.html">Tambah Motor</a></li>
-                        <li><a href="HalamanPenyewa.html">Penyewa<font color="white"></font></a></li>
+                        <li><a href="HalamanMotor.html"><font color="white">Motor</font></a></li>
+                        <li class="active"><a href="HalamanTambahMotor.html"><font color="white">Tambah Motor</font></a></li>
+                        <li><a href="HalamanPenyewa.html"><font color="white">Penyewa</font></a></li>
+                        <li><a href="HalamanPesanan.html"><font color="white">Pesanan</font></a></li>
                     </ul>
                     <font color="white" face="Times New Roman"><h5 align="right">0812-3456-7890</h5></font>
                 </div>
@@ -80,7 +82,6 @@
                     <h1><font face="Times New Roman" color="black" size="6">Isi Data Motor Baru</font></h1>
                     <form action="" id="registerForm" onsubmit="return make_json(this);" method="POST">
 
-                        <var id="status" type="text" value="Tersedia" required></var>
                         <div class="container">
                             <br><div class ="form-group">
                                 <font face="Times New Roman" color="black" size="4">Jenis</font>
@@ -112,7 +113,7 @@
                     "jenis": form.jenis.value,
                     "warna": form.warna.value,
                     "platNomor": form.platNomor.value,
-                    "status": form.status.value
+                    "status": "Tersedia"
                 };
                 var html = JSON.stringify(json, 0, 100);
                 var Url = "http://202.94.83.190:8080/RPL_RentalMotor/webresources/motor/addMotor";

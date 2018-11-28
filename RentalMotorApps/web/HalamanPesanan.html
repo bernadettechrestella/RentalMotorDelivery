@@ -46,14 +46,14 @@
             }
 
             .fixed_header{
-                width: 800px;
+                width: 1200px;
                 table-layout: fixed;
                 border-collapse: collapse;
             }
 
             .fixed_header tbody{
                 display:block;
-                width: 800px;
+                width: 1200px;
                 overflow: auto;
                 height: 400px;
             }
@@ -70,7 +70,7 @@
             .fixed_header th, .fixed_header td {
                 padding: 5px;
                 text-align: left;
-                width: 200px;
+                width: 800px;
             }
 
             @media (max-width: 600px) {
@@ -97,39 +97,53 @@
                     <ul class="nav navbar-nav">
                         <li><a href="HalamanMotor.html"><font color="white">Motor</font></a></li>
                         <li><a href="HalamanTambahMotor.html"><font color="white">Tambah Motor</font></a></li>
-                        <li class="active"><a href="HalamanPenyewa.html"><font color="white">Halaman Penyewa</font></a></li>
-                        <li><a href="HalamanPesanan.html"><font color="white">Pesanan</font></a></li>
+                        <li><a href="HalamanPenyewa.html"><font color="white">Halaman Penyewa</font></a></li>
+                        <li class="active"><a href="HalamanPesanan.html"><font color="white">Pesanan</font></a></li>
                     </ul>
                     <font color="white" face="Times New Roman"><h5 align="right">0812-3456-7890</h5></font>
                 </div>
             </div>
         </nav>
-
-        <h1><font face="Times New Roman" color="black" size="6">Daftar Penyewa</font></h1>
-        <div id="demo" style="margin-left: 5%"></div>
+        <h1><font face="Times New Roman" color="black" size="6">Daftar Pesanan</font></h1>
         <!--<button type="button" face="Times New Roman" color="black" size="3" onclick="loadDoc()" id="btn">Klik Disini</button>-->
+        <p id="demo" style="margin-left: 5%"></p>
 
         <script>
             var xmlhttp = new XMLHttpRequest();
-            var url = "http://202.94.83.190:8080/RPL_RentalMotor/webresources/penyewa";
+            var url = "http://202.94.83.190:8080/RPL_RentalMotor/webresources/pesanan";
             var x;
             var txt = "";
+
             xmlhttp.onreadystatechange = function () {
                 if (this.readyState == 4 && this.status == 200) {
 //                        myFunction(this.responseText);
                     var myObj = JSON.parse(this.responseText);
                     txt += "<table border='1' bgColor='white' class='fixed_header'>";
-                    txt += "<tr><td>" + "Nama" + "</td><td>" + "No Identitas"
-                            + "</td><td>" + "No HP" + "</td><td>" + "Alamat" + "</td></tr>";
+                    txt += "<tr><td>" + "ID Sewa" + "</td><td>" + "No. Identitas"
+                            + "</td><td>" + "Plat Nomor" + "</td><td>" + "Lama Sewa" + "</td><td>" + "Tanggal Mulai"
+                            + "</td><td>" + "Tanggal Selesai" + "</td><td>" + "Jam Pengantaran" + "</td><td>" + "Jam Jemput"
+                            + "</td><td>" + "Status" + "</td><td>" + "Harga" + "</td></tr>";
                     for (x in myObj) {
                         txt += "<tr><td>" +
-                                myObj[x].nama +
+                                myObj[x].idPesanan +
                                 "</td><td>" +
                                 myObj[x].noIdentitas +
                                 "</td><td>" +
-                                myObj[x].noHp +
+                                myObj[x].platNomor +
                                 "</td><td>" +
-                                myObj[x].alamat +
+                                myObj[x].lamaSewa +
+                                "</td><td>" +
+                                myObj[x].tanggalMulai +
+                                "</td><td>" +
+                                myObj[x].tanggalSelesai +
+                                "</td><td>" +
+                                myObj[x].jamPengantaran +
+                                "</td><td>" +
+                                myObj[x].jamPenjemputan +
+                                "</td><td>" +
+                                myObj[x].status +
+                                "</td><td>" +
+                                myObj[x].biaya +
                                 "</td></tr>";
                     }
                     txt += "</table>"
@@ -138,25 +152,7 @@
             };
             xmlhttp.open("GET", url, true);
             xmlhttp.send();
-//                function myFunction(response) {
-//                    var arr = JSON.parse(response);
-//                    var i;
-//                    var out = "<table align='center' style='width:50%;' border='2'><tr><td>Nama</td><td>No Identitas</td>\n\
-//            <td>No HP</td><td>Alamat</td></tr>";
-//                    for (i = 0; i < arr.length; i++) {
-//                        out += "<tr><td>" +
-//                                arr[i].nama +
-//                                "</td><td>" +
-//                                arr[i].noIdentitas +
-//                                "</td><td>" +
-//                                arr[i].noHp +
-//                                "</td><td>" +
-//                                arr[i].alamat +
-//                                "</td><td>"
-//                    }
-//                    out += "</table>";
-//                    document.getElementById("demo").innerHTML = out;
-//                }
+
         </script>
     </body>
 </html>
