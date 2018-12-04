@@ -17,9 +17,10 @@ import util.NewHibernateUtil;
  * @author Bernadette Chrestella - bernadettechrestella@gmail.com
  */
 public class motorHelper {
+
     public motorHelper() {
     }
-    
+
     public List<Motor> getMotor() {
         Session session = NewHibernateUtil.getSessionFactory().openSession();
         String query = "from Motor";
@@ -27,7 +28,7 @@ public class motorHelper {
         List<Motor> list = q.list();
         return list;
     }
-    
+
     public void addNewMotor(
             String jenis,
             String warna,
@@ -40,7 +41,7 @@ public class motorHelper {
         transaction.commit();
         session.close();
     }
-    
+
     public List<Motor> searchMotor(
             String platNomor) {
         Session session = NewHibernateUtil.getSessionFactory().openSession();
@@ -57,5 +58,22 @@ public class motorHelper {
             return null;
         }
     }
-    
+
+    public List<Motor> searchJenis(
+            String jenis) {
+        Session session = NewHibernateUtil.getSessionFactory().openSession();
+        Transaction tx = session.beginTransaction();
+        String query = "from Motor where jenis=:jenis";
+        Query q = session.createQuery(query);
+        q.setParameter("jenis", jenis);
+        List<Motor> list = q.list();
+        tx.commit();
+        session.close();
+        if (list.size() > 0) {
+            return list;
+        } else {
+            return null;
+        }
+    }
+
 }

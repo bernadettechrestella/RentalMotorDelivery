@@ -10,12 +10,13 @@ import helper.motorHelper;
 
 /**
  *
- * @author Bernadette Chrestella - bernadettechrestella@gmail.com
+ * @author ASUS
  */
-public class testCariMotor1 {
+public class testCariMotor2 {
+
     public static void main(String[] args) {
-        String platNomor = "AB 5264 NG";
+        String jenis = "Yamaha Mio";
         motorHelper helper = new motorHelper();
-        System.out.println(new Gson().toJson(helper.searchMotor(platNomor)));
+        System.out.println(new Gson().toJson(helper.searchJenis(jenis)));
     }
 }

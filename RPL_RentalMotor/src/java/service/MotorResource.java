@@ -103,4 +103,11 @@ public class MotorResource {
         return new Gson().toJson(new motorHelper().searchMotor(platNomor));
     }
     
+    @GET
+    @Path("searchJenis")
+    @Produces(MediaType.APPLICATION_JSON)
+    public String searchJenis(@QueryParam("jenis") String jenis) {
+        return new Gson().toJson(new motorHelper().searchJenis(jenis));
+    }
+    
 }
