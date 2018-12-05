@@ -89,7 +89,7 @@ public class PenyewaResource {
         Gson gson = new Gson();
         Penyewa penyewa = gson.fromJson(data, Penyewa.class);
         penyewaHelper helper = new penyewaHelper();
-        helper.addNewPenyewa(penyewa.getNoIdentitas(), penyewa.getNama(), penyewa.getNoHp(), penyewa.getAlamat());
+        helper.addNewPenyewa(penyewa.getNama(), penyewa.getNoIdentitas(), penyewa.getNoHp(), penyewa.getAlamat());
         return Response
                 .status(200)
                 .entity(penyewa)

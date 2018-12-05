@@ -21,7 +21,7 @@ public class pesananHelper {
 
     public pesananHelper() {
     }
-    
+
     public List<Pesanan> getPesanan() {
         Session session = NewHibernateUtil.getSessionFactory().openSession();
         String query = "from Pesanan";
@@ -29,7 +29,7 @@ public class pesananHelper {
         List<Pesanan> list = q.list();
         return list;
     }
-    
+
     public void addNewPesanan(
             String noIdentitas,
             String platNomor,
@@ -42,12 +42,14 @@ public class pesananHelper {
             String biaya) {
         Session session = NewHibernateUtil.getSessionFactory().openSession();
         Transaction transaction = session.beginTransaction();
-        Pesanan pesanan = new Pesanan(noIdentitas, platNomor, lamaSewa, tanggalMulai, tanggalSelesai, jamPengantaran, jamPenjemputan, status, biaya);
+        Pesanan pesanan = new Pesanan(noIdentitas, platNomor,
+                lamaSewa, tanggalMulai, tanggalSelesai,
+                jamPengantaran, jamPenjemputan, status, biaya);
         session.saveOrUpdate(pesanan);
-        session.close();
         transaction.commit();
+        session.close();
     }
-    
+
     public List<Pesanan> searchPesanan(
             String noIdentitas,
             String platNomor) {
