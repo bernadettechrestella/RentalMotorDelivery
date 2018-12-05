@@ -78,7 +78,7 @@
             <div class="row">
                 <div class="col-sm-4">
                     <h1><font face="Times New Roman" color="black" size="6" text-align="center">Data Sewa Motor</font></h1>
-                    <form  style="margin-left: 10%" action="" id="registerForm" onsubmit="return tambahPesanan(this)" method="POST">
+                    <form  style="margin-left: 10%" action="" id="registerForm" onsubmit="return make_json(this)" method="POST">
                         <div class="container"><br>
                             <div class ="form-group">
                                 <font face="Times New Roman" color="black" size="4">Nama</font>
@@ -96,10 +96,15 @@
                                 <input type="text" placeholder="Enter Alamat" id="alamat" required/>
                             </div>
                             <div class ="form-group">
+                                <font face="Times New Roman" color="black" size="4">No. Handphone</font>
+                                <font style="margin-left: 8.5%"face="Times New Roman" color="black" size="4"> : </font>
+                                <input type="text" placeholder="Enter No Handphone" id="noHp" required/>
+                            </div>
+                            <div class ="form-group">
                                 <font face="Times New Roman" color="black" size="4">Lama Sewa</font>
                                 <font style="margin-left: 9.3%"face="Times New Roman" color="black" size="4"> : </font>
                                 <font style="margin-left: 1%"face="Times New Roman" color="black" size="4">Hari</font>
-                                <select id="hari" onchange="hariSewa">
+                                <select id="hari" >
                                     <option value="1">1</option>
                                     <option value="2">2</option>
                                     <option value="3">3</option>
@@ -107,7 +112,7 @@
                                     <option value="5">5</option>
                                 </select> <br> 
                                 <font style="margin-left: 19%" face="Times New Roman" color="black" size="4">Jam</font><td></td>
-                                <select id="jam">
+                                <select id="jam" >
                                     <option value="12">12</option>
                                     <option value="24">24</option>
                                 </select>
@@ -125,7 +130,7 @@
                             <div class ="form-group">
                                 <font face="Times New Roman" color="black" size="4">Jumlah Motor</font>
                                 <font style="margin-left: 7.7%"face="Times New Roman" color="black" size="4"> : </font>
-                                <select id="jumlah" style="margin-left: 1%" name="jumlahMotor">
+                                <select id="jumlah" style="margin-left: 1%" name="jumlahMotor" >
                                     <option value="1">1</option>
                                     <option value="2">2</option>
                                     <option value="3">3</option>
@@ -189,8 +194,7 @@
                     "nama": form.nama.value,
                     "noIdentitas": form.noID.value,
                     "alamat": form.alamat.value,
-//                    "noHp": form.noHp.value
-                    "noHp": "085345675123"
+                    "noHp": form.noHp.value
                 };
                 var html = JSON.stringify(json, 0, 100);
                 var Url = "http://202.94.83.190:8080/RPL_RentalMotor/webresources/penyewa/addPenyewa";
@@ -200,48 +204,25 @@
                 xhr.send(html);
                 alert(html);
 //                document.getElementById("output").innerHTML = html;
-                return true;
+                return false;
             }
 
             function tambahPesanan(form) {
-//                var x;
-//                var xhr = new XMLHttpRequest();
-//                if (jumlah.value == "1") {
-//                    var url = "http://202.94.83.190:8080/RPL_RentalMotor/webresources/motor/searchJenis?jenis=" + pil1.value;
-//                    xhr.onreadystatechange = function () {
-//                        if (this.readyState == 4 && this.status == 200) {
-//                            var user = JSON.parse(this.responseText);
-//                            if (user !== null) {
-//
-//                                x = user[0].platNomor;
-//                                alert("data Masuk");
-//                            } else {
-//                                alert("Motor tidak tersedia");
-//                            }
-//                            document.getElementById("demo").innerHTML =
-//                                    this.responseText;
-//                        }
-//                    };
-//                    xhr.open('GET', url, true);
-//                    xhr.send();
-//                }
-                tambahPenyewa(form);
                 var json = {
                     "noIdentitas": form.noID.value,
-                    "tglPenjemputan": form.tanggalMulai.value,
-//                    "tglPenjemputan": "20181205",
-                    "tglSelesai": form.tanggalSelesai.value,
-//                    "tglSelesai": "20181206",
-                    "lamaSewa": form.jumlah.value,
+                    "tanggalMulai": form.tglPenjemputan.value,
+                    "tanggalSelesai": form.tglSelesai.value,
+                    "lamaSewa": form.hari.value,
                     "jamPengantaran": form.jamPengantaran.value,
-                    "jamPnejemputan": form.jamPenjemputan.value,
+                    "jamPenjemputan": form.jamPenjemputan.value,
                     "status": "Disewa",
 //                    "harga": form.harga.value,
-                    "harga": "75000",
-                    "platNomor": "AA9845GB"
+                    "biaya": "150000",
+                    "platNomor": document.cookie
                 };
                 var html = JSON.stringify(json, 0, 100);
                 var Url = "http://202.94.83.190:8080/RPL_RentalMotor/webresources/pesanan/addPesanan";
+                var xhr = new XMLHttpRequest();
                 xhr.open('POST', Url, false);
                 xhr.setRequestHeader("Content-type", "application/json");
                 xhr.send(html);
@@ -250,39 +231,40 @@
                 return false;
             }
 
-            function make_json(form) {
-//                var html = JSON.stringify(json, 0, 100);
-                var xhr = new XMLHttpRequest();
-                if (jumlah.value == "1") {
-                    var url = "http://202.94.83.190:8080/RPL_RentalMotor/webresources/motor/searchJenis?jenis=" + pil1.value;
-                    xhr.onreadystatechange = function () {
-                        if (this.readyState == 4 && this.status == 200) {
-                            var user = JSON.parse(this.responseText);
-                            if (user !== null) {
-                                tambahPenyewa(form);
-                                tambahPesanan(form, user[0].platNomor);
-                                alert("data Masuk");
-                                return true;
-                            } else {
-                                alert("Motor tidak tersedia");
-                            }
-                            document.getElementById("demo").innerHTML =
-                                    this.responseText;
+            function cek(a) {
+                var url = "http://202.94.83.190:8080/RPL_RentalMotor/webresources/motor/searchJenis?jenis=" + a.value;
+                var xhttp = new XMLHttpRequest();
+                xhttp.onreadystatechange = function () {
+                    if (this.readyState == 4 && this.status == 200) {
+                        var user = JSON.parse(this.responseText);
+                        if (user !== null) {
+                            document.cookie = user[0].platNomor;
+                            return true;
+                        } else {
+                            return false;
                         }
-                    };
-                    xhr.open('GET', url, true);
-                    xhr.send();
-                }
-
+                    }
+                };
+                xhttp.open('GET', url, true);
+                xhttp.send();
             }
 
-        </script>
-
-        <script>
-            function hariSewa() {
-                var i = hari;
-                if (i > 1) {
-
+            function make_json(form) {
+                if (form.jumlah.value === "1") {
+                    cek(form.pil1.value);
+                    tambahPenyewa(form);
+                    tambahPesanan(form);
+                    alert("Data sudah berhasil disimpan");
+                } else if (form.jumlah.value === "2") {
+                    if (cek(form.pil1.value) === true) {
+                        cek(form.pil1.value);
+                        tambahPenyewa(form);
+                        tambahPesanan(form);
+                    } else if (cek(form.pil2.value) === true) {
+                        cek(form.pil2.value);
+                        tambahPenyewa(form);
+                        tambahPesanan(form);
+                    }
                 }
             }
         </script>
