@@ -17,6 +17,7 @@ import util.NewHibernateUtil;
  * @author Bernadette Chrestella - bernadettechrestella@gmail.com
  */
 public class penyewaHelper {
+
     public penyewaHelper() {
     }
 
@@ -36,9 +37,11 @@ public class penyewaHelper {
         Session session = NewHibernateUtil.getSessionFactory().openSession();
         Transaction transaction = session.beginTransaction();
         Penyewa penyewa = new Penyewa(nama, noIdentitas, noHp, alamat);
+        session.saveOrUpdate(penyewa);
+        transaction.commit();
         session.close();
     }
-    
+
     public List<Penyewa> searchPenyewa(
             String noIdentitas) {
         Session session = NewHibernateUtil.getSessionFactory().openSession();

@@ -18,9 +18,10 @@ import util.NewHibernateUtil;
  * @author Bernadette Chrestella - bernadettechrestella@gmail.com
  */
 public class pesananHelper {
+
     public pesananHelper() {
     }
-
+    
     public List<Pesanan> getPesanan() {
         Session session = NewHibernateUtil.getSessionFactory().openSession();
         String query = "from Pesanan";
@@ -28,7 +29,7 @@ public class pesananHelper {
         List<Pesanan> list = q.list();
         return list;
     }
-
+    
     public void addNewPesanan(
             String noIdentitas,
             String platNomor,
@@ -42,7 +43,9 @@ public class pesananHelper {
         Session session = NewHibernateUtil.getSessionFactory().openSession();
         Transaction transaction = session.beginTransaction();
         Pesanan pesanan = new Pesanan(noIdentitas, platNomor, lamaSewa, tanggalMulai, tanggalSelesai, jamPengantaran, jamPenjemputan, status, biaya);
+        session.saveOrUpdate(pesanan);
         session.close();
+        transaction.commit();
     }
     
     public List<Pesanan> searchPesanan(
