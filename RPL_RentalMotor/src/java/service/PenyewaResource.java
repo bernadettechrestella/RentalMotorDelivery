@@ -40,6 +40,7 @@ public class PenyewaResource {
 
     /**
      * Retrieves representation of an instance of service.PenyewaResource
+     *
      * @return an instance of java.lang.String
      */
 //    @GET
@@ -48,23 +49,23 @@ public class PenyewaResource {
 //        //TODO return proper representation object
 //        throw new UnsupportedOperationException();
 //    }
-
     /**
      * PUT method for updating or creating an instance of PenyewaResource
+     *
      * @param content representation for the resource
      */
     @PUT
     @Consumes(MediaType.APPLICATION_JSON)
     public void putJson(String content) {
     }
-    
+
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public Response getPenyewa(){
+    public Response getPenyewa() {
         penyewaHelper helper = new penyewaHelper();
         List<Penyewa> list = helper.getPenyewa();
         Gson gson = new Gson();
-        
+
         return Response.status(200)
                 .entity(gson.toJson(list))
                 .header("Access-Control-Allow-Origin", "*")
@@ -80,21 +81,21 @@ public class PenyewaResource {
                 .header("Access-Preflight-Maxage", "2")
                 .build();
     }
-    
+
     @POST
     @Path("addPenyewa")
     @Consumes(MediaType.APPLICATION_JSON)
-    public Response addNewPenyewa(String data){
+    public Response addNewPenyewa(String data) {
         Gson gson = new Gson();
         Penyewa penyewa = gson.fromJson(data, Penyewa.class);
         penyewaHelper helper = new penyewaHelper();
-        helper.addNewPenyewa(data, data, data, data);
+        helper.addNewPenyewa(penyewa.getNoIdentitas(), penyewa.getNama(), penyewa.getNoHp(), penyewa.getAlamat());
         return Response
                 .status(200)
                 .entity(penyewa)
                 .build();
     }
-    
+
     @GET
     @Path("searchPenyewa")
     @Produces(MediaType.APPLICATION_JSON)

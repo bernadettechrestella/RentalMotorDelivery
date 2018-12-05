@@ -43,6 +43,7 @@ public class PesananResource {
 
     /**
      * Retrieves representation of an instance of service.PesananResource
+     *
      * @return an instance of java.lang.String
      */
 //    @GET
@@ -51,23 +52,23 @@ public class PesananResource {
 //        //TODO return proper representation object
 //        throw new UnsupportedOperationException();
 //    }
-
     /**
      * PUT method for updating or creating an instance of PesananResource
+     *
      * @param content representation for the resource
      */
     @PUT
     @Consumes(MediaType.APPLICATION_JSON)
     public void putJson(String content) {
     }
-    
+
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public Response getPesanan(){
+    public Response getPesanan() {
         pesananHelper helper = new pesananHelper();
         List<Pesanan> list = helper.getPesanan();
         Gson gson = new Gson();
-        
+
         return Response.status(200)
                 .entity(gson.toJson(list))
                 .header("Access-Control-Allow-Origin", "*")
@@ -83,27 +84,29 @@ public class PesananResource {
                 .header("Access-Preflight-Maxage", "2")
                 .build();
     }
-    
+
     @POST
     @Path("addPesanan")
     @Consumes(MediaType.APPLICATION_JSON)
-    public Response addNewPesanan(String data){
+    public Response addNewPesanan(String data) {
         Gson gson = new Gson();
         Pesanan pesanan = gson.fromJson(data, Pesanan.class);
         pesananHelper helper = new pesananHelper();
-        helper.addNewPesanan(pesanan.getNoIdentitas(), pesanan.getPlatNomor(), pesanan.getLamaSewa(), pesanan.getTanggalMulai(), pesanan.getTanggalSelesai(), 
-                pesanan.getJamPengantaran(), pesanan.getJamPenjemputan(), pesanan.getStatus(), pesanan.getBiaya());
+        helper.addNewPesanan(pesanan.getNoIdentitas(), pesanan.getPlatNomor(),
+                pesanan.getLamaSewa(), pesanan.getTanggalMulai(), pesanan.getTanggalSelesai(),
+                pesanan.getJamPengantaran(), pesanan.getJamPenjemputan(),
+                pesanan.getStatus(), pesanan.getBiaya());
         return Response
                 .status(200)
                 .entity(pesanan)
                 .build();
     }
-    
+
     @GET
     @Path("cariPesanan")
     @Produces(MediaType.APPLICATION_JSON)
     public Response getJson(@QueryParam("noIdentitas") String noIdentitas,
-            @QueryParam("platNomor") String platNomor){
+            @QueryParam("platNomor") String platNomor) {
         pesananHelper helper = new pesananHelper();
         List<Pesanan> list = helper.searchPesanan(noIdentitas, platNomor);
         Gson gson = new Gson();
