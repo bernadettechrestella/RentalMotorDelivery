@@ -121,7 +121,6 @@
 
             xmlhttp.onreadystatechange = function () {
                 if (this.readyState == 4 && this.status == 200) {
-//                        myFunction(this.responseText);
                     var myObj = JSON.parse(this.responseText);
                     txt += "<table border='1' bgColor='white' class='fixed_header'>";
                     txt += "<tr><td>" + "Jenis" + "</td><td>" + "Warna"
@@ -155,7 +154,6 @@
                 xhttp.send();
                 xhttp.onreadystatechange = function () {
                     if (this.readyState == 4 && this.status == 200) {
-//                        myFunction(this.responseText);
                         var myObj = JSON.parse(this.responseText);
                         txt += "<table border='1' bgColor='white' class='fixed_header'>";
                         txt += "<tr><td>" + "Jenis" + "</td><td>" + "Warna"

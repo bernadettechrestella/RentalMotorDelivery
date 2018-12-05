@@ -135,31 +135,31 @@
                                 <font face="Times New Roman" color="black" size="4">Jenis Motor</font>
                                 <font style="margin-left: 9%"face="Times New Roman" color="black" size="4"> : </font>
                                 <font style="margin-left: 0.5%" face="Times New Roman" color="black" size="4">1.</font>
-                                <select name="pil1">
-                                    <option value="beat">Honda Beat</option>
-                                    <option value="vario">Honda Vario</option>
-                                    <option value="scoopy">Honda Scoopy</option>
-                                    <option value="mio">Yamaha Mio</option>
-                                    <option value="mioX">Yamaha Mio X</option>
-                                    <option value="supra">Honda Supra</option>
+                                <select id="pil1">
+                                    <option value="Honda Beat">Honda Beat</option>
+                                    <option value="Honda Vario">Honda Vario</option>
+                                    <option value="Honda Scoopy">Honda Scoopy</option>
+                                    <option value="Yamaha Mio">Yamaha Mio</option>
+                                    <option value="Yamaha Mio X">Yamaha Mio X</option>
+                                    <option value="Honda Supra">Honda Supra</option>
                                 </select><br>
                                 <font style="margin-left: 18%" face="Times New Roman" color="black" size="4">2.</font><td></td>
-                                <select name="pil2">
-                                    <option value="beat">Honda Beat</option>
-                                    <option value="vario">Honda Vario</option>
-                                    <option value="scoopy">Honda Scoopy</option>
-                                    <option value="mio">Yamaha Mio</option>
-                                    <option value="mioX">Yamaha Mio X</option>
-                                    <option value="supra">Honda Supra</option>
+                                <select id="pil2">
+                                    <option value="Honda Beat">Honda Beat</option>
+                                    <option value="Honda Vario">Honda Vario</option>
+                                    <option value="Honda Scoopy">Honda Scoopy</option>
+                                    <option value="Yamaha Mio">Yamaha Mio</option>
+                                    <option value="Yamaha Mio X">Yamaha Mio X</option>
+                                    <option value="Honda Supra">Honda Supra</option>
                                 </select><br>
                                 <font style="margin-left: 18%" face="Times New Roman" color="black" size="4">3.</font>
-                                <select name="pil3">
-                                    <option value="beat">Honda Beat</option>
-                                    <option value="vario">Honda Vario</option>
-                                    <option value="scoopy">Honda Scoopy</option>
-                                    <option value="mio">Yamaha Mio</option>
-                                    <option value="mioX">Yamaha Mio X</option>
-                                    <option value="supra">Honda Supra</option>
+                                <select id="pil3" >
+                                    <option value="Honda Beat">Honda Beat</option>
+                                    <option value="Honda Vario">Honda Vario</option>
+                                    <option value="Honda Scoopy">Honda Scoopy</option>
+                                    <option value="Yamaha Mio">Yamaha Mio</option>
+                                    <option value="Yamaha Mio X">Yamaha Mio X</option>
+                                    <option value="Honda Supra">Honda Supra</option>
                                 </select>
                             </div>
                             <div class ="form-group">
@@ -181,7 +181,30 @@
             </div>
         </div>
 
-        <script></script>
+        <script>
+            function cek(){
+                var html = JSON.stringify(json, 0, 100);
+                var Url = "http://202.94.83.190:8080/RPL_RentalMotor/webresources/motor/searchJenis?jenis=" + pil1.value;
+                var xhr = new XMLHttpRequest();
+                if (this.readyState == 4 && this.status == 200) {
+                    var myObj = JSON.parse(this.responseText);
+                    for (var i = 0; i < myObj.length; i++) {
+                        if (myObj !== null) {
+                            alert("Motor Ada");
+                        } else {
+                            alert("Pilih Motor yang Lain");
+                        }
+                    }
+                    document.getElementById("demo").innerHTML = txt;
+                }
+                xhr.open('GET', Url, true);
+                xhr.setRequestHeader("Content-type", "application/json");
+                xhr.send(html);
+                alert(html);
+                document.getElementById("output").innerHTML = html;
+                return false;
+            }
+        </script>
 
     </body>
 </html>
