@@ -7,6 +7,7 @@ package helper;
 
 import java.util.List;
 import org.hibernate.Query;
+import org.hibernate.SQLQuery;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import pojos.Motor;
@@ -61,11 +62,15 @@ public class motorHelper {
 
     public List<Motor> searchJenis(
             String jenis) {
+        String status = "Tersedia";
         Session session = NewHibernateUtil.getSessionFactory().openSession();
         Transaction tx = session.beginTransaction();
-        String query = "from Motor where jenis=:jenis";
+        String query = "from Motor where jenis=:jenis AND status=:status";
         Query q = session.createQuery(query);
+//        SQLQuery qr = session.createSQLQuery(query);
         q.setParameter("jenis", jenis);
+        q.setParameter("status", status);
+        q.list();
         List<Motor> list = q.list();
         tx.commit();
         session.close();
