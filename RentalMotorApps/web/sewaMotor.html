@@ -78,7 +78,7 @@
             <div class="row">
                 <div class="col-sm-4">
                     <h1><font face="Times New Roman" color="black" size="6" text-align="center">Data Sewa Motor</font></h1>
-                    <form  style="margin-left: 10%" action="" id="registerForm" onsubmit="return make_json(this);" method="POST">
+                    <form  style="margin-left: 10%" action="" id="registerForm" onsubmit="return tambahPesanan(this)" method="POST">
                         <div class="container"><br>
                             <div class ="form-group">
                                 <font face="Times New Roman" color="black" size="4">Nama</font>
@@ -99,7 +99,7 @@
                                 <font face="Times New Roman" color="black" size="4">Lama Sewa</font>
                                 <font style="margin-left: 9.3%"face="Times New Roman" color="black" size="4"> : </font>
                                 <font style="margin-left: 1%"face="Times New Roman" color="black" size="4">Hari</font>
-                                <select style="margin-left: 1%" name="hari">
+                                <select id="hari" onchange="hariSewa">
                                     <option value="1">1</option>
                                     <option value="2">2</option>
                                     <option value="3">3</option>
@@ -107,7 +107,7 @@
                                     <option value="5">5</option>
                                 </select> <br> 
                                 <font style="margin-left: 19%" face="Times New Roman" color="black" size="4">Jam</font><td></td>
-                                <select style="margin-left: 1%" name="jam">
+                                <select id="jam">
                                     <option value="12">12</option>
                                     <option value="24">24</option>
                                 </select>
@@ -125,7 +125,7 @@
                             <div class ="form-group">
                                 <font face="Times New Roman" color="black" size="4">Jumlah Motor</font>
                                 <font style="margin-left: 7.7%"face="Times New Roman" color="black" size="4"> : </font>
-                                <select style="margin-left: 1%" name="jumlahMotor">
+                                <select id="jumlah" style="margin-left: 1%" name="jumlahMotor">
                                     <option value="1">1</option>
                                     <option value="2">2</option>
                                     <option value="3">3</option>
@@ -135,14 +135,15 @@
                                 <font face="Times New Roman" color="black" size="4">Jenis Motor</font>
                                 <font style="margin-left: 9%"face="Times New Roman" color="black" size="4"> : </font>
                                 <font style="margin-left: 0.5%" face="Times New Roman" color="black" size="4">1.</font>
-                                <select id="pil1">
+                                <select id="pil1" >
                                     <option value="Honda Beat">Honda Beat</option>
                                     <option value="Honda Vario">Honda Vario</option>
                                     <option value="Honda Scoopy">Honda Scoopy</option>
                                     <option value="Yamaha Mio">Yamaha Mio</option>
                                     <option value="Yamaha Mio X">Yamaha Mio X</option>
                                     <option value="Honda Supra">Honda Supra</option>
-                                </select><br>
+                                </select>
+                                <br>
                                 <font style="margin-left: 18%" face="Times New Roman" color="black" size="4">2.</font><td></td>
                                 <select id="pil2">
                                     <option value="Honda Beat">Honda Beat</option>
@@ -173,7 +174,8 @@
                                 <input type="text" placeholder="Enter Nama" id="jamPenjemputan" required/>
                             </div>
                             <div class ="form-group">
-                                <p> <a style="margin-left: 70%" onclick="loadDoc()" class="btn btn-info btn-lg">Batal</a> <a onclick="loadDoc()" class="btn btn-info btn-lg">Sewa</a> </p>
+                                <p> <a style="margin-left: 70%" onclick="loadDoc()" class="btn btn-info btn-lg">Batal</a> <a type="submit" class="btn btn-info btn-lg">Sewa</a> </p>
+                                <button id="save" type="submit" class="btn btn-info btn-md">Tambah</button>
                             </div>
                         </div>
                     </form>
@@ -182,29 +184,107 @@
         </div>
 
         <script>
-            function cek(){
+            function tambahPenyewa(form) {
+                var json = {
+                    "nama": form.nama.value,
+                    "noIdentitas": form.noID.value,
+                    "alamat": form.alamat.value,
+//                    "noHp": form.noHp.value
+                    "noHp": "085345675123"
+                };
                 var html = JSON.stringify(json, 0, 100);
-                var Url = "http://202.94.83.190:8080/RPL_RentalMotor/webresources/motor/searchJenis?jenis=" + pil1.value;
+                var Url = "http://202.94.83.190:8080/RPL_RentalMotor/webresources/penyewa/addPenyewa";
                 var xhr = new XMLHttpRequest();
-                if (this.readyState == 4 && this.status == 200) {
-                    var myObj = JSON.parse(this.responseText);
-                    for (var i = 0; i < myObj.length; i++) {
-                        if (myObj !== null) {
-                            alert("Motor Ada");
-                        } else {
-                            alert("Pilih Motor yang Lain");
-                        }
-                    }
-                    document.getElementById("demo").innerHTML = txt;
-                }
-                xhr.open('GET', Url, true);
+                xhr.open('POST', Url, false);
                 xhr.setRequestHeader("Content-type", "application/json");
                 xhr.send(html);
                 alert(html);
-                document.getElementById("output").innerHTML = html;
+//                document.getElementById("output").innerHTML = html;
+                return true;
+            }
+
+            function tambahPesanan(form) {
+//                var x;
+//                var xhr = new XMLHttpRequest();
+//                if (jumlah.value == "1") {
+//                    var url = "http://202.94.83.190:8080/RPL_RentalMotor/webresources/motor/searchJenis?jenis=" + pil1.value;
+//                    xhr.onreadystatechange = function () {
+//                        if (this.readyState == 4 && this.status == 200) {
+//                            var user = JSON.parse(this.responseText);
+//                            if (user !== null) {
+//
+//                                x = user[0].platNomor;
+//                                alert("data Masuk");
+//                            } else {
+//                                alert("Motor tidak tersedia");
+//                            }
+//                            document.getElementById("demo").innerHTML =
+//                                    this.responseText;
+//                        }
+//                    };
+//                    xhr.open('GET', url, true);
+//                    xhr.send();
+//                }
+                tambahPenyewa(form);
+                var json = {
+                    "noIdentitas": form.noID.value,
+                    "tglPenjemputan": form.tanggalMulai.value,
+//                    "tglPenjemputan": "20181205",
+                    "tglSelesai": form.tanggalSelesai.value,
+//                    "tglSelesai": "20181206",
+                    "lamaSewa": form.jumlah.value,
+                    "jamPengantaran": form.jamPengantaran.value,
+                    "jamPnejemputan": form.jamPenjemputan.value,
+                    "status": "Disewa",
+//                    "harga": form.harga.value,
+                    "harga": "75000",
+                    "platNomor": "AA9845GB"
+                };
+                var html = JSON.stringify(json, 0, 100);
+                var Url = "http://202.94.83.190:8080/RPL_RentalMotor/webresources/pesanan/addPesanan";
+                xhr.open('POST', Url, false);
+                xhr.setRequestHeader("Content-type", "application/json");
+                xhr.send(html);
+                alert(html);
+//                document.getElementById("output").innerHTML = html;
                 return false;
             }
+
+            function make_json(form) {
+//                var html = JSON.stringify(json, 0, 100);
+                var xhr = new XMLHttpRequest();
+                if (jumlah.value == "1") {
+                    var url = "http://202.94.83.190:8080/RPL_RentalMotor/webresources/motor/searchJenis?jenis=" + pil1.value;
+                    xhr.onreadystatechange = function () {
+                        if (this.readyState == 4 && this.status == 200) {
+                            var user = JSON.parse(this.responseText);
+                            if (user !== null) {
+                                tambahPenyewa(form);
+                                tambahPesanan(form, user[0].platNomor);
+                                alert("data Masuk");
+                                return true;
+                            } else {
+                                alert("Motor tidak tersedia");
+                            }
+                            document.getElementById("demo").innerHTML =
+                                    this.responseText;
+                        }
+                    };
+                    xhr.open('GET', url, true);
+                    xhr.send();
+                }
+
+            }
+
         </script>
 
+        <script>
+            function hariSewa() {
+                var i = hari;
+                if (i > 1) {
+
+                }
+            }
+        </script>
     </body>
 </html>
