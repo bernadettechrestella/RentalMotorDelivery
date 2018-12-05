@@ -41,6 +41,7 @@ public class MotorResource {
 
     /**
      * Retrieves representation of an instance of service.MotorResource
+     *
      * @return an instance of java.lang.String
      */
 //    @GET
@@ -49,16 +50,16 @@ public class MotorResource {
 //        //TODO return proper representation object
 //        throw new UnsupportedOperationException();
 //    }
-
     /**
      * PUT method for updating or creating an instance of MotorResource
+     *
      * @param content representation for the resource
      */
     @PUT
     @Consumes(javax.ws.rs.core.MediaType.APPLICATION_JSON)
     public void putJson(String content) {
     }
-    
+
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public Response getMotor() {
@@ -95,19 +96,29 @@ public class MotorResource {
                 .entity(motor)
                 .build();
     }
-    
+
     @GET
     @Path("searchMotor")
     @Produces(MediaType.APPLICATION_JSON)
     public String getJson(@QueryParam("platNomor") String platNomor) {
         return new Gson().toJson(new motorHelper().searchMotor(platNomor));
     }
-    
+
     @GET
     @Path("searchJenis")
     @Produces(MediaType.APPLICATION_JSON)
     public String searchJenis(@QueryParam("jenis") String jenis) {
         return new Gson().toJson(new motorHelper().searchJenis(jenis));
     }
-    
+
+    @GET
+    @Path("cekMotor")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Boolean cek(@QueryParam("jenis") String jenis) {
+        if (searchJenis(jenis) != null) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 }

@@ -91,7 +91,7 @@ public class PesananResource {
         Gson gson = new Gson();
         Pesanan pesanan = gson.fromJson(data, Pesanan.class);
         pesananHelper helper = new pesananHelper();
-        helper.addNewPesanan(0, pesanan.getNoIdentitas(), pesanan.getPlatNomor(), pesanan.getLamaSewa(), pesanan.getTanggalMulai(), pesanan.getTanggalSelesai(), 
+        helper.addNewPesanan(pesanan.getNoIdentitas(), pesanan.getPlatNomor(), pesanan.getLamaSewa(), pesanan.getTanggalMulai(), pesanan.getTanggalSelesai(), 
                 pesanan.getJamPengantaran(), pesanan.getJamPenjemputan(), pesanan.getStatus(), pesanan.getBiaya());
         return Response
                 .status(200)

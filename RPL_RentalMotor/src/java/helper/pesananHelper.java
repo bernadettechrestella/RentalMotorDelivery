@@ -30,7 +30,6 @@ public class pesananHelper {
     }
 
     public void addNewPesanan(
-            Integer idPesanan,
             String noIdentitas,
             String platNomor,
             String lamaSewa,
