@@ -14,6 +14,7 @@ import pojos.Penyewa;
  * @author Bernadette Chrestella - bernadettechrestella@gmail.com
  */
 public class testPenyewa1 {
+
     public static void main(String[] args) {
         penyewaHelper helper = new penyewaHelper();
         List<Penyewa> list = helper.getPenyewa();
