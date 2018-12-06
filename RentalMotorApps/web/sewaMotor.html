@@ -102,9 +102,9 @@
                             </div>
                             <div class ="form-group">
                                 <font face="Times New Roman" color="black" size="4">Lama Sewa</font>
-                                <font style="margin-left: 9.3%"face="Times New Roman" color="black" size="4"> : </font>
-                                <font style="margin-left: 1%"face="Times New Roman" color="black" size="4">Hari</font>
-                                <select id="hari" >
+                                <font style="margin-left: 9.3%" face="Times New Roman" color="black" size="4"> : </font>
+                                <font style="margin-left: 1%" face="Times New Roman" color="black" size="4">Hari</font>
+                                <select id="hari">
                                     <option value="1">1</option>
                                     <option value="2">2</option>
                                     <option value="3">3</option>
@@ -120,12 +120,12 @@
                             <div class ="form-group">
                                 <font face="Times New Roman" color="black" size="4">Tanggal Penjemputan</font>
                                 <font style="margin-left: 3%"face="Times New Roman" color="black" size="4"> : </font>
-                                <input type="text" placeholder="Enter Tanggal Pejemputan" id="tglPenjemputan" required/>
+                                <input type="text" placeholder="yyyymmdd" id="tglPenjemputan" required/>
                             </div>
                             <div class ="form-group">
                                 <font face="Times New Roman" color="black" size="4">Tanggal Selesai</font>
                                 <font style="margin-left: 6.7%"face="Times New Roman" color="black" size="4"> : </font>
-                                <input type="text" placeholder="Enter Tanggal Selesai" id="tglSelesai" required/>
+                                <input type="text" placeholder="yyyymmdd" id="tglSelesai" required/>
                             </div>
                             <div class ="form-group">
                                 <font face="Times New Roman" color="black" size="4">Jumlah Motor</font>
@@ -171,12 +171,12 @@
                             <div class ="form-group">
                                 <font face="Times New Roman" color="black" size="4">Jam Pengantaran</font>
                                 <font style="margin-left: 5.5%"face="Times New Roman" color="black" size="4"> : </font>
-                                <input type="text" placeholder="Enter Nama" id="jamPengantaran" required/>
+                                <input type="text" placeholder="Enter Jam Pengantaran" id="jamPengantaran" required/>
                             </div>
                             <div class ="form-group">
                                 <font face="Times New Roman" color="black" size="4">Jam Penjemputan</font>
                                 <font style="margin-left: 4.9%"face="Times New Roman" color="black" size="4"> : </font>    
-                                <input type="text" placeholder="Enter Nama" id="jamPenjemputan" required/>
+                                <input type="text" placeholder="Enter Jam Penjemputan" id="jamPenjemputan" required/>
                             </div>
                             <div class ="form-group">
                                 <!--<p> <a style="margin-left: 70%" onclick="loadDoc()" class="btn btn-info btn-lg">Batal</a> <a type="submit" class="btn btn-info btn-lg">Sewa</a> </p>-->
@@ -207,13 +207,13 @@
 //                document.getElementById("output").innerHTML = html;
                 return false;
             }
-            
+
             function tambahPesanan(form, x) {
                 var json = {
                     "noIdentitas": form.noID.value,
                     "tanggalMulai": form.tglPenjemputan.value,
                     "tanggalSelesai": form.tglSelesai.value,
-                    "lamaSewa": form.hari.value,
+                    "lamaSewa": form.hari.value + " hari",
                     "jamPengantaran": form.jamPengantaran.value,
                     "jamPenjemputan": form.jamPenjemputan.value,
                     "status": "Disewa",
@@ -231,17 +231,35 @@
 //                document.getElementById("output").innerHTML = html;
                 return false;
             }
-            
+            function updateStatusMotor(x) {
+                var json = {
+                    "platNomor": x.platNomor,
+                    "jenis": x.jenis,
+                    "warna": x.warna,
+                    "status": "Disewa"
+                };
+                var html = JSON.stringify(json, 0, 100);
+                var Url = "http://202.94.83.190:8080/RPL_RentalMotor/webresources/motor/updateStatusMotor";
+                var xhr = new XMLHttpRequest();
+                xhr.open('POST', Url, false);
+                xhr.setRequestHeader("Content-type", "application/json");
+                xhr.send(html);
+                alert(html);
+//                document.getElementById("output").innerHTML = html;
+                return false;
+            }
+
             function cek(a, form) {
                 var url = "http://202.94.83.190:8080/RPL_RentalMotor/webresources/motor/searchJenis?jenis=" + a.value;
                 var xhttp = new XMLHttpRequest();
                 xhttp.onreadystatechange = function () {
-                    if (this.readyState == 4 && this.status == 200) {
+                    if (this.readyState === 4 && this.status === 200) {
                         var user = JSON.parse(this.responseText);
                         if (user !== null) {
 //                            document.cookie = user[0].platNomor;
                             tambahPenyewa(form);
                             tambahPesanan(form, user[0].platNomor);
+                            updateStatusMotor(user[0]);
                             return true;
                         } else {
                             return false;
@@ -251,12 +269,10 @@
                 xhttp.open('GET', url, true);
                 xhttp.send();
             }
-            
+
             function make_json(form) {
                 if (form.jumlah.value === "1") {
                     cek(form.pil1, form);
-//                    tambahPenyewa(form);
-//                    tambahPesanan(form);
                     alert("Data sudah berhasil disimpan");
                 } else if (form.jumlah.value === "2") {
                     cek(form.pil1, form);
@@ -268,6 +284,9 @@
                     cek(form.pil3, form);
                     alert("Data sudah berhasil disimpan");
                 }
+            }
+            function hitung() {
+                
             }
         </script>
     </body>
