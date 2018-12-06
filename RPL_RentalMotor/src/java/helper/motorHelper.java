@@ -81,4 +81,19 @@ public class motorHelper {
         }
     }
 
+    public void updateStatusMotor(
+            String platNomor, String status) {
+        Session session = NewHibernateUtil.getSessionFactory().openSession();
+        Transaction transaction = session.beginTransaction();
+        List<Motor> list = searchMotor(platNomor);
+        Motor motor = new Motor();
+        motor.setPlatNomor(list.get(0).getPlatNomor());
+        motor.setJenis(list.get(0).getJenis());
+        motor.setWarna(list.get(0).getWarna());
+        motor.setStatus(status);
+        session.update(motor);
+        transaction.commit();
+        session.close();
+    }
+
 }

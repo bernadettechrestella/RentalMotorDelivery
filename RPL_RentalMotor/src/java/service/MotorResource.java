@@ -100,7 +100,7 @@ public class MotorResource {
     @GET
     @Path("searchMotor")
     @Produces(MediaType.APPLICATION_JSON)
-    public String getJson(@QueryParam("platNomor") String platNomor) {
+    public String searchMotor(@QueryParam("platNomor") String platNomor) {
         return new Gson().toJson(new motorHelper().searchMotor(platNomor));
     }
 
@@ -111,14 +111,18 @@ public class MotorResource {
         return new Gson().toJson(new motorHelper().searchJenis(jenis));
     }
 
-    @GET
-    @Path("cekMotor")
-    @Produces(MediaType.APPLICATION_JSON)
-    public Boolean cek(@QueryParam("jenis") String jenis) {
-        if (searchJenis(jenis) != null) {
-            return true;
-        } else {
-            return false;
-        }
+    @POST
+    @Path("updateStatusMotor")
+    @Consumes(MediaType.APPLICATION_JSON)
+    public Response updateStatusMotor(String data) {
+        Gson gson = new Gson();
+        Motor motor = gson.fromJson(data, Motor.class);
+        motorHelper helper = new motorHelper();
+        helper.updateStatusMotor(motor.getPlatNomor(), motor.getStatus());
+        return Response
+                .status(200)
+                .entity(motor)
+                .build();
     }
+
 }
