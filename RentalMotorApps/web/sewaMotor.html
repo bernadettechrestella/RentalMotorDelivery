@@ -82,7 +82,7 @@
                         <div class="container"><br>
                             <div class ="form-group">
                                 <font face="Times New Roman" color="black" size="4">Nama</font>
-                                <font style="margin-left: 13%"face="Times New Roman" color="black" size="4"> : </font>
+                                <font style="margin-left: 13%" face="Times New Roman" color="black" size="4"> : </font>
                                 <input type="text" placeholder="Enter Nama" id="nama" required/></td>
                             </div>
                             <div class ="form-group">
@@ -92,7 +92,7 @@
                             </div>
                             <div class ="form-group">
                                 <font face="Times New Roman" color="black" size="4">No. Handphone</font>
-                                <font style="margin-left: 8.5%"face="Times New Roman" color="black" size="4"> : </font>
+                                <font style="margin-left: 7%"face="Times New Roman" color="black" size="4"> : </font>
                                 <input type="text" placeholder="Enter No Handphone" id="noHp" required/>
                             </div>
                             <div class ="form-group">
@@ -104,7 +104,7 @@
                                 <font face="Times New Roman" color="black" size="4">Lama Sewa</font>
                                 <font style="margin-left: 9.3%" face="Times New Roman" color="black" size="4"> : </font>
                                 <font style="margin-left: 1%" face="Times New Roman" color="black" size="4">Hari</font>
-                                <select id="hari">
+                                <select onchange="hitung()" id="hari">
                                     <option value="1">1</option>
                                     <option value="2">2</option>
                                     <option value="3">3</option>
@@ -112,7 +112,7 @@
                                     <option value="5">5</option>
                                 </select> <br> 
                                 <font style="margin-left: 19%" face="Times New Roman" color="black" size="4">Jam</font><td></td>
-                                <select id="jam" >
+                                <select onchange="hitung()" id="jam" >
                                     <option value="12">12</option>
                                     <option value="24">24</option>
                                 </select>
@@ -179,8 +179,7 @@
                                 <input type="text" placeholder="Enter Jam Penjemputan" id="jamPenjemputan" required/>
                             </div>
                             <div class ="form-group">
-                                <!--<p> <a style="margin-left: 70%" onclick="loadDoc()" class="btn btn-info btn-lg">Batal</a> <a type="submit" class="btn btn-info btn-lg">Sewa</a> </p>-->
-                                <button id="cancel" type="submit" class="btn btn-info btn-md">Batal</button>
+                                <button href="index.html" id="cancel" type="submit" class="btn btn-info btn-md">Batal</button>
                                 <button id="save" type="submit" class="btn btn-info btn-md">Sewa</button>
                             </div>
                         </div>
@@ -207,7 +206,7 @@
 //                document.getElementById("output").innerHTML = html;
                 return false;
             }
-
+            
             function tambahPesanan(form, x) {
                 var json = {
                     "noIdentitas": form.noID.value,
@@ -248,7 +247,7 @@
 //                document.getElementById("output").innerHTML = html;
                 return false;
             }
-
+            
             function cek(a, form) {
                 var url = "http://202.94.83.190:8080/RPL_RentalMotor/webresources/motor/searchJenis?jenis=" + a.value;
                 var xhttp = new XMLHttpRequest();
@@ -269,7 +268,7 @@
                 xhttp.open('GET', url, true);
                 xhttp.send();
             }
-
+            
             function make_json(form) {
                 if (form.jumlah.value === "1") {
                     cek(form.pil1, form);
@@ -285,8 +284,37 @@
                     alert("Data sudah berhasil disimpan");
                 }
             }
-            function hitung() {
-                
+            
+            function hitung(form) {
+//                var hargaHari = document.getElementById("hari").value;
+//                var hargaJam = document.getElementById("jam").value;
+//                var jumlahMotor = document.getElementById("jumlah").value;
+                var hargaHari = form.hari.value;
+                var hargaJam = form.jam.value;
+                var jumlahMotor = form.jumlah.value;
+                var fee1 = "40.000";
+                var fee2 = "75.000";
+                if (hargaHari === "1") {
+                    if (hargaJam === "12") {
+                        var total1 === fee1 * jumlahMotor;
+                        alert(total1);
+                    } else if (hargaJam === "24") {
+                        var total2 === fee2 * jumlahMotor;
+                        alert(total2);
+                    }
+                } else if (hargaHari === "2") {
+                    var total3 = hargaHari * fee2 * jumlahMotor;
+                    alert(total3);
+                } else if (hargaHari === " 3") {
+                    var total4 = hargaHari * fee2 * jumlahMotor;
+                    alert(total4);
+                } else if (hargaHari === "4") {
+                    var total5 = hargaHari * fee2 * jumlahMotor;
+                    alert(total5);
+                } else if (hargaHari === "5") {
+                    var total6 = hargaHari * fee2 * jumlahMotor;
+                    alert(total6);
+                }
             }
         </script>
     </body>
