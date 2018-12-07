@@ -206,7 +206,7 @@
 //                document.getElementById("output").innerHTML = html;
                 return false;
             }
-            
+
             function tambahPesanan(form, x) {
                 var json = {
                     "noIdentitas": form.noID.value,
@@ -247,7 +247,7 @@
 //                document.getElementById("output").innerHTML = html;
                 return false;
             }
-            
+
             function cek(a, form) {
                 var url = "http://202.94.83.190:8080/RPL_RentalMotor/webresources/motor/searchJenis?jenis=" + a.value;
                 var xhttp = new XMLHttpRequest();
@@ -259,6 +259,7 @@
                             tambahPenyewa(form);
                             tambahPesanan(form, user[0].platNomor);
                             updateStatusMotor(user[0]);
+                            alert("Data sudah berhasil disimpan");
                             return true;
                         } else {
                             return false;
@@ -268,23 +269,20 @@
                 xhttp.open('GET', url, true);
                 xhttp.send();
             }
-            
+
             function make_json(form) {
                 if (form.jumlah.value === "1") {
                     cek(form.pil1, form);
-                    alert("Data sudah berhasil disimpan");
                 } else if (form.jumlah.value === "2") {
                     cek(form.pil1, form);
                     cek(form.pil2, form);
-                    alert("Data sudah berhasil disimpan");
                 } else if (form.jumlah.value === "3") {
                     cek(form.pil1, form);
                     cek(form.pil2, form);
                     cek(form.pil3, form);
-                    alert("Data sudah berhasil disimpan");
                 }
             }
-            
+
             function hitung(form) {
 //                var hargaHari = document.getElementById("hari").value;
 //                var hargaJam = document.getElementById("jam").value;
@@ -296,10 +294,10 @@
                 var fee2 = "75.000";
                 if (hargaHari === "1") {
                     if (hargaJam === "12") {
-                        var total1 === fee1 * jumlahMotor;
+                        var total1 = fee1 * jumlahMotor;
                         alert(total1);
                     } else if (hargaJam === "24") {
-                        var total2 === fee2 * jumlahMotor;
+                        var total2 = fee2 * jumlahMotor;
                         alert(total2);
                     }
                 } else if (hargaHari === "2") {
