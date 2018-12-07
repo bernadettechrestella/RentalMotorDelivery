@@ -7,7 +7,6 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
         <style>
-
             /*untuk mengatur menu yang diatas*/ 
             .navbar {
                 margin-bottom: 0;
@@ -83,28 +82,28 @@
                             <div class ="form-group">
                                 <font face="Times New Roman" color="black" size="4">Nama</font>
                                 <font style="margin-left: 13%" face="Times New Roman" color="black" size="4"> : </font>
-                                <input type="text" placeholder="Enter Nama" id="nama" required/></td>
+                                <input type="text" placeholder="Enter Nama" id="nama" required/>
                             </div>
                             <div class ="form-group">
                                 <font face="Times New Roman" color="black" size="4">No. Identitas</font>
-                                <font style="margin-left: 8.5%"face="Times New Roman" color="black" size="4"> : </font>
+                                <font style="margin-left: 8.5%" face="Times New Roman" color="black" size="4"> : </font>
                                 <input type="text" placeholder="Enter No Identitas" id="noID" required/>
                             </div>
                             <div class ="form-group">
                                 <font face="Times New Roman" color="black" size="4">No. Handphone</font>
-                                <font style="margin-left: 7%"face="Times New Roman" color="black" size="4"> : </font>
+                                <font style="margin-left: 7%" face="Times New Roman" color="black" size="4"> : </font>
                                 <input type="text" placeholder="Enter No Handphone" id="noHp" required/>
                             </div>
                             <div class ="form-group">
                                 <font face="Times New Roman" color="black" size="4">Alamat</font>
-                                <font style="margin-left: 12%"face="Times New Roman" color="black" size="4"> : </font>
+                                <font style="margin-left: 12%" face="Times New Roman" color="black" size="4"> : </font>
                                 <input type="text" placeholder="Enter Alamat" id="alamat" required/>
                             </div>
                             <div class ="form-group">
                                 <font face="Times New Roman" color="black" size="4">Lama Sewa</font>
                                 <font style="margin-left: 9.3%" face="Times New Roman" color="black" size="4"> : </font>
                                 <font style="margin-left: 1%" face="Times New Roman" color="black" size="4">Hari</font>
-                                <select id="hari">
+                                <select id="hari" onchange="hitung()">
                                     <!--<option value="0"></option>-->
                                     <option value="1">1</option>
                                     <option value="2">2</option>
@@ -112,8 +111,8 @@
                                     <option value="4">4</option>
                                     <option value="5">5</option>
                                 </select> <br> 
-                                <font style="margin-left: 19%" face="Times New Roman" color="black" size="4">Jam</font><td></td>
-                                <select id="jam" >
+                                <font style="margin-left: 19%" face="Times New Roman" color="black" size="4">Jam</font>
+                                <select id="jam" onchange="hitung()">
                                     <!--<option value="0"></option>-->
                                     <option value="12">12</option>
                                     <option value="24">24</option>
@@ -121,17 +120,17 @@
                             </div>
                             <div class ="form-group">
                                 <font face="Times New Roman" color="black" size="4">Tanggal Penjemputan</font>
-                                <font style="margin-left: 3%"face="Times New Roman" color="black" size="4"> : </font>
+                                <font style="margin-left: 3%" face="Times New Roman" color="black" size="4"> : </font>
                                 <input type="text" placeholder="yyyymmdd" id="tglPenjemputan" required/>
                             </div>
                             <div class ="form-group">
                                 <font face="Times New Roman" color="black" size="4">Tanggal Selesai</font>
-                                <font style="margin-left: 6.7%"face="Times New Roman" color="black" size="4"> : </font>
+                                <font style="margin-left: 6.7%" face="Times New Roman" color="black" size="4"> : </font>
                                 <input type="text" placeholder="yyyymmdd" id="tglSelesai" required/>
                             </div>
                             <div class ="form-group">
                                 <font face="Times New Roman" color="black" size="4">Jumlah Motor</font>
-                                <font style="margin-left: 7.7%"face="Times New Roman" color="black" size="4"> : </font>
+                                <font style="margin-left: 7.7%" face="Times New Roman" color="black" size="4"> : </font>
                                 <select id="jumlah" onchange="hitung()">
                                     <!--<option value="0"></option>-->
                                     <option value="1">1</option>
@@ -141,7 +140,7 @@
                             </div>
                             <div class ="form-group">
                                 <font face="Times New Roman" color="black" size="4">Jenis Motor</font>
-                                <font style="margin-left: 9%"face="Times New Roman" color="black" size="4"> : </font>
+                                <font style="margin-left: 9%" face="Times New Roman" color="black" size="4"> : </font>
                                 <font style="margin-left: 0.5%" face="Times New Roman" color="black" size="4">1.</font>
                                 <select id="pil1" >
                                     <option value="Honda Beat">Honda Beat</option>
@@ -152,7 +151,7 @@
                                     <option value="Honda Supra">Honda Supra</option>
                                 </select>
                                 <br>
-                                <font style="margin-left: 18%" face="Times New Roman" color="black" size="4">2.</font><td></td>
+                                <font style="margin-left: 18%" face="Times New Roman" color="black" size="4">2.</font>
                                 <select id="pil2">
                                     <option value="Honda Beat">Honda Beat</option>
                                     <option value="Honda Vario">Honda Vario</option>
@@ -173,17 +172,19 @@
                             </div>
                             <div class ="form-group">
                                 <font face="Times New Roman" color="black" size="4">Jam Pengantaran</font>
-                                <font style="margin-left: 5.5%"face="Times New Roman" color="black" size="4"> : </font>
+                                <font style="margin-left: 5.5%" face="Times New Roman" color="black" size="4"> : </font>
                                 <input type="text" placeholder="Enter Jam Pengantaran" id="jamPengantaran" required/>
                             </div>
                             <div class ="form-group">
                                 <font face="Times New Roman" color="black" size="4">Jam Penjemputan</font>
-                                <font style="margin-left: 4.9%"face="Times New Roman" color="black" size="4"> : </font>    
+                                <font style="margin-left: 4.9%" face="Times New Roman" color="black" size="4"> : </font>    
                                 <input type="text" placeholder="Enter Jam Penjemputan" id="jamPenjemputan" required/>
                             </div>
-                            <p>Total Harga :</p>
-                            <button type="button" onclick="hitung()">Klik Disini</button>
-                            <p id="demo"></p>
+                            <div class ="form-group">
+                                <font face="Times New Roman" color="black" size="4">Harga</font>
+                                <font style="margin-left: 4.9%" face="Times New Roman" color="black" size="4"> : </font> 
+                                <input type="text"  id="harga" required/>
+                            </div>
                             <div class ="form-group">
                                 <button href="index.html" id="cancel" type="submit" class="btn btn-info btn-md">Batal</button>
                                 <button id="save" type="submit" class="btn btn-info btn-md">Sewa</button>
@@ -212,7 +213,6 @@
 //                document.getElementById("output").innerHTML = html;
                 return false;
             }
-
             function tambahPesanan(form, x) {
                 var json = {
                     "noIdentitas": form.noID.value,
@@ -223,7 +223,7 @@
                     "jamPenjemputan": form.jamPenjemputan.value,
                     "status": "Disewa",
 //                    "harga": form.harga.value,
-                    "biaya": "150000",
+                    "biaya": form.harga.value,
                     "platNomor": x
                 };
                 var html = JSON.stringify(json, 0, 100);
@@ -253,7 +253,6 @@
 //                document.getElementById("output").innerHTML = html;
                 return false;
             }
-
             function cek(a, form) {
                 var url = "http://202.94.83.190:8080/RPL_RentalMotor/webresources/motor/searchJenis?jenis=" + a.value;
                 var xhttp = new XMLHttpRequest();
@@ -265,7 +264,7 @@
                             tambahPenyewa(form);
                             tambahPesanan(form, user[0].platNomor);
                             updateStatusMotor(user[0]);
-                            alert("Data sudah berhasil disimpan");
+//                            alert("Data sudah berhasil disimpan"); [Alert ini yang buat perkara, datanya jadi gak masuk]
                             return true;
                         } else {
                             return false;
@@ -275,20 +274,21 @@
                 xhttp.open('GET', url, true);
                 xhttp.send();
             }
-
             function make_json(form) {
                 if (form.jumlah.value === "1") {
                     cek(form.pil1, form);
+                    alert("Data sudah berhasil disimpan");
                 } else if (form.jumlah.value === "2") {
                     cek(form.pil1, form);
                     cek(form.pil2, form);
+                    alert("Data sudah berhasil disimpan");
                 } else if (form.jumlah.value === "3") {
                     cek(form.pil1, form);
                     cek(form.pil2, form);
                     cek(form.pil3, form);
+                    alert("Data sudah berhasil disimpan");
                 }
             }
-
             function hitung() {
                 var hargaHari = document.getElementById("hari").value;
                 var hargaJam = document.getElementById("jam").value;
@@ -298,54 +298,47 @@
 //                var jumlahMotor = form.jumlah.value;
                 var fee1 = 40000;
                 var fee2 = 75000;
+                var hasil;
 //                var total;
 //                if (hargaHari !== "0") {
 //                    if (hargaJam !== "0") {
 //                        if (jumlahMotor !== "0") {
                 if (hargaHari === "1") {
                     if (hargaJam === "12") {
-                        var total1 = fee1 * jumlahMotor;
-//                        total1 = total;
-                        alert(total1);
+                        hasil = fee1 * jumlahMotor;
                     } else if (hargaJam === "24") {
-                        var total2 = fee2 * jumlahMotor;
-//                        total2 = total;
-                        alert(total2);
+                        hasil = fee2 * jumlahMotor;
                     }
                 } else if (hargaHari === "2") {
-                    var total3 = hargaHari * fee2 * jumlahMotor;
-//                    total3 = total;
-                    alert(total3);
-                } else if (hargaHari === " 3") {
-                    var total4 = hargaHari * fee2 * jumlahMotor;
-//                    total4 = total;
-                    alert(total4);
+                    if (hargaJam === "12") {
+                        alert("Harus memilih 24 jam");
+                    } else {
+                        hasil = hargaHari * fee2 * jumlahMotor;
+                    }
+                } else if (hargaHari === "3") {
+                    if (hargaJam === "12") {
+                        alert("Harus memilih 24 jam");
+                    } else {
+                        hasil = hargaHari * fee2 * jumlahMotor;
+                    }
+//                    hasil = hargaHari * fee2 * jumlahMotor;
                 } else if (hargaHari === "4") {
-                    var total5 = hargaHari * fee2 * jumlahMotor;
-//                    total5 = total;
-                    alert(total5);
+                    if (hargaJam === "12") {
+                        alert("Harus memilih 24 jam");
+                    } else {
+                        hasil = hargaHari * fee2 * jumlahMotor;
+                    }
+//                    hasil = hargaHari * fee2 * jumlahMotor;
                 } else if (hargaHari === "5") {
-                    var total6 = hargaHari * fee2 * jumlahMotor;
-//                    total6 = total;
-                    alert(total6);
+                    if (hargaJam === "12") {
+                        alert("Harus memilih 24 jam");
+                    } else {
+                        hasil = hargaHari * fee2 * jumlahMotor;
+                    }
+//                    hasil = hargaHari * fee2 * jumlahMotor;
                 }
-//                        } else if (hargaHari === "0") {
-//                            alert("silahkan masukkan jumlah motor");
-//                var html = JSON.stringify(json, 0, 100);
-//                var Url = "http://202.94.83.190:8080/RPL_RentalMotor/webresources/pesanan/addPesanan";
-//                var xhr = new XMLHttpRequest();
-//                xhr.open('POST', Url, false);
-//                xhr.setRequestHeader("Content-type", "application/json");
-//                xhr.send(html);
-//                alert(html);
-//                return false;
-//                        } else if (hargaJam === "0") {
-//                            alert("silahkan masukkan jumlah jam");
-//                        } else if (hargaHari === "") {
-//                            alert("silahkan masukkan jumlah hari");
-                document.getElementById("demo").innerHTML = html;
+                document.getElementById("harga").value = hasil;
             }
-//            hitung();
         </script>
     </body>
 </html>
