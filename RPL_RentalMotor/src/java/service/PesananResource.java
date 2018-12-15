@@ -115,4 +115,18 @@ public class PesananResource {
                 .entity(json)
                 .build();
     }
+    
+    @POST
+    @Path("updateStatusPesanan")
+    @Consumes(MediaType.APPLICATION_JSON)
+    public Response updateStatusMotor(String data) {
+        Gson gson = new Gson();
+        Pesanan pesanan = gson.fromJson(data, Pesanan.class);
+        pesananHelper helper = new pesananHelper();
+        helper.updateStatusPesanan(pesanan.getNoIdentitas(),pesanan.getPlatNomor(), pesanan.getStatus());
+        return Response
+                .status(200)
+                .entity(pesanan)
+                .build();
+    }
 }
