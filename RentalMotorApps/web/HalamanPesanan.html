@@ -150,7 +150,7 @@
                                     "</td><td>" +
                                     myObj[x].biaya +
                                     "</td><td>" +
-                                    "<button type=\"submit\" onclick=\"detailPesanan('" + myObj[x].noIdentitas + "," + myObj[x].platNomor + "')\">Detail</button>" +
+                                    "<button type=\"submit\" onclick=\"detailPesanan('" + myObj[x].noIdentitas + "'),detailPesanan1('" + myObj[x].platNomor + "')\">Detail</button>" +
                                     "</td></tr>";
                         }
                         txt += "</table>"
@@ -200,7 +200,7 @@
                                     "</td><td>" +
                                     myObj[x].biaya +
                                     "</td><td>" +
-                                    "<button type=\"submit\" onclick=\"detilPesanan('" + myObj[x].noIdentitas + "," + myObj[x].platNomor + "')\">Detail</button>" +
+                                    "<button type=\"submit\" onclick=\"detailPesanan('" + myObj[x].noIdentitas + "')\">Detail</button>" +
                                     "</td></tr>";
                         }
                         txt += "</table>";
@@ -208,9 +208,11 @@
                     }
                 };
             }
-            function detailPesanan(noIdentitas, platNomor) {
+            function detailPesanan(noIdentitas) {
                 window.open("HalamanDetailPesanan.html", "_self");
                 setCookie("noIdentitas", noIdentitas, 1);
+            }
+            function detailPesanan1(platNomor) {
                 setCookie("platNomor", platNomor, 1);
             }
             function setCookie(cname, cvalue, exdays) {

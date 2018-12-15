@@ -184,151 +184,181 @@
                                 <font face="Times New Roman" color="black" size="4">Harga Total</font><br>
                                 <font style="margin-left: 4.9%" face="Times New Roman" color="black" size="4"> Rp  </font> 
                                 <input type="text"  id="harga" required/>
+                            </div>
+                            <div class ="form-group">
+                                <button href="index.html" id="cancel" type="button" class="btn btn-info btn-md">Batal</button>
+                                <button id="save" type="submit" class="btn btn-info btn-md">Sewa</button>
+                            </div>
                         </div>
-                        <div class ="form-group">
-                            <button href="index.html" id="cancel" type="button" class="btn btn-info btn-md">Batal</button>
-                            <button id="save" type="submit" class="btn btn-info btn-md">Sewa</button>
-                        </div>
-                    </div>
-                </form>
+                    </form>
+                </div>
             </div>
         </div>
-    </div>
 
-    <script>
-        function tambahPenyewa(form) {
-            var json = {
-                "nama": form.nama.value,
-                "noIdentitas": form.noID.value,
-                "noHp": form.noHp.value,
-                "alamat": form.alamat.value
-            };
-            var html = JSON.stringify(json, 0, 100);
-            var Url = "http://202.94.83.190:8080/RPL_RentalMotor/webresources/penyewa/addPenyewa";
-            var xhr = new XMLHttpRequest();
-            xhr.open('POST', Url, false);
-            xhr.setRequestHeader("Content-type", "application/json");
-            xhr.send(html);
-            alert(html);
-//                document.getElementById("output").innerHTML = html;
-            return false;
-        }
-        function tambahPesanan(form, x) {
-            var json = {
-                "noIdentitas": form.noID.value,
-                "tanggalMulai": form.tglPenjemputan.value,
-                "tanggalSelesai": form.tglSelesai.value,
-                "lamaSewa": form.hari.value + " hari",
-                "jamPengantaran": form.jamPengantaran.value,
-                "jamPenjemputan": form.jamPenjemputan.value,
-                "status": "Disewa",
-//                    "harga": form.harga.value,
-                "biaya": form.harga.value,
-                "platNomor": x
-            };
-            var html = JSON.stringify(json, 0, 100);
-            var Url = "http://202.94.83.190:8080/RPL_RentalMotor/webresources/pesanan/addPesanan";
-            var xhr = new XMLHttpRequest();
-            xhr.open('POST', Url, false);
-            xhr.setRequestHeader("Content-type", "application/json");
-            xhr.send(html);
-            alert(html);
-//                document.getElementById("output").innerHTML = html;
-            return false;
-        }
-        function updateStatusMotor(x) {
-            var json = {
-                "platNomor": x.platNomor,
-                "jenis": x.jenis,
-                "warna": x.warna,
-                "status": "Disewa"
-            };
-            var html = JSON.stringify(json, 0, 100);
-            var Url = "http://202.94.83.190:8080/RPL_RentalMotor/webresources/motor/updateStatusMotor";
-            var xhr = new XMLHttpRequest();
-            xhr.open('POST', Url, false);
-            xhr.setRequestHeader("Content-type", "application/json");
-            xhr.send(html);
-            alert(html);
-//                document.getElementById("output").innerHTML = html;
-            return false;
-        }
-        function cek(a, form) {
-            var url = "http://202.94.83.190:8080/RPL_RentalMotor/webresources/motor/searchJenis?jenis=" + a.value;
-            var xhttp = new XMLHttpRequest();
-            xhttp.onreadystatechange = function () {
-                if (this.readyState === 4 && this.status === 200) {
-                    var user = JSON.parse(this.responseText);
-                    if (user !== null) {
-//                            document.cookie = user[0].platNomor;
-                        tambahPenyewa(form);
-                        tambahPesanan(form, user[0].platNomor);
-                        updateStatusMotor(user[0]);
-//                            alert("Data sudah berhasil disimpan"); [Alert ini yang buat perkara, datanya jadi gak masuk]
-                        return true;
+        <script>
+            function tambahPenyewa(form) {
+                var json = {
+                    "nama": form.nama.value,
+                    "noIdentitas": form.noID.value,
+                    "noHp": form.noHp.value,
+                    "alamat": form.alamat.value
+                };
+                var html = JSON.stringify(json, 0, 100);
+                var Url = "http://202.94.83.190:8080/RPL_RentalMotor/webresources/penyewa/addPenyewa";
+                var xhr = new XMLHttpRequest();
+                xhr.open('POST', Url, false);
+                xhr.setRequestHeader("Content-type", "application/json");
+                xhr.send(html);
+                alert(html);
+                //                document.getElementById("output").innerHTML = html;
+                return false;
+            }
+            function tambahPesanan(form, x) {
+                var json = {
+                    "noIdentitas": form.noID.value,
+                    "tanggalMulai": form.tglPenjemputan.value,
+                    "tanggalSelesai": form.tglSelesai.value,
+                    "lamaSewa": form.hari.value + " hari",
+                    "jamPengantaran": form.jamPengantaran.value,
+                    "jamPenjemputan": form.jamPenjemputan.value,
+                    "status": "Disewa",
+                    //                    "harga": form.harga.value,
+                    "biaya": form.harga.value,
+                    "platNomor": x
+                };
+                var html = JSON.stringify(json, 0, 100);
+                var Url = "http://202.94.83.190:8080/RPL_RentalMotor/webresources/pesanan/addPesanan";
+                var xhr = new XMLHttpRequest();
+                xhr.open('POST', Url, false);
+                xhr.setRequestHeader("Content-type", "application/json");
+                xhr.send(html);
+                alert(html);
+                //                document.getElementById("output").innerHTML = html;
+                return false;
+            }
+            function updateStatusMotor(x) {
+                var json = {
+                    "platNomor": x.platNomor,
+                    "jenis": x.jenis,
+                    "warna": x.warna,
+                    "status": "Disewa"
+                };
+                var html = JSON.stringify(json, 0, 100);
+                var Url = "http://202.94.83.190:8080/RPL_RentalMotor/webresources/motor/updateStatusMotor";
+                var xhr = new XMLHttpRequest();
+                xhr.open('POST', Url, false);
+                xhr.setRequestHeader("Content-type", "application/json");
+                xhr.send(html);
+                alert(html);
+                //                document.getElementById("output").innerHTML = html;
+                return false;
+            }
+            function cek(a, form) {
+                var url = "http://202.94.83.190:8080/RPL_RentalMotor/webresources/motor/searchJenis?jenis=" + a.value;
+                var xhttp = new XMLHttpRequest();
+                xhttp.onreadystatechange = function () {
+                    if (this.readyState === 4 && this.status === 200) {
+                        var user = JSON.parse(this.responseText);
+                        if (user !== null) {
+                            //                            document.cookie = user[0].platNomor;
+                            tambahPenyewa(form);
+                            tambahPesanan(form, user[0].platNomor);
+                            updateStatusMotor(user[0]);
+                            //                            alert("Data sudah berhasil disimpan"); [Alert ini yang buat perkara, datanya jadi gak masuk]
+                            return true;
+                        } else {
+                            return false;
+                        }
+                    }
+                };
+                xhttp.open('GET', url, true);
+                xhttp.send();
+            }
+            function checking(pilihan) {
+                var url = "http://202.94.83.190:8080/RPL_RentalMotor/webresources/motor/searchJenis?jenis=" + pilihan.value;
+                var xhttp = new XMLHttpRequest();
+                xhttp.onreadystatechange = function () {
+                    if (this.readyState === 4 && this.status === 200) {
+                        var user = JSON.parse(this.responseText);
+                        if (user !== null) {
+                            //                      
+                            //                            alert("Data sudah berhasil disimpan"); [Alert ini yang buat perkara, datanya jadi gak masuk]
+                            return true;
+                        } else {
+                            return false;
+                        }
+                    }
+                };
+                xhttp.open('GET', url, true);
+                xhttp.send();
+            }
+            function make_json(form) {
+                if (form.jumlah.value === "1") {
+                    if (checking(form.pil1 === true)) {
+                        cek(form.pil1, form);
+                        alert("Data sudah berhasil disimpan");
                     } else {
-                        return false;
+                        alert("Motor yang ada pesan tidak ada");
+                    }
+                } else if (form.jumlah.value === "2") {
+                    if (checking(form.pil1) === true && checking(form.pil2) === true) {
+                        cek(form.pil1, form);
+                        cek(form.pil2, form);
+                        alert("Data sudah berhasil disimpan");
+                    } else {
+                        alert("Motor yang ada pesan tidak ada");
+                    }
+                } else if (form.jumlah.value === "3") {
+                    if (checking(form.pil1) === true && checking(form.pil2) === true && checking(form.pil3) === true) {
+                        cek(form.pil1, form);
+                        cek(form.pil2, form);
+                        cek(form.pil3, form);
+                        alert("Data sudah berhasil disimpan");
+                    } else {
+                        alert("Motor yang ada pesan tidak ada");
                     }
                 }
-            };
-            xhttp.open('GET', url, true);
-            xhttp.send();
-        }
-        function make_json(form) {
-            if (form.jumlah.value === "1") {
-                cek(form.pil1, form);
-                alert("Data sudah berhasil disimpan");
-            } else if (form.jumlah.value === "2") {
-                cek(form.pil1, form);
-                cek(form.pil2, form);
-                alert("Data sudah berhasil disimpan");
-            } else if (form.jumlah.value === "3") {
-                cek(form.pil1, form);
-                cek(form.pil2, form);
-                cek(form.pil3, form);
-                alert("Data sudah berhasil disimpan");
             }
-        }
-        function hitung() {
-            var hargaHari = document.getElementById("hari").value;
-            var hargaJam = document.getElementById("jam").value;
-            var jumlahMotor = document.getElementById("jumlah").value;
-            var fee1 = 40000;
-            var fee2 = 75000;
-            var hasil;
-            if (hargaHari === "1") {
-                if (hargaJam === "12") {
-                    hasil = fee1 * jumlahMotor;
-                } else if (hargaJam === "24") {
-                    hasil = fee2 * jumlahMotor;
+            function hitung() {
+                var hargaHari = document.getElementById("hari").value;
+                var hargaJam = document.getElementById("jam").value;
+                var jumlahMotor = document.getElementById("jumlah").value;
+                var fee1 = 40000;
+                var fee2 = 75000;
+                var hasil;
+                if (hargaHari === "1") {
+                    if (hargaJam === "12") {
+                        hasil = fee1 * jumlahMotor;
+                    } else if (hargaJam === "24") {
+                        hasil = fee2 * jumlahMotor;
+                    }
+                } else if (hargaHari === "2") {
+                    if (hargaJam === "12") {
+                        alert("Harus memilih 24 jam");
+                    } else {
+                        hasil = hargaHari * fee2 * jumlahMotor;
+                    }
+                } else if (hargaHari === "3") {
+                    if (hargaJam === "12") {
+                        alert("Harus memilih 24 jam");
+                    } else {
+                        hasil = hargaHari * fee2 * jumlahMotor;
+                    }
+                } else if (hargaHari === "4") {
+                    if (hargaJam === "12") {
+                        alert("Harus memilih 24 jam");
+                    } else {
+                        hasil = hargaHari * fee2 * jumlahMotor;
+                    }
+                } else if (hargaHari === "5") {
+                    if (hargaJam === "12") {
+                        alert("Harus memilih 24 jam");
+                    } else {
+                        hasil = hargaHari * fee2 * jumlahMotor;
+                    }
                 }
-            } else if (hargaHari === "2") {
-                if (hargaJam === "12") {
-                    alert("Harus memilih 24 jam");
-                } else {
-                    hasil = hargaHari * fee2 * jumlahMotor;
-                }
-            } else if (hargaHari === "3") {
-                if (hargaJam === "12") {
-                    alert("Harus memilih 24 jam");
-                } else {
-                    hasil = hargaHari * fee2 * jumlahMotor;
-                }
-            } else if (hargaHari === "4") {
-                if (hargaJam === "12") {
-                    alert("Harus memilih 24 jam");
-                } else {
-                    hasil = hargaHari * fee2 * jumlahMotor;
-                }
-            } else if (hargaHari === "5") {
-                if (hargaJam === "12") {
-                    alert("Harus memilih 24 jam");
-                } else {
-                    hasil = hargaHari * fee2 * jumlahMotor;
-                }
+                document.getElementById("harga").value = hasil;
             }
-            document.getElementById("harga").value = hasil;
-        }
-    </script>
-</body>
+        </script>
+    </body>
 </html>

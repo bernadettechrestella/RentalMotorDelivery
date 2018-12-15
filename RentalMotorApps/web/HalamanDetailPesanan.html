@@ -53,7 +53,7 @@
         </style>
     </head>
 
-    <body onload="loadDetail()">
+    <body onload="loadDoc()">
         <nav class="navbar navbar-inverse">
             <div class="container-fluid">
                 <div class="navbar-header">
@@ -81,7 +81,6 @@
                 <div class="col-sm-4">
                     <h1><font face="Times New Roman" color="black" size="6">Detail Pesanan</font></h1>
                     <form action="" id="registerForm" onsubmit="return make_json(this);" method="POST">
-
                         <div class="container">
                             <br><div class ="form-group">
                                 <font face="Times New Roman" color="black" size="4">ID Pesanan</font>
@@ -117,14 +116,18 @@
                             </div>
                             <div class ="form-group">
                                 <font face="Times New Roman" color="black" size="4">Status</font>
-                                <input style="margin-left: 8.4%" type="text" id="status" disabled/>
+                                <select id="status">
+                                    <option value="Disewa">Disewa</option>
+                                    <option value="Batal">Batal</option>
+                                    <option value="Kembali">Kembali</option>
+                                </select>
                             </div>
                             <div class ="form-group">
                                 <font face="Times New Roman" color="black" size="4">Harga</font>
                                 <input style="margin-left: 8.4%" type="text" id="biaya" disabled/>
                             </div>
                             <div class="clearfix">
-                                <button id="save" type="submit" class="btn btn-info btn-md">Tambah</button>
+                                <button id="save" type="submit" class="btn btn-info btn-md">Update</button>
                             </div>
                             <br><br>
                         </div>
@@ -136,35 +139,104 @@
         <!--<p id="output"></p>--> 
 
         <script>
-            function loadDetail() {
-                var url = "202.94.83.190:8080/RPL_RentalMotor/webresources/pesanan/cariPesanan?noIdentitas=" + getCookie("noIdentitas");
+            function loadDoc() {
+                var url = "http://202.94.83.190:8080/RPL_RentalMotor/webresources/pesanan/cariPesanan?noIdentitas=" + getCookie("noIdentitas") + "&platNomor=" + getCookie("platNomor");
                 var xhttp = new XMLHttpRequest();
                 xhttp.open("GET", url, true);
-                alert(getCookie("noIdentitas"));
                 xhttp.send();
                 xhttp.onreadystatechange = function () {
                     if (this.readyState === 4 && this.status === 200) {
                         var objj = JSON.parse(this.responseText);
-                        document.getElementById("idPesanan").value = objj.idPesanan;
-                        document.getElementById("noIdentitas").value = objj.noIdentitas;
-                        document.getElementById("platNomor").value = objj.platNomor;
-                        document.getElementById("lamaSewa").value = objj.lamaSewa;
-                        document.getElementById("tanggalMulai").value = objj.tanggalMulai;
-                        document.getElementById("tanggalSelesai").value = objj.tanggalSelesai;
-                        document.getElementById("jamPenjemputan").value = objj.jamPenjemputan;
-                        document.getElementById("jamPengantaran").value = objj.jamPengantaran;
-                        document.getElementById("status").value = objj.status;
-                        document.getElementById("harga").value = objj.harga;
+                        document.getElementById("idPesanan").value = objj[0].idPesanan;
+                        document.getElementById("noIdentitas").value = objj[0].noIdentitas;
+                        document.getElementById("platNomor").value = objj[0].platNomor;
+                        document.getElementById("lamaSewa").value = objj[0].lamaSewa;
+                        document.getElementById("tanggalMulai").value = objj[0].tanggalMulai;
+                        document.getElementById("tanggalSelesai").value = objj[0].tanggalSelesai;
+                        document.getElementById("jamPenjemputan").value = objj[0].jamPenjemputan;
+                        document.getElementById("jamPengantaran").value = objj[0].jamPengantaran;
+                        document.getElementById("biaya").value = objj[0].biaya;
                     }
                 };
             }
-            
-            function make_json(x) {
+
+            function make_json(form) {
+                var a = "Tersedia";
+                if (form.status.value === "Batal") {
+                    var b = "Batal";
+                    cariMotor(form.platNomor, a);
+                    cariPesanan(form.noIdentitas, form.platNomor, b);
+                } else if (form.status.value === "Kembali") {
+                    var b = "Kembali";
+                    cariMotor(form.platNomor, a);
+                    cariPesanan(form.noIdentitas, form.platNomor, b);
+                }
+            }
+            function updateStatusMotor(platNomor, status) {
                 var json = {
-                    "platNomor": x.platNomor,
-                    "jenis": x.jenis,
-                    "warna": x.warna,
-                    "status": "Disewa"
+                    "platNomor": platNomor.platNomor,
+                    "jenis": platNomor.jenis,
+                    "warna": platNomor.warna,
+                    "status": status
+                };
+                var html = JSON.stringify(json, 0, 100);
+                var Url = "http://202.94.83.190:8080/RPL_RentalMotor/webresources/motor/updateStatusMotor";
+                var xhr = new XMLHttpRequest();
+                xhr.open('POST', Url, false);
+                xhr.setRequestHeader("Content-type", "application/json");
+                xhr.send(html);
+                alert(html);
+//                document.getElementById("output").innerHTML = html;
+                return false;
+            }
+            function cariMotor(platNomor, status) {
+                var url = "http://202.94.83.190:8080/RPL_RentalMotor/webresources/motor/searchMotor?platNomor=" + platNomor.value;
+                var xhttp = new XMLHttpRequest();
+                xhttp.onreadystatechange = function () {
+                    if (this.readyState === 4 && this.status === 200) {
+                        var user = JSON.parse(this.responseText);
+                        if (user !== null) {
+                            updateStatusMotor(user[0], status);
+//                            alert("Data sudah berhasil disimpan"); [Alert ini yang buat perkara, datanya jadi gak masuk]
+                            return true;
+                        } else {
+                            return false;
+                        }
+                    }
+                };
+                xhttp.open('GET', url, true);
+                xhttp.send();
+            }
+            function cariPesanan(noIdentitas, platNomor, status) {
+                var url = "http://202.94.83.190:8080/RPL_RentalMotor/webresources/pesanan/cariPesanan?noIdentitas=" + noIdentitas.value + "&platNomor=" + platNomor.value;
+                var xhttp = new XMLHttpRequest();
+                xhttp.onreadystatechange = function () {
+                    if (this.readyState === 4 && this.status === 200) {
+                        var user = JSON.parse(this.responseText);
+                        if (user !== null) {
+                            updateStatusPesanan(user[0], status);
+//                            alert("Data sudah berhasil disimpan"); [Alert ini yang buat perkara, datanya jadi gak masuk]
+                            return true;
+                        } else {
+                            return false;
+                        }
+                    }
+                };
+                xhttp.open('GET', url, true);
+                xhttp.send();
+            }
+            function updateStatusPesanan(pesanan, status) {
+                var json = {
+                    "platNomor": pesanan.platNomor,
+                    "noIdentitas": pesanan.platNomor,
+                    "idPesanan": pesanan.platNomor,
+                    "lamaSewa": pesanan.platNomor,
+                    "tanggalMulai": pesanan.platNomor,
+                    "tanggalSelesai": pesanan.platNomor,
+                    "jamPengantaran": pesanan.platNomor,
+                    "jamPenjemputan": pesanan.platNomor,
+                    "biaya": pesanan.platNomor,
+                    "status": status
                 };
                 var html = JSON.stringify(json, 0, 100);
                 var Url = "202.94.83.190:8080/RPL_RentalMotor/webresources/pesanan/UpdateStatusPesanan";
@@ -174,7 +246,6 @@
                 xhr.send(html);
                 alert(html);
             }
-            
             function getCookie(cname) {
                 var name = cname + "=";
                 var decodedCookie = decodeURIComponent(document.cookie);
