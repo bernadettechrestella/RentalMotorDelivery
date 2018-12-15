@@ -196,6 +196,7 @@
                     if (this.readyState === 4 && this.status === 200) {
                         var user = JSON.parse(this.responseText);
                         if (user !== null) {
+                            alert("Data berhasl diubah");
                             updateStatusMotor(user[0], status);
 //                            alert("Data sudah berhasil disimpan"); [Alert ini yang buat perkara, datanya jadi gak masuk]
                             return true;
@@ -214,6 +215,7 @@
                     if (this.readyState === 4 && this.status === 200) {
                         var user = JSON.parse(this.responseText);
                         if (user !== null) {
+                            alert("Data berhasl diubah");
                             updateStatusPesanan(user[0], status);
 //                            alert("Data sudah berhasil disimpan"); [Alert ini yang buat perkara, datanya jadi gak masuk]
                             return true;
@@ -228,18 +230,18 @@
             function updateStatusPesanan(pesanan, status) {
                 var json = {
                     "platNomor": pesanan.platNomor,
-                    "noIdentitas": pesanan.platNomor,
-                    "idPesanan": pesanan.platNomor,
-                    "lamaSewa": pesanan.platNomor,
-                    "tanggalMulai": pesanan.platNomor,
-                    "tanggalSelesai": pesanan.platNomor,
-                    "jamPengantaran": pesanan.platNomor,
-                    "jamPenjemputan": pesanan.platNomor,
-                    "biaya": pesanan.platNomor,
+                    "noIdentitas": pesanan.noIdentitas,
+                    "idPesanan": pesanan.idPesanan,
+                    "lamaSewa": pesanan.lamaSewa,
+                    "tanggalMulai": pesanan.tanggalMulai,
+                    "tanggalSelesai": pesanan.tanggalSelesai,
+                    "jamPengantaran": pesanan.jamPengantaran,
+                    "jamPenjemputan": pesanan.jamPenjemputan,
+                    "biaya": pesanan.biaya,
                     "status": status
                 };
                 var html = JSON.stringify(json, 0, 100);
-                var Url = "202.94.83.190:8080/RPL_RentalMotor/webresources/pesanan/UpdateStatusPesanan";
+                var Url = "http://202.94.83.190:8080/RPL_RentalMotor/webresources/pesanan/updateStatusPesanan";
                 var xhr = new XMLHttpRequest();
                 xhr.open('POST', Url, false);
                 xhr.setRequestHeader("Content-type", "application/json");
