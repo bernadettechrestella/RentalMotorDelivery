@@ -55,7 +55,7 @@ public class pesananHelper {
             String platNomor) {
         Session session = NewHibernateUtil.getSessionFactory().openSession();
         Transaction tx = session.beginTransaction();
-        String query = "from Pesanan where noIdentitas=:noIdentitas OR platNomor=:platNomor";
+        String query = "from Pesanan where noIdentitas=:noIdentitas AND platNomor=:platNomor";
         Query q = session.createQuery(query);
         q.setParameter("noIdentitas", noIdentitas);
         q.setParameter("platNomor", platNomor);
