@@ -68,4 +68,25 @@ public class pesananHelper {
             return null;
         }
     }
+    
+    public void updateStatusPesanan(
+            String noIdentitas,String platNomor, String status) {
+        Session session = NewHibernateUtil.getSessionFactory().openSession();
+        Transaction transaction = session.beginTransaction();
+        List<Pesanan> list = searchPesanan(noIdentitas,platNomor);
+        Pesanan pesanan = new Pesanan();
+        pesanan.setIdPesanan(list.get(0).getIdPesanan());
+        pesanan.setNoIdentitas(list.get(0).getNoIdentitas());
+        pesanan.setPlatNomor(list.get(0).getPlatNomor());
+        pesanan.setLamaSewa(list.get(0).getLamaSewa());
+        pesanan.setTanggalMulai(list.get(0).getTanggalMulai());
+        pesanan.setTanggalSelesai(list.get(0).getTanggalSelesai());
+        pesanan.setJamPengantaran(list.get(0).getJamPengantaran());
+        pesanan.setJamPenjemputan(list.get(0).getJamPenjemputan());
+        pesanan.setBiaya(list.get(0).getBiaya());
+        pesanan.setStatus(status);
+        session.update(pesanan);
+        transaction.commit();
+        session.close();
+    }
 }
