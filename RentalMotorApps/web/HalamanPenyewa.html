@@ -96,11 +96,11 @@
         </nav>
 
         <h1><font  style="margin-left: 5%" face="Times New Roman" color="black" size="6">Daftar Penyewa</font></h1>
-        
+
         <input style="margin-left: 48.5%" type="text" placeholder="Cari No Identitas" id="cariNoIdentitas" required/> 
         <button id="cari" type="submit" onclick="Cari()" class="btn btn-info btn-md">Cari</button><br><br><br>
         <p id="demo" style="margin-left: 5%"></p>
-        
+
         <script>
             var xmlhttp = new XMLHttpRequest();
             var url = "http://202.94.83.190:8080/RPL_RentalMotor/webresources/penyewa";
@@ -133,7 +133,7 @@
 
         <script>
             function Cari() {
-                var url = "http://202.94.83.190:8080/RPL_RentalMotor/webresources/penyewa/searchPenyewa?noIdentitas=" + cariNoIndentitas.value;
+                var url = "http://202.94.83.190:8080/RPL_RentalMotor/webresources/penyewa/searchPenyewa?noIdentitas=" + cariNoIdentitas.value;
                 var xhttp = new XMLHttpRequest();
                 var x;
                 var txt = "";

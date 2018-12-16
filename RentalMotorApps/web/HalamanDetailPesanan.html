@@ -162,14 +162,12 @@
 
             function make_json(form) {
                 var a = "Tersedia";
-                var b = "Batal";
-                var c = "Kembali";
                 if (form.status.value === "Batal") {
                     cariMotor(form.platNomor, a);
-                    cariPesanan(form.noIdentitas, form.platNomor, b);
+                    cariPesanan(form.noIdentitas, form.platNomor, form.status.value);
                 } else if (form.status.value === "Kembali") {
                     cariMotor(form.platNomor, a);
-                    cariPesanan(form.noIdentitas, form.platNomor, c);
+                    cariPesanan(form.noIdentitas, form.platNomor, form.status.value);
                 }
             }
             function updateStatusMotor(platNomor, status) {
@@ -229,16 +227,9 @@
             }
             function updateStatusPesanan(pesanan, status) {
                 var json = {
-                    "idPesanan": pesanan.idPesanan,
                     "noIdentitas": pesanan.noIdentitas,
                     "platNomor": pesanan.platNomor,
-                    "lamaSewa": pesanan.lamaSewa,
-                    "tanggalMulai": pesanan.tanggalMulai,
-                    "tanggalSelesai": pesanan.tanggalSelesai,
-                    "jamPengantaran": pesanan.jamPengantaran,
-                    "jamPenjemputan": pesanan.jamPenjemputan,
-                    "status": status,
-                    "biaya": pesanan.biaya
+                    "status": status
                 };
                 var html = JSON.stringify(json, 0, 100);
                 var Url = "http://202.94.83.190:8080/RPL_RentalMotor/webresources/pesanan/updateStatusPesanan";
