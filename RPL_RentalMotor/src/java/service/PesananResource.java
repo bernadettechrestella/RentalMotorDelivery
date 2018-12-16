@@ -119,7 +119,7 @@ public class PesananResource {
     @POST
     @Path("updateStatusPesanan")
     @Consumes(MediaType.APPLICATION_JSON)
-    public Response updateStatusMotor(String data) {
+    public Response updateStatusPesanan(String data) {
         Gson gson = new Gson();
         Pesanan pesanan = gson.fromJson(data, Pesanan.class);
         pesananHelper helper = new pesananHelper();
