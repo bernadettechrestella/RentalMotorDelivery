@@ -268,7 +268,6 @@
                     if (this.readyState === 4 && this.status === 200) {
                         var user = JSON.parse(this.responseText);
                         if (user !== null) {
-                            //                      
                             //                            alert("Data sudah berhasil disimpan"); [Alert ini yang buat perkara, datanya jadi gak masuk]
                             return true;
                         } else {
@@ -279,33 +278,34 @@
                 xhttp.open('GET', url, true);
                 xhttp.send();
             }
+
             function make_json(form) {
                 if (form.jumlah.value === "1") {
 //                    if (checking(form.pil1) === true) {
-                        cek(form.pil1, form);
-                        alert("Data sudah berhasil disimpan");
+                    cek(form.pil1, form);
+                    alert("Data sudah berhasil disimpan");
 //                    } else {
 //                        alert("Motor yang ada pesan tidak ada");
-                    }
                 } else if (form.jumlah.value === "2") {
-                    if (checking(form.pil1) === true && checking(form.pil2) === true) {
+//                    if (checking(form.pil1) === true && checking(form.pil2) === true) {
                         cek(form.pil1, form);
                         cek(form.pil2, form);
                         alert("Data sudah berhasil disimpan");
-                    } else {
-                        alert("Motor yang ada pesan tidak ada");
-                    }
+//                    } else {
+//                        alert("Motor yang ada pesan tidak ada");
+//                    }
                 } else if (form.jumlah.value === "3") {
-                    if (checking(form.pil1) === true && checking(form.pil2) === true && checking(form.pil3) === true) {
+//                    if (checking(form.pil1) === true && checking(form.pil2) === true && checking(form.pil3) === true) {
                         cek(form.pil1, form);
                         cek(form.pil2, form);
                         cek(form.pil3, form);
                         alert("Data sudah berhasil disimpan");
-                    } else {
-                        alert("Motor yang ada pesan tidak ada");
-                    }
+//                    } else {
+//                        alert("Motor yang ada pesan tidak ada");
+//                    }
                 }
             }
+
             function hitung() {
                 var hargaHari = document.getElementById("hari").value;
                 var hargaJam = document.getElementById("jam").value;
