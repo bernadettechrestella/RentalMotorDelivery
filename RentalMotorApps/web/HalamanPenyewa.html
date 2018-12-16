@@ -72,7 +72,7 @@
         </style>
     </head>
 
-    <body>
+    <body onload="loadTable()">
         <nav class="navbar navbar-inverse">
             <div class="container-fluid">
                 <div class="navbar-header">
@@ -87,7 +87,7 @@
                         <li><a href="index.html"><font color="white">Keluar</font></a></li>
                         <li><a href="HalamanMotor.html"><font color="white">Motor</font></a></li>
                         <li><a href="HalamanTambahMotor.html"><font color="white">Tambah Motor</font></a></li>
-                        <li class="active"><a href="HalamanPenyewa.html"><font color="white">Halaman Penyewa</font></a></li>
+                        <li class="active"><a href="HalamanPenyewa.html"><font color="white">Penyewa</font></a></li>
                         <li><a href="HalamanPesanan.html"><font color="white">Pesanan</font></a></li>
                     </ul>
                     <font color="white" face="Times New Roman"><h5 align="right">0812-3456-7890</h5></font>
@@ -102,33 +102,35 @@
         <p id="demo" style="margin-left: 5%"></p>
 
         <script>
-            var xmlhttp = new XMLHttpRequest();
-            var url = "http://202.94.83.190:8080/RPL_RentalMotor/webresources/penyewa";
-            var x;
-            var txt = "";
-            xmlhttp.onreadystatechange = function () {
-                if (this.readyState == 4 && this.status == 200) {
-                    var myObj = JSON.parse(this.responseText);
-                    txt += "<table border='1' bgColor='white' class='fixed_header'>";
-                    txt += "<tr><td>" + "Nama" + "</td><td>" + "No Identitas"
-                            + "</td><td>" + "No HP" + "</td><td>" + "Alamat" + "</td></tr>";
-                    for (x in myObj) {
-                        txt += "<tr><td>" +
-                                myObj[x].nama +
-                                "</td><td>" +
-                                myObj[x].noIdentitas +
-                                "</td><td>" +
-                                myObj[x].noHp +
-                                "</td><td>" +
-                                myObj[x].alamat +
-                                "</td></tr>";
+            function loadTable() {
+                var xmlhttp = new XMLHttpRequest();
+                var url = "http://202.94.83.190:8080/RPL_RentalMotor/webresources/penyewa";
+                var x;
+                var txt = "";
+                xmlhttp.onreadystatechange = function () {
+                    if (this.readyState == 4 && this.status == 200) {
+                        var myObj = JSON.parse(this.responseText);
+                        txt += "<table border='1' bgColor='white' class='fixed_header'>";
+                        txt += "<tr><td>" + "Nama" + "</td><td>" + "No Identitas"
+                                + "</td><td>" + "No HP" + "</td><td>" + "Alamat" + "</td></tr>";
+                        for (x in myObj) {
+                            txt += "<tr><td>" +
+                                    myObj[x].nama +
+                                    "</td><td>" +
+                                    myObj[x].noIdentitas +
+                                    "</td><td>" +
+                                    myObj[x].noHp +
+                                    "</td><td>" +
+                                    myObj[x].alamat +
+                                    "</td></tr>";
+                        }
+                        txt += "</table>"
+                        document.getElementById("demo").innerHTML = txt;
                     }
-                    txt += "</table>"
-                    document.getElementById("demo").innerHTML = txt;
-                }
-            };
-            xmlhttp.open("GET", url, true);
-            xmlhttp.send();
+                };
+                xmlhttp.open("GET", url, true);
+                xmlhttp.send();
+            }
         </script>
 
         <script>

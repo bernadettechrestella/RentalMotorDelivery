@@ -83,7 +83,7 @@
         </style>
     </head>
 
-    <body>
+    <body onload="loadTable()">
         <nav class="navbar navbar-inverse">
             <div class="container-fluid">
                 <div class="navbar-header">
@@ -106,42 +106,44 @@
                 </div>
             </div>
         </nav>
-        
+
         <h1><font  style="margin-left: 5%" face="Times New Roman" color="black" size="6">Daftar Motor yang tersedia</font></h1>
-        
+
         <input style="margin-left: 48%" type="text" placeholder="Cari Plat Nomor" id="cariPlatNo" required/> 
         <button id="cari" type="submit" onclick="Cari()" class="btn btn-info btn-md">Cari</button><br><br><br>
         <p id="demo" style="margin-left: 5%"></p>
 
         <script>
-            var xmlhttp = new XMLHttpRequest();
-            var url = "http://202.94.83.190:8080/RPL_RentalMotor/webresources/motor";
-            var x;
-            var txt = "";
+            function loadTable() {
+                var xmlhttp = new XMLHttpRequest();
+                var url = "http://202.94.83.190:8080/RPL_RentalMotor/webresources/motor";
+                var x;
+                var txt = "";
 
-            xmlhttp.onreadystatechange = function () {
-                if (this.readyState == 4 && this.status == 200) {
-                    var myObj = JSON.parse(this.responseText);
-                    txt += "<table border='1' bgColor='white' class='fixed_header'>";
-                    txt += "<tr><td>" + "Jenis" + "</td><td>" + "Warna"
-                            + "</td><td>" + "Plat Nomor" + "</td><td>" + "Status" + "</td></tr>";
-                    for (x in myObj) {
-                        txt += "<tr><td>" +
-                                myObj[x].jenis +
-                                "</td><td>" +
-                                myObj[x].warna +
-                                "</td><td>" +
-                                myObj[x].platNomor +
-                                "</td><td>" +
-                                myObj[x].status +
-                                "</td></tr>";
+                xmlhttp.onreadystatechange = function () {
+                    if (this.readyState == 4 && this.status == 200) {
+                        var myObj = JSON.parse(this.responseText);
+                        txt += "<table border='1' bgColor='white' class='fixed_header'>";
+                        txt += "<tr><td>" + "Jenis" + "</td><td>" + "Warna"
+                                + "</td><td>" + "Plat Nomor" + "</td><td>" + "Status" + "</td></tr>";
+                        for (x in myObj) {
+                            txt += "<tr><td>" +
+                                    myObj[x].jenis +
+                                    "</td><td>" +
+                                    myObj[x].warna +
+                                    "</td><td>" +
+                                    myObj[x].platNomor +
+                                    "</td><td>" +
+                                    myObj[x].status +
+                                    "</td></tr>";
+                        }
+                        txt += "</table>"
+                        document.getElementById("demo").innerHTML = txt;
                     }
-                    txt += "</table>"
-                    document.getElementById("demo").innerHTML = txt;
-                }
-            };
-            xmlhttp.open("GET", url, true);
-            xmlhttp.send();
+                };
+                xmlhttp.open("GET", url, true);
+                xmlhttp.send();
+            }
         </script>
 
         <script>
