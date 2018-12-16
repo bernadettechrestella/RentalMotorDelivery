@@ -84,35 +84,35 @@
                         <div class="container">
                             <br><div class ="form-group">
                                 <font face="Times New Roman" color="black" size="4">ID Pesanan</font>
-                                <input style="margin-left: 10%" type="text" id="idPesanan" disabled/>
+                                <input style="margin-left: 10%" type="text" id="idPesanan" />
                             </div>
                             <div class ="form-group">
                                 <font face="Times New Roman" color="black" size="4">No Identitas</font>
-                                <input style="margin-left: 9%" type="text"  id="noIdentitas" disabled/>
+                                <input style="margin-left: 9%" type="text"  id="noIdentitas"/>
                             </div>
                             <div class ="form-group">
                                 <font face="Times New Roman" color="black" size="4">Plat Nomor</font>
-                                <input style="margin-left: 8.4%" type="text" id="platNomor" disabled/>
+                                <input style="margin-left: 8.4%" type="text" id="platNomor"/>
                             </div>
                             <div class ="form-group">
                                 <font face="Times New Roman" color="black" size="4">Lama Sewa</font>
-                                <input style="margin-left: 8.4%" type="text" id="lamaSewa" disabled/>
+                                <input style="margin-left: 8.4%" type="text" id="lamaSewa" />
                             </div>
                             <div class ="form-group">
                                 <font face="Times New Roman" color="black" size="4">Tanggal Mulai</font>
-                                <input style="margin-left: 8.4%" type="text" id="tanggalMulai" disabled/>
+                                <input style="margin-left: 8.4%" type="text" id="tanggalMulai"/>
                             </div>
                             <div class ="form-group">
                                 <font face="Times New Roman" color="black" size="4">Tanggal Selesai</font>
-                                <input style="margin-left: 8.4%" type="text" id="tanggalSelesai" disabled/>
+                                <input style="margin-left: 8.4%" type="text" id="tanggalSelesai"/>
                             </div>
                             <div class ="form-group">
                                 <font face="Times New Roman" color="black" size="4">Jam Pengantaran</font>
-                                <input style="margin-left: 8.4%" type="text" id="jamPengantaran" disabled/>
+                                <input style="margin-left: 8.4%" type="text" id="jamPengantaran"/>
                             </div>
                             <div class ="form-group">
                                 <font face="Times New Roman" color="black" size="4">Jam Penjemputan</font>
-                                <input style="margin-left: 8.4%" type="text" id="jamPenjemputan" disabled/>
+                                <input style="margin-left: 8.4%" type="text" id="jamPenjemputan"/>
                             </div>
                             <div class ="form-group">
                                 <font face="Times New Roman" color="black" size="4">Status</font>
@@ -124,7 +124,7 @@
                             </div>
                             <div class ="form-group">
                                 <font face="Times New Roman" color="black" size="4">Harga</font>
-                                <input style="margin-left: 8.4%" type="text" id="biaya" disabled/>
+                                <input style="margin-left: 8.4%" type="text" id="biaya"/>
                             </div>
                             <div class="clearfix">
                                 <button id="save" type="submit" class="btn btn-info btn-md">Update</button>
@@ -162,14 +162,14 @@
 
             function make_json(form) {
                 var a = "Tersedia";
+                var b = "Batal";
+                var c = "Kembali";
                 if (form.status.value === "Batal") {
-                    var b = "Batal";
                     cariMotor(form.platNomor, a);
                     cariPesanan(form.noIdentitas, form.platNomor, b);
                 } else if (form.status.value === "Kembali") {
-                    var b = "Kembali";
                     cariMotor(form.platNomor, a);
-                    cariPesanan(form.noIdentitas, form.platNomor, b);
+                    cariPesanan(form.noIdentitas, form.platNomor, c);
                 }
             }
             function updateStatusMotor(platNomor, status) {
@@ -229,16 +229,16 @@
             }
             function updateStatusPesanan(pesanan, status) {
                 var json = {
-                    "platNomor": pesanan.platNomor,
-                    "noIdentitas": pesanan.noIdentitas,
                     "idPesanan": pesanan.idPesanan,
+                    "noIdentitas": pesanan.noIdentitas,
+                    "platNomor": pesanan.platNomor,
                     "lamaSewa": pesanan.lamaSewa,
                     "tanggalMulai": pesanan.tanggalMulai,
                     "tanggalSelesai": pesanan.tanggalSelesai,
                     "jamPengantaran": pesanan.jamPengantaran,
                     "jamPenjemputan": pesanan.jamPenjemputan,
-                    "biaya": pesanan.biaya,
-                    "status": status
+                    "status": status,
+                    "biaya": pesanan.biaya
                 };
                 var html = JSON.stringify(json, 0, 100);
                 var Url = "http://202.94.83.190:8080/RPL_RentalMotor/webresources/pesanan/updateStatusPesanan";
@@ -247,6 +247,7 @@
                 xhr.setRequestHeader("Content-type", "application/json");
                 xhr.send(html);
                 alert(html);
+                return false;
             }
             function getCookie(cname) {
                 var name = cname + "=";
