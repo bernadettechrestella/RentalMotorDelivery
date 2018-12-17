@@ -70,7 +70,7 @@
                         <li><a href="HalamanTambahMotor.html"><font color="white">Tambah Motor</font></a></li>
                         <li><a href="HalamanPenyewa.html"><font color="white">Penyewa</font></a></li>
                         <li><a href="HalamanPesanan.html"><font color="white">Pesanan</font></a></li>
-                        <li class="active"><a href="HalamanDetailPesanan.html"><font color="white">Detail Pesanan</font></a></li>
+                        <li class="active"><a href="HalamanDetailPesanan.html"><font color="white">Detail Motor</font></a></li>
                     </ul>
                     <font color="white" face="Times New Roman"><h5 align="right">0812-3456-7890</h5></font>
                 </div>
@@ -80,53 +80,28 @@
         <div class="container">
             <div class="row">
                 <div class="col-sm-4">
-                    <h1><font face="Times New Roman" color="black" size="6">Detail Pesanan</font></h1>
+                    <h1><font face="Times New Roman" color="black" size="6">Detail Motor</font></h1>
                     <form action="" id="registerForm" onsubmit="return make_json(this);" method="POST">
                         <div class="container">
-                            <br><div class ="form-group">
-                                <font face="Times New Roman" color="black" size="4">ID Pesanan</font>
-                                <input style="margin-left: 10%" type="text" id="idPesanan"/>
-                            </div>
-                            <div class ="form-group">
-                                <font face="Times New Roman" color="black" size="4">No Identitas</font>
-                                <input style="margin-left: 9.5%" type="text"  id="noIdentitas"/>
-                            </div>
+                            <br>
                             <div class ="form-group">
                                 <font face="Times New Roman" color="black" size="4">Plat Nomor</font>
                                 <input style="margin-left: 9.9%" type="text" id="platNomor"/>
                             </div>
                             <div class ="form-group">
-                                <font face="Times New Roman" color="black" size="4">Lama Sewa</font>
-                                <input style="margin-left: 9.8%" type="text" id="lamaSewa"/>
+                                <font face="Times New Roman" color="black" size="4">Jenis</font>
+                                <input style="margin-left: 9.8%" type="text" id="jenis"/>
                             </div>
                             <div class ="form-group">
-                                <font face="Times New Roman" color="black" size="4">Tanggal Mulai</font>
-                                <input style="margin-left: 7.9%" type="text" id="tanggalMulai"/>
-                            </div>
-                            <div class ="form-group">
-                                <font face="Times New Roman" color="black" size="4">Tanggal Selesai</font>
-                                <input style="margin-left: 7.2%" type="text" id="tanggalSelesai"/>
-                            </div>
-                            <div class ="form-group">
-                                <font face="Times New Roman" color="black" size="4">Jam Pengantaran</font>
-                                <input style="margin-left: 6.4%" type="text" id="jamPengantaran"/>
-                            </div>
-                            <div class ="form-group">
-                                <font face="Times New Roman" color="black" size="4">Jam Penjemputan</font>
-                                <input style="margin-left: 6%" type="text" id="jamPenjemputan"/>
+                                <font face="Times New Roman" color="black" size="4">Warna</font>
+                                <input style="margin-left: 7.9%" type="text" id="warna"/>
                             </div>
                             <div class ="form-group">
                                 <font face="Times New Roman" color="black" size="4">Status</font>
                                 <select id="status" style="margin-left: 13.5%">
-                                    <option value="Disewa">Disewa</option>
-                                    <option value="Batal">Batal</option>
-                                    <option value="Kembali">Kembali</option>
+                                    <option value="Tersedia">Disewa</option>
                                     <option value="Rusak">Rusak</option>
                                 </select>
-                            </div>
-                            <div class ="form-group">
-                                <font face="Times New Roman" color="black" size="4">Harga</font>
-                                <input style="margin-left: 13.3%" type="text" id="biaya"/>
                             </div>
                             <div class="clearfix">
                                 <button id="save" type="submit" class="btn btn-info btn-md">Update</button>
@@ -142,44 +117,32 @@
 
         <script>
             function loadDoc() {
-                var url = "http://202.94.83.190:8080/RPL_RentalMotor/webresources/pesanan/cariPesanan?noIdentitas=" + getCookie("noIdentitas") + "&platNomor=" + getCookie("platNomor");
+                var url = "http://202.94.83.190:8080/RPL_RentalMotor/webresources/motor/searchMotor?platNomor=" + getCookie("plat");
                 var xhttp = new XMLHttpRequest();
                 xhttp.open("GET", url, true);
                 xhttp.send();
+                alert(getCookie("plat"));
                 xhttp.onreadystatechange = function () {
                     if (this.readyState === 4 && this.status === 200) {
                         var objj = JSON.parse(this.responseText);
-                        document.getElementById("idPesanan").value = objj[0].idPesanan;
-                        document.getElementById("noIdentitas").value = objj[0].noIdentitas;
+                        
                         document.getElementById("platNomor").value = objj[0].platNomor;
-                        document.getElementById("lamaSewa").value = objj[0].lamaSewa;
-                        document.getElementById("tanggalMulai").value = objj[0].tanggalMulai;
-                        document.getElementById("tanggalSelesai").value = objj[0].tanggalSelesai;
-                        document.getElementById("jamPenjemputan").value = objj[0].jamPenjemputan;
-                        document.getElementById("jamPengantaran").value = objj[0].jamPengantaran;
-                        document.getElementById("biaya").value = objj[0].biaya;
+                        document.getElementById("jenis").value = objj[0].jenis;
+                        document.getElementById("warna").value = objj[0].warna;
                     }
                 };
             }
 
             function make_json(form) {
-                var a = "Tersedia";
-                if (form.status.value === "Batal") {
-                    cariMotor(form.platNomor, a);
-                    cariPesanan(form.noIdentitas, form.platNomor, form.status.value);
-                } else if (form.status.value === "Kembali") {
-                    cariMotor(form.platNomor, a);
-                    cariPesanan(form.noIdentitas, form.platNomor, form.status.value);
-                }else if (form.status.value === "Rusak"){
+                if (form.status.value === "Rusak") {
                     cariMotor(form.platNomor, form.status.value);
-                    cariPesanan(form.noIdentitas, form.platNomor, form.status.value);
+                } else if (form.status.value === "Tersedia") {
+                    cariMotor(form.platNomor, form.status.value);
                 }
             }
             function updateStatusMotor(platNomor, status) {
                 var json = {
                     "platNomor": platNomor.platNomor,
-                    "jenis": platNomor.jenis,
-                    "warna": platNomor.warna,
                     "status": status
                 };
                 var html = JSON.stringify(json, 0, 100);
@@ -210,40 +173,6 @@
                 };
                 xhttp.open('GET', url, true);
                 xhttp.send();
-            }
-            function cariPesanan(noIdentitas, platNomor, status) {
-                var url = "http://202.94.83.190:8080/RPL_RentalMotor/webresources/pesanan/cariPesanan?noIdentitas=" + noIdentitas.value + "&platNomor=" + platNomor.value;
-                var xhttp = new XMLHttpRequest();
-                xhttp.onreadystatechange = function () {
-                    if (this.readyState === 4 && this.status === 200) {
-                        var user = JSON.parse(this.responseText);
-                        if (user !== null) {
-                            alert("Data berhasl diubah");
-                            updateStatusPesanan(user[0], status);
-//                            alert("Data sudah berhasil disimpan"); [Alert ini yang buat perkara, datanya jadi gak masuk]
-                            return true;
-                        } else {
-                            return false;
-                        }
-                    }
-                };
-                xhttp.open('GET', url, true);
-                xhttp.send();
-            }
-            function updateStatusPesanan(pesanan, status) {
-                var json = {
-                    "noIdentitas": pesanan.noIdentitas,
-                    "platNomor": pesanan.platNomor,
-                    "status": status
-                };
-                var html = JSON.stringify(json, 0, 100);
-                var Url = "http://202.94.83.190:8080/RPL_RentalMotor/webresources/pesanan/updateStatusPesanan";
-                var xhr = new XMLHttpRequest();
-                xhr.open('POST', Url, false);
-                xhr.setRequestHeader("Content-type", "application/json");
-                xhr.send(html);
-                alert(html);
-                return false;
             }
             function getCookie(cname) {
                 var name = cname + "=";

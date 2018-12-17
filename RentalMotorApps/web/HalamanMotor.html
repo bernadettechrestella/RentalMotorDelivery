@@ -135,6 +135,8 @@
                                     myObj[x].platNomor +
                                     "</td><td>" +
                                     myObj[x].status +
+                                    "</td><td>" +
+                                    "<button type=\"submit\" onclick=\"detailMotor('" + myObj[x].platNomor + "')\">Detail</button>" +
                                     "</td></tr>";
                         }
                         txt += "</table>"
@@ -169,12 +171,25 @@
                                     myObj[x].platNomor +
                                     "</td><td>" +
                                     myObj[x].status +
+                                    "</td><td>" +
+                                    "<button type=\"submit\" onclick=\"detailMotor('" + myObj[x].platNomor + "')\">Detail</button>" +
                                     "</td></tr>";
                         }
                         txt += "</table>"
                         document.getElementById("demo").innerHTML = txt;
                     }
                 };
+            }
+            function detailMotor(platNomor) {
+                window.open("HalamanDetailMotor.html", "_self");
+                alert(platNomor);
+                setCookie("plat", platNomor, 1);
+            }
+            function setCookie(cname, cvalue, exdays) {
+                var d = new Date();
+                d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
+                var expires = "expires=" + d.toUTCString();
+                document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
             }
         </script>
     </body>
