@@ -178,6 +178,7 @@
                             </div>
                         </div>
                     </form>
+                    <p id="demo"></p>
                 </div>
             </div>
         </div>
@@ -261,36 +262,41 @@
                 xhttp.open('GET', url, true);
                 xhttp.send();
             }
-            function checking(pilihan) {
-                var y;
-                var url = "http://202.94.83.190:8080/RPL_RentalMotor/webresources/motor/searchJenis?jenis=" + pilihan.value;
-                var xhttp = new XMLHttpRequest();
-                xhttp.onreadystatechange = function () {
-                    if (this.readyState === 4 && this.status === 200) {
-                        var user = JSON.parse(this.responseText);
-                        if (user !== null) {
-                            //                            alert("Data sudah berhasil disimpan"); [Alert ini yang buat perkara, datanya jadi gak masuk]
-                            y = true;
-                        } else {
-                            y = false;
-                        }
-                    }
-                };
-                xhttp.open('GET', url, true);
-                xhttp.send();
-                return y;
-            }
-
+//            function checking(pilihan) {
+//
+//                var url = "http://202.94.83.190:8080/RPL_RentalMotor/webresources/motor/searchJenis?jenis=" + pilihan.value;
+//                var xhttp = new XMLHttpRequest();
+//                xhttp.open('GET', url, true);
+//                xhttp.send();
+//                var user = JSON.parse(this.responseText);
+//                xhttp.onreadystatechange = function () {
+//                    if (this.readyState === 4 && this.status === 200) {
+////                        var user = JSON.parse(this.responseText);
+//                        if (user !== null) {
+////                            y = false;
+//                            return true;
+//                        } else {
+////                            y = true;
+//                            return false;
+//                        }
+//                    }
+//                };
+//                return Boolean(user !== null);
+//            }
             function make_json(form) {
                 if (form.jumlah.value === "1") {
-//                    if (checking(form.pil1) === true) {
+//                    if (checking(form.pil1) === false) {
                     cek(form.pil1, form);
-                    alert(checking(form.pil1).value);
+//                        alert(checking(form.pil1));
                     alert("Data sudah berhasil disimpan");
 //                    } else {
+//                        alert(checking(form.pil1));
 //                        alert("Motor yang ada pesan tidak ada");
+//                    }
+//                    alert(checking(form.pil1));
+//                    alert("Data Masuk");
                 } else if (form.jumlah.value === "2") {
-//                    if (checking(form.pil1) === true && checking(form.pil2) === true) {
+//                    if (checking(form.pil1) === false && checking(form.pil2) === false) {
                     cek(form.pil1, form);
                     cek(form.pil2, form);
                     alert("Data sudah berhasil disimpan");
@@ -298,7 +304,7 @@
 //                        alert("Motor yang ada pesan tidak ada");
 //                    }
                 } else if (form.jumlah.value === "3") {
-//                    if (checking(form.pil1) === true && checking(form.pil2) === true && checking(form.pil3) === true) {
+//                    if (checking(form.pil1) === false && checking(form.pil2) === false && checking(form.pil3) === false) {
                     cek(form.pil1, form);
                     cek(form.pil2, form);
                     cek(form.pil3, form);
@@ -308,7 +314,6 @@
 //                    }
                 }
                 window.open("HalamanPilihanMotor.html", "_self");
-
             }
 
             function hitung() {

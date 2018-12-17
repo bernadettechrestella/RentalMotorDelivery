@@ -163,15 +163,11 @@
             }
 
             function make_json(form) {
-                var a = "Tersedia";
-                if (form.status.value === "Batal") {
-                    cariMotor(form.platNomor, a);
-                    cariPesanan(form.noIdentitas, form.platNomor, form.status.value);
-                } else if (form.status.value === "Kembali") {
-                    cariMotor(form.platNomor, a);
-                    cariPesanan(form.noIdentitas, form.platNomor, form.status.value);
-                }else if (form.status.value === "Rusak"){
+                if (form.status.value === "Rusak") {
                     cariMotor(form.platNomor, form.status.value);
+                    cariPesanan(form.noIdentitas, form.platNomor, form.status.value);
+                } else {
+                    cariMotor(form.platNomor, "Tersedia");
                     cariPesanan(form.noIdentitas, form.platNomor, form.status.value);
                 }
             }

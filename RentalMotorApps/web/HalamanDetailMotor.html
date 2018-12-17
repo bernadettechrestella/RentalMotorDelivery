@@ -132,8 +132,9 @@
             }
 
             function make_json(form) {
-                cariMotor(form.platNomor, form.status.value);
-//                    window.open("HalamanMotor.html", "_self");
+                cariMotor(form.status.value);
+                alert("Status berhasil diubah");
+                window.open("HalamanMotor.html", "_self");
             }
             function updateStatusMotor(platNomor, status) {
                 var json = {
@@ -150,14 +151,13 @@
 //                document.getElementById("output").innerHTML = html;
                 return false;
             }
-            function cariMotor(platNomor, status) {
-                var url = "http://202.94.83.190:8080/RPL_RentalMotor/webresources/motor/searchMotor?platNomor=" + platNomor.value;
+            function cariMotor(status) {
+                var url = "http://202.94.83.190:8080/RPL_RentalMotor/webresources/motor/searchMotor?platNomor=" + getCookie("plat");
                 var xhttp = new XMLHttpRequest();
                 xhttp.onreadystatechange = function () {
                     if (this.readyState === 4 && this.status === 200) {
                         var user = JSON.parse(this.responseText);
                         if (user !== null) {
-                            alert("Data berhasl diubah");
                             updateStatusMotor(user[0].platNomor, status);
 //                            alert("Data sudah berhasil disimpan"); [Alert ini yang buat perkara, datanya jadi gak masuk]
                             return true;
