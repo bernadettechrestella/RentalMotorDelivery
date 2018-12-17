@@ -166,9 +166,11 @@
                 if (form.status.value === "Rusak") {
                     cariMotor(form.platNomor, form.status.value);
                     cariPesanan(form.noIdentitas, form.platNomor, form.status.value);
+                    alert("Status berhasil diubah");
                 } else {
                     cariMotor(form.platNomor, "Tersedia");
                     cariPesanan(form.noIdentitas, form.platNomor, form.status.value);
+                    alert("Status berhasil diubah");
                 }
             }
             function updateStatusMotor(platNomor, status) {
@@ -214,7 +216,7 @@
                     if (this.readyState === 4 && this.status === 200) {
                         var user = JSON.parse(this.responseText);
                         if (user !== null) {
-                            alert("Data berhasl diubah");
+                            alert("Data berhasil diubah");
                             updateStatusPesanan(user[0], status);
 //                            alert("Data sudah berhasil disimpan"); [Alert ini yang buat perkara, datanya jadi gak masuk]
                             return true;
