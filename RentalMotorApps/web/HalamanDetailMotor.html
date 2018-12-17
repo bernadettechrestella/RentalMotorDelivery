@@ -99,7 +99,7 @@
                             <div class ="form-group">
                                 <font face="Times New Roman" color="black" size="4">Status</font>
                                 <select id="status" style="margin-left: 13.5%">
-                                    <option value="Tersedia">Disewa</option>
+                                    <option value="Tersedia">Tersedia</option>
                                     <option value="Rusak">Rusak</option>
                                 </select>
                             </div>
@@ -121,11 +121,9 @@
                 var xhttp = new XMLHttpRequest();
                 xhttp.open("GET", url, true);
                 xhttp.send();
-                alert(getCookie("plat"));
                 xhttp.onreadystatechange = function () {
                     if (this.readyState === 4 && this.status === 200) {
                         var objj = JSON.parse(this.responseText);
-                        
                         document.getElementById("platNomor").value = objj[0].platNomor;
                         document.getElementById("jenis").value = objj[0].jenis;
                         document.getElementById("warna").value = objj[0].warna;
@@ -134,15 +132,12 @@
             }
 
             function make_json(form) {
-                if (form.status.value === "Rusak") {
-                    cariMotor(form.platNomor, form.status.value);
-                } else if (form.status.value === "Tersedia") {
-                    cariMotor(form.platNomor, form.status.value);
-                }
+                cariMotor(form.platNomor, form.status.value);
+//                    window.open("HalamanMotor.html", "_self");
             }
             function updateStatusMotor(platNomor, status) {
                 var json = {
-                    "platNomor": platNomor.platNomor,
+                    "platNomor": platNomor,
                     "status": status
                 };
                 var html = JSON.stringify(json, 0, 100);
@@ -163,7 +158,7 @@
                         var user = JSON.parse(this.responseText);
                         if (user !== null) {
                             alert("Data berhasl diubah");
-                            updateStatusMotor(user[0], status);
+                            updateStatusMotor(user[0].platNomor, status);
 //                            alert("Data sudah berhasil disimpan"); [Alert ini yang buat perkara, datanya jadi gak masuk]
                             return true;
                         } else {

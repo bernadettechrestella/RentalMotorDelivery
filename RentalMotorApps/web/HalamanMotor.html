@@ -125,7 +125,7 @@
                         var myObj = JSON.parse(this.responseText);
                         txt += "<table border='1' bgColor='white' class='fixed_header'>";
                         txt += "<tr><td>" + "Jenis" + "</td><td>" + "Warna"
-                                + "</td><td>" + "Plat Nomor" + "</td><td>" + "Status" + "</td></tr>";
+                                + "</td><td>" + "Plat Nomor" + "</td><td>" + "Status" + "</td><td>" + "Detail" + "</td></tr>";
                         for (x in myObj) {
                             txt += "<tr><td>" +
                                     myObj[x].jenis +
@@ -161,7 +161,7 @@
                         var myObj = JSON.parse(this.responseText);
                         txt += "<table border='1' bgColor='white' class='fixed_header'>";
                         txt += "<tr><td>" + "Jenis" + "</td><td>" + "Warna"
-                                + "</td><td>" + "Plat Nomor" + "</td><td>" + "Status" + "</td></tr>";
+                                + "</td><td>" + "Plat Nomor" + "</td><td>" + "Status" + "</td><td>" + "Status" + "</td></tr>";
                         for (x in myObj) {
                             txt += "<tr><td>" +
                                     myObj[x].jenis +
@@ -182,7 +182,7 @@
             }
             function detailMotor(platNomor) {
                 window.open("HalamanDetailMotor.html", "_self");
-                alert(platNomor);
+//                alert(platNomor);
                 setCookie("plat", platNomor, 1);
             }
             function setCookie(cname, cvalue, exdays) {

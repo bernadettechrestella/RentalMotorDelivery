@@ -134,7 +134,7 @@
                                     <option value="Honda Vario">Honda Vario</option>
                                     <option value="Honda Scoopy">Honda Scoopy</option>
                                     <option value="Yamaha Mio">Yamaha Mio</option>
-                                    <option value="Yamaha Mio X">Yamaha X Ride</option>
+                                    <option value="Yamaha X Ride">Yamaha X Ride</option>
                                     <option value="Honda Supra">Honda Supra</option>
                                 </select>
                                 <br>
@@ -144,7 +144,7 @@
                                     <option value="Honda Vario">Honda Vario</option>
                                     <option value="Honda Scoopy">Honda Scoopy</option>
                                     <option value="Yamaha Mio">Yamaha Mio</option>
-                                    <option value="Yamaha Mio X">Yamaha X Ride</option>
+                                    <option value="Yamaha X Ride">Yamaha X Ride</option>
                                     <option value="Honda Supra">Honda Supra</option>
                                 </select><br>
                                 <font style="margin-left: 18%" face="Times New Roman" color="black" size="4">3.</font>
@@ -153,7 +153,7 @@
                                     <option value="Honda Vario">Honda Vario</option>
                                     <option value="Honda Scoopy">Honda Scoopy</option>
                                     <option value="Yamaha Mio">Yamaha Mio</option>
-                                    <option value="Yamaha Mio X">Yamaha X Ride</option>
+                                    <option value="Yamaha X Ride">Yamaha X Ride</option>
                                     <option value="Honda Supra">Honda Supra</option>
                                 </select>
                             </div>
@@ -262,6 +262,7 @@
                 xhttp.send();
             }
             function checking(pilihan) {
+                var y;
                 var url = "http://202.94.83.190:8080/RPL_RentalMotor/webresources/motor/searchJenis?jenis=" + pilihan.value;
                 var xhttp = new XMLHttpRequest();
                 xhttp.onreadystatechange = function () {
@@ -269,20 +270,22 @@
                         var user = JSON.parse(this.responseText);
                         if (user !== null) {
                             //                            alert("Data sudah berhasil disimpan"); [Alert ini yang buat perkara, datanya jadi gak masuk]
-                            return true;
+                            y = true;
                         } else {
-                            return false;
+                            y = false;
                         }
                     }
                 };
                 xhttp.open('GET', url, true);
                 xhttp.send();
+                return y;
             }
 
             function make_json(form) {
                 if (form.jumlah.value === "1") {
 //                    if (checking(form.pil1) === true) {
                     cek(form.pil1, form);
+                    alert(checking(form.pil1).value);
                     alert("Data sudah berhasil disimpan");
 //                    } else {
 //                        alert("Motor yang ada pesan tidak ada");
@@ -304,6 +307,8 @@
 //                        alert("Motor yang ada pesan tidak ada");
 //                    }
                 }
+                window.open("HalamanPilihanMotor.html", "_self");
+
             }
 
             function hitung() {
